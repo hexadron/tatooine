@@ -1,0 +1,17 @@
+common: &common
+  adapter: mysql2
+  pool: 10
+  timeout: 5000
+  username: root
+
+development:
+  <<: *common
+  database: tatooine_dev
+
+test:
+  <<: *common
+  database: tatooine_test
+
+production:
+  <<: *common
+  database: tatooine_prod
