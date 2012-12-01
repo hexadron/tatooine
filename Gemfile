@@ -17,6 +17,16 @@ end
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'rb-fchange', :require => false
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'spork'
+  gem 'guard-spork'
+end
+
+group :test do
   gem 'factory_girl_rails'
 end
 

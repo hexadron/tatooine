@@ -11,11 +11,9 @@ CourseDivision : algo como Mates, Primera Parte; Mates, Segunda Parte
   : Course
   level ( nivel, 1, 2, 3, 4, 5, donde no se puede pasar a 2 sin haber pasado 1 )
 
-UserCourse
+Enrollment
   : User
-  : CourseDivision
-  : CourseSession
-  can_advance
+  : Course
 
 CourseSession
   title
