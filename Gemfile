@@ -13,6 +13,10 @@ end
 
 group :development do
   gem 'quiet_assets'
+  gem 'rails-erd'
+  # to use rails-erd:
+  # sudo aptitude install graphviz
+  # brew install graphviz
 end
 
 group :test, :development do
@@ -42,4 +46,3 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-
