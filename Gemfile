@@ -28,3 +28,8 @@ gem 'kaminari'
 gem 'responders'
 gem 'paperclip'
 gem 'friendly_id'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+
