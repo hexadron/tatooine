@@ -136,6 +136,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.4.0)
       mime-types
+    pg (0.14.1)
     polyglot (0.3.3)
     pry (0.9.10)
       coderay (~> 1.0.5)
@@ -248,6 +249,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-twitter
   paperclip
+  pg
   quiet_assets
   rails (= 3.2.8)
   rails-erd
