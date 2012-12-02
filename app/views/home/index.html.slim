@@ -8,7 +8,7 @@ html
   body.home
     h1= link_to "tatooine", root_path
     - if current_user
-      .facebook= "Bienvenido, #{current_user.name}"
+      .facebook= link_to "Bienvenido, #{current_user.name}", ""
       .twitter= link_to "Cerrar sesión", destroy_user_session_path, method: :delete
     - else 
       .facebook= link_to 'Inicia sesión con Facebook', user_omniauth_authorize_path(:facebook)
