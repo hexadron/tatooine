@@ -1,9 +1,6 @@
 class HomeController < ApplicationController
   def index
-    if current_user
-    else
-      render layout: false
-    end
+    render layout: false
   end
 
   def reset
