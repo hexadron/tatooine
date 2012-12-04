@@ -1,3 +1,51 @@
 class ExerciseType < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :active, :kind, :implementor
+  attr_accessor :implementor, :implementor_instance, :active
+  
+  before_save :transform_implementor_to_kind
+  before_save :activate
+  
+  class << self
+    def available_exercises
+      self.where active: [true, nil]
+    end
+  end
+  
+  def implementor
+    if @implementor
+      @implementor
+    else
+      begin
+        kind.constantize
+      rescue => e
+        nil
+      end
+    end
+  end
+  
+  def implementor=(value)
+    @implementor = value
+    @implementor_instance = value.new
+    @implementor
+  end
+  
+  def creator
+    if implementor
+      File.join(Rails.root, "views", "exercise_types", "_#{implementor.name.underscore}_creator")
+    end
+  end
+  
+  private
+  
+  def transform_implementor_to_kind
+    if implementor
+      self.kind = implementor.name
+    end
+  end
+  
+  def activate
+    self.active = true if self.active.nil?
+    self.active
+    true
+  end
 end
