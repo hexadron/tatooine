@@ -1,6 +1,6 @@
 module ExerciseTypes
   class SuperType
-    attr_accessor :data
+    attr_accessor :data, :errors
     
     def fill(data)
       @data = data

@@ -3,7 +3,7 @@ class Exercise < ActiveRecord::Base
   belongs_to :evaluation
   attr_accessible :question, :result
   
-  attr_accessor :context
+  attr_accessor :context, :solver
   
   after_initialize :create_context
   
@@ -25,8 +25,16 @@ class Exercise < ActiveRecord::Base
     self.context = Hash.new
   end
   
+  def mistakes
+    if @solver and errors = @solver.errors
+      errors
+    else
+      []
+    end
+  end
+  
   def solve_with(solution = Hash.new)
-    if exercise_type and solver = exercise_type.implementor_instance
+    if exercise_type and @solver = exercise_type.implementor_instance
       solver.fill(self.context)
       solver.solve(solution)
     end

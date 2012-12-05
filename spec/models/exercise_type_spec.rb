@@ -20,6 +20,13 @@ describe ExerciseType do
     })
   end
   
+  let(:multiple_true_or_false_type) do
+    ExerciseType.create({
+      name: 'multiple_true_or_false',
+      implementor: ExerciseTypes::MultipleTrueOrFalse
+    })
+  end
+  
   let(:alternatives_type) do
     ExerciseType.create({
       name: 'alternatives',
@@ -80,6 +87,46 @@ describe ExerciseType do
     exercise.define :alternatives => ["A", "D", "M", "E", "F"], :answer => "D"
     
     exercise.solve_with(:answer => 1).should be(true)
+  end
+  
+  it "should fill exercise with multiples T y F" do
+    exercise.question = "Responde Verdadero o Falso según corresponda"
+    exercise.exercise_type = multiple_true_or_false_type
+    
+    questions = [
+      ["¿Hitler murió en 1949?", false],
+      ["¿Hitler murió en 1948?", false],
+      ["¿Hitler murió en 1947?", false],
+      ["¿Hitler murió en 1945?", true],
+      ["¿El amarillo es un color?", true]
+    ]
+    
+    exercise.define :questions => questions
+    
+    answers = [false, false, false, true, true]
+    
+    exercise.solve_with(:answers => answers).should be(true)
+  end
+  
+  it "should print the errors of a multiple true or false" do
+    exercise.question = "Responde Verdadero o Falso según corresponda"
+    exercise.exercise_type = multiple_true_or_false_type
+    
+    questions = [
+      ["¿Hitler murió en 1949?", false],
+      ["¿Hitler murió en 1948?", false],
+      ["¿Hitler murió en 1947?", false],
+      ["¿Hitler murió en 1945?", true],
+      ["¿El amarillo es un color?", true]
+    ]
+    
+    exercise.define :questions => questions
+    
+    answers = [false, true, false, true, true]
+    
+    exercise.solve_with(:answers => answers)
+    
+    exercise.mistakes.count.should == 1
   end
 
   
