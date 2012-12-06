@@ -8,4 +8,7 @@ Tatooine::Application.routes.draw do
 
   get 'reset' => 'home#reset'
   root to: 'home#index', as: :root
+  
+  resources :courses
+  
 end

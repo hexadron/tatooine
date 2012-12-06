@@ -1,7 +1,7 @@
 class Exercise < ActiveRecord::Base
   belongs_to :exercise_type
   belongs_to :evaluation
-  attr_accessible :question, :result
+  attr_accessible :question, :result, :exercise_data
   
   attr_accessor :context, :solver
   
@@ -9,7 +9,7 @@ class Exercise < ActiveRecord::Base
   
   def formatted_question(type="html")
     if type.to_s == "html"
-      exercise_type.creator
+      exercise_type.formatted_question
     end
   end
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204044055) do
+ActiveRecord::Schema.define(:version => 20121206091251) do
 
   create_table "achievements", :force => true do |t|
     t.integer  "course_id"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20121204044055) do
     t.integer  "evaluation_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.text     "exercise_data"
   end
 
   add_index "exercises", ["evaluation_id"], :name => "index_exercises_on_evaluation_id"

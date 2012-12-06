@@ -29,9 +29,9 @@ class ExerciseType < ActiveRecord::Base
     @implementor
   end
   
-  def creator
+  def formatted_question
     if implementor
-      File.join(Rails.root, "views", "exercise_types", "_#{implementor.name.underscore}_creator")
+      File.join(Rails.root, "views", "exercise_types", "_#{implementor.name.underscore}_question")
     end
   end
   

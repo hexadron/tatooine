@@ -128,6 +128,5 @@ describe ExerciseType do
     
     exercise.mistakes.count.should == 1
   end
-
   
 end

@@ -1,5 +1,11 @@
+@import 'bourbon'
+
+$gutter: 0em
+
+@import 'neat'
+
 body.home
-  overflow: hidden
+  +row
   margin: auto
   width: 80%
 
@@ -13,22 +19,32 @@ body.home
     
     a
       color: white
-
+  
   .facebook, .twitter
-    float: left
-    width: 50%
-
-  .facebook a, .twitter a
-    display: inline-block
-    background: hsl(0, 0, 20)
-    color: white
-    font-size: 2em
-    padding: 1em 0
-    text-align: center
-    width: 100%
+    +span-columns(6)
+  
+  .options
+    +row
+    > div
+      +span-columns(4)
+      width: 33.33334%
+  
+  .facebook, .twitter, .options
+    a
+      display: inline-block
+      background: hsl(0, 0, 20)
+      color: white
+      font-size: 2em
+      padding: 1em 0
+      text-align: center
+      width: 100%
 
   .facebook a:hover
     background: #3f5d97
 
   .twitter a:hover
     background: #45adee
+    
+  .cursos, .alumnos, .profesores
+    a:hover
+      background: adjust-hue(#45adee, 10)
