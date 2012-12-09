@@ -1,7 +1,8 @@
-= semantic_form_for(@course) do |f|
-  = f.input :name, label: "Nombre"
-  = f.input :description, label: "Descripción"
-  = f.input :available_at, as: :date_picker, label: "Disponible en:"
-  = f.input :can_be_published, label: "¿Publicar?"
-  = f.input :level, label: "Nivel", :include_blank => false
-  = f.submit "Crear Curso"
+ul
+  = semantic_form_for(@course) do |f|
+    = f.input :name, label: "Nombre"
+    = f.input :description, label: "Descripción"
+    = f.input :available_at, as: :date_picker, label: "Disponible en:"
+    = f.input :can_be_published, label: "¿Publicar?"
+    = f.input :level, label: "Nivel", :include_blank => false
+    = f.submit "Guardar Curso"

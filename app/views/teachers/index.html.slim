@@ -1,2 +1,9 @@
 h2 Tus profesores
-h2 Profesores de tu nivel
+ul.courses
+  - for teacher in @my_teachers
+    li= link_to teacher.name, teacher_path(teacher), class: 'course_tile'
+
+h2 Todos los profesores
+ul.courses
+  - for teacher in @teachers  
+    li= link_to teacher.name, teacher_path(teacher), class: 'course_tile'

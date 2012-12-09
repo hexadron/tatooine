@@ -1,1 +1,4 @@
 h2 Tus alumnos
+ul.courses
+  - for student in @my_students
+    li= link_to student.name, student_path(student), class: 'course_tile'

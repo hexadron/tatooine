@@ -1,1 +1,13 @@
 h2= "Bienvenido, #{current_user.name}"
+
+p Bienvenido a tatooine, te recomendamos revisar nuestra lista de cursos y profesores populares para empezar.
+
+h2 Cursos recomendados
+ul.courses
+  - for course in @courses
+    li= link_to course.name, course_url(course), class: 'course_tile'
+
+h2 Profesores recomendados
+ul.courses
+  - for teacher in @teachers  
+    li= link_to teacher.name, teacher_path(teacher), class: 'course_tile'

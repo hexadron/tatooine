@@ -1,0 +1,4 @@
+h2= "Cursos dictados por #{@teacher.complete_name}"
+ul.courses
+  - for course in @courses
+    li= link_to course.name, course_url(course), class: 'course_tile'

@@ -8,12 +8,17 @@ ul.courses
   - for course in @courses_you_created  
     li
       = link_to course.name, course_url(course), class: 'course_tile'
-      = link_to "editar", edit_course_url(course)
-      = button_to "eliminar", course, method: 'delete', class: 'delete', confirm: "¿Deseas eliminar este curso?"
+      = link_to "editar", edit_course_url(course), class: 'actions'
+      = button_to "eliminar", course, method: 'delete', class: 'delete actions', confirm: "¿Deseas eliminar este curso?"
 
 = link_to 'Crear un curso', new_course_path, class: 'button'
 
 h2 Otros cursos de tu nivel
 ul.courses
   - for course in @your_level_courses
+    li= link_to course.name, course_url(course), class: 'course_tile'
+
+h2 Todos los cursos
+ul.courses
+  - for course in @courses
     li= link_to course.name, course_url(course), class: 'course_tile'
