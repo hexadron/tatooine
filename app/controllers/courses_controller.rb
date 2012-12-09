@@ -8,6 +8,7 @@ class CoursesController < ApplicationController
     @your_level_courses = Course.with_level(current_user.average_level)
     @courses_you_created = current_user.creations
     @courses_you_take = current_user.courses
+    @courses = Course.all
   end
   
   def show
@@ -15,7 +16,11 @@ class CoursesController < ApplicationController
   end
   
   def edit
-    respond_with(@course)
+    if current_user.creations.include? @course
+      respond_with(@course)
+    else
+      redirect_to course_path(@course)
+    end
   end
   
   def new
@@ -23,9 +28,10 @@ class CoursesController < ApplicationController
     load_defaults
   end
   
-  def delete
+  def destroy
+    @course = Course.find params[:id]
     @course.destroy
-    respond_with(@course)
+    redirect_to courses_path
   end
   
   def create

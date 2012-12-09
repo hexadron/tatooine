@@ -1,6 +1,11 @@
 class HomeController < ApplicationController
   def index
-    render 'login' unless current_user
+    if current_user
+      @courses = Course.all
+      @teachers = User.teachers
+    else
+      render 'login'
+    end
   end
 
   def reset
