@@ -1,4 +1,7 @@
 $ ->
+  
+  $('.datepicker').datepicker()
+  
   randomColor = ->
     color = '#'
     color += Math.floor(Math.random() * 6) + 3 for i in [1..6]
