@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem 'sqlite3'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -12,6 +11,7 @@ group :assets do
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'quiet_assets'
   gem 'rails-erd'
   # to use rails-erd:
