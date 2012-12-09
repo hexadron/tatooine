@@ -19,15 +19,51 @@ class User < ActiveRecord::Base
   def name
     self.first_name || self.email
   end
-  
+
   def complete_name
-    "#{self.first_name} #{self.last_name}"
+    if self.first_name && self.last_name
+      "#{self.first_name} #{self.last_name}"
+    else
+      strip_email self.name
+    end
+  end
+
+  def strip_email(email)
+    index = email.index '@'
+    index ? email[0..(index - 1)] : email
   end
   
   def average_level
-    "básico"
+    "Básico"
   end
 
+  def teachers
+    _teachers = []
+    self.courses.each do |course|
+      teacher = course.creator
+      unless _teachers.index teacher
+        _teachers.push teacher
+      end
+    end
+    return _teachers
+  end
+
+  def students
+    # TODO: esto se puede optimizar
+    _students = []
+    self.creations.each do |course|
+      course.students.each do |student|
+        unless _students.index student
+          _students.push student
+        end
+      end
+    end
+  end
+
+  def self.teachers
+    self.all.select { |teacher| teacher.courses.count > 0 }
+  end
+  
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
     unless user

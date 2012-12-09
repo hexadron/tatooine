@@ -8,6 +8,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Level.create({name: "básico", position: 1})
-Level.create({name: "intermedio", position: 2})
-Level.create({name: "avanzado", position: 3})
+Level.create({name: "Básico", position: 1})
+Level.create({name: "Intermedio", position: 2})
+Level.create({name: "Avanzado", position: 3})
