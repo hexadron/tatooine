@@ -88,7 +88,7 @@ input[type=submit], .button
     // float: left
     border: 1px solid white
     width: 25%
-    
+
     a:not(.course_tile)
       width: 50%
 
@@ -96,6 +96,16 @@ input[type=submit], .button
       color: white
       font-family: $proxima
       font-size: 1.15em
+
+      &.actions
+        color: white
+        background: hsl(0, 0, 20)
+
+        &:hover
+          background: hsl(0, 0, 30)
+
+        &:active
+          top: 0
       
       &:not(.course_tile)
         +inline-block
@@ -125,3 +135,22 @@ input[type=submit], .button
         border: none
       input[type=submit]
         padding: 6px 20px 7px 20px
+
+.course-detail
+  p
+    margin-bottom: 1.5em
+
+.formtastic
+  
+  li
+    margin-bottom: 0.5em
+
+  label
+    display: inline-block
+    width: 120px
+
+  input[type=text], textarea
+    width: 200px
+
+  input[type=submit]
+    margin-top: 1.5em
