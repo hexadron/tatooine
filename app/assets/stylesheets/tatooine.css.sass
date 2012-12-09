@@ -1,0 +1,78 @@
+body
+  font-family: "proxima_nova_ltregular", sans-serif
+  margin: auto
+  width: 960px
+
+  .header
+    background: hsl(0, 0, 20)
+    color: white
+    overflow: hidden
+
+    li
+      float: left
+
+    a
+      color: white
+      border-bottom: none
+      padding: 1em
+      display: inline-block
+      text-align: center
+
+      &:hover
+        border-bottom: none
+        
+      &:active
+        position: relative
+        top: 0px
+
+    li a:hover
+      background: hsl(350, 50, 50)
+
+    .facebook a:hover
+      background: #3f5d97
+
+    .twitter a:hover
+      background: #45adee
+  
+.devise
+  h2
+    font-size: 2em
+    margin-top: 1em
+    margin-bottom: 0.5em
+
+  form div
+    margin-bottom: 1em
+
+  a
+    display: inline-block
+    margin-bottom: 0.5em
+
+a
+  color: hsl(0, 0, 20)
+  border-bottom: 1px solid white
+  text-decoration: none
+
+  &:hover
+    color: hsl(350, 50, 50)
+    border-bottom: 1px solid hsl(350, 50, 50)
+    
+  &:active
+    position: relative
+    top: 1px
+
+form
+  input[type=submit]
+    color: white
+    cursor: pointer
+    background: hsl(350, 50, 50)
+    padding: 0.5em 1em
+    font-size: 1em
+    border: 1px solid white
+
+    &:hover
+      background: hsl(350, 50, 55)
+      border: 1px solid hsl(350, 50, 30)
+
+    &:active
+      background: hsl(350, 50, 45)
+

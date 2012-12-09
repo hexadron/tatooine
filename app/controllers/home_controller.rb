@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    
+    render 'login' unless current_user
   end
 
   def reset
