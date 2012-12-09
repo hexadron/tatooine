@@ -28,6 +28,7 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'spork'
   gem 'guard-spork'
+  gem 'capybara'
 end
 
 group :production do
