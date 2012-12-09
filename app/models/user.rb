@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
         _teachers.push teacher
       end
     end
-    return _teachers
+    _teachers
   end
 
   def students
@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
         end
       end
     end
+    _students
   end
 
   def self.teachers
