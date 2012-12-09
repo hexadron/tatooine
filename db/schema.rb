@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121206091251) do
+ActiveRecord::Schema.define(:version => 20121209051330) do
 
   create_table "achievements", :force => true do |t|
     t.integer  "course_id"
@@ -83,13 +83,18 @@ ActiveRecord::Schema.define(:version => 20121206091251) do
   add_index "course_sessions", ["division_id"], :name => "index_course_sessions_on_division_id"
 
   create_table "courses", :force => true do |t|
-    t.string   "difficulty"
     t.string   "name"
     t.date     "available_at"
     t.boolean  "can_be_published"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.text     "description"
+    t.integer  "level_id"
+    t.integer  "creator_id"
   end
+
+  add_index "courses", ["creator_id"], :name => "index_courses_on_creator_id"
+  add_index "courses", ["level_id"], :name => "index_courses_on_level_id"
 
   create_table "divisions", :force => true do |t|
     t.integer  "level"
@@ -140,6 +145,13 @@ ActiveRecord::Schema.define(:version => 20121206091251) do
 
   add_index "exercises", ["evaluation_id"], :name => "index_exercises_on_evaluation_id"
   add_index "exercises", ["exercise_type_id"], :name => "index_exercises_on_exercise_type_id"
+
+  create_table "levels", :force => true do |t|
+    t.string   "name"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "session_parts", :force => true do |t|
     t.string   "title"
