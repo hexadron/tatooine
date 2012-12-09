@@ -1,0 +1,11 @@
+h2.course_title= @course.name
+
+p.course_description= @course.description
+
+p.course_creator Creado por: #{@course.creator.complete_name}
+
+- if current_user.courses.include?(@course)
+  h2.yet_enrolled Actualmente estás llevando este curso
+- else
+  = form_tag(enroll_course_path(@course)) do
+    = submit_tag "Registrarse", class: "button"

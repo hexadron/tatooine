@@ -1,19 +1,19 @@
 h2 Cursos que tomas
 ul.courses
-  li= link_to 'Recursividad avanzada', ''
-  li= link_to 'Buscando caminos con A*', ''
-  li= link_to 'Música internacional', ''
+  - for course in @courses_you_take
+    li= link_to course.name, course_url(course), class: 'course_tile'
+
 h2 Cursos que dictas
 ul.courses
-  li= link_to 'Recursividad básica', ''
-  li= link_to 'La respuesta a todas las preguntas de la vida', ''
-  li= link_to 'Metaprogramación', ''
-  li= link_to 'Los tres árboles en Git', ''
-  li= link_to 'Los tres árboles en Git II', ''
-  li= link_to 'Historia Universal', ''
+  - for course in @courses_you_created  
+    li
+      = link_to course.name, course_url(course), class: 'course_tile'
+      = link_to "editar", edit_course_url(course)
+      = button_to "eliminar", course, method: 'delete', class: 'delete', confirm: "¿Deseas eliminar este curso?"
+
 = link_to 'Crear un curso', new_course_path, class: 'button'
+
 h2 Otros cursos de tu nivel
 ul.courses
-  li= link_to 'Recursividad básica', ''
-  li= link_to 'Ententiendo los algoritmos gráficos avanzados, parte I', ''
-  li= link_to 'Cocina española', ''
+  - for course in @your_level_courses
+    li= link_to course.name, course_url(course), class: 'course_tile'
