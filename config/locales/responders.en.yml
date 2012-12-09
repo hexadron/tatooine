@@ -8,3 +8,6 @@ en:
       destroy:
         notice: '%{resource_name} was successfully destroyed.'
         alert: '%{resource_name} could not be destroyed.'
+  errors:
+    messages:
+      blank: "No puede estar vacío"

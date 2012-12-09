@@ -11,7 +11,12 @@ Tatooine::Application.routes.draw do
   get 'reset' => 'home#reset'
   root to: 'home#index', as: :root
   
-  resources :courses
+  resources :courses do
+    member do
+      post 'enroll'
+    end
+  end
+  
   resources :teachers
   resources :students
   

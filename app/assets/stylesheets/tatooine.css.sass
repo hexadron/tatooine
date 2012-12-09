@@ -1,5 +1,7 @@
+$proxima: "proxima_nova_ltregular", sans-serif
+
 body
-  font-family: "proxima_nova_ltregular", sans-serif
+  font-family: $proxima
   margin: auto
   margin-bottom: 3.5em
   width: 960px
@@ -55,7 +57,7 @@ a
 
   &:hover
     color: hsl(350, 50, 50)
-    border-bottom: 1px solid hsl(350, 50, 50)
+    // border-bottom: 1px solid hsl(350, 50, 50)
     
   &:active
     position: relative
@@ -73,7 +75,6 @@ input[type=submit], .button
   &:hover
     color: white
     background: hsl(350, 50, 55)
-    border: 1px solid hsl(350, 50, 30)
 
   &:active
     color: white
@@ -85,21 +86,42 @@ input[type=submit], .button
 
   li
     // float: left
-    width: 25%
-
-  a
-    color: white
-    display: block
     border: 1px solid white
-    background: black
-    font-size: 1.15em
-    padding: 100px 20px 10px
-
-    &:hover
-      color: white
-      border-bottom-color: white
+    width: 25%
     
-    &:active
-      position: relative
-      top: 0
+    a:not(.course_tile)
+      width: 50%
 
+    a, input[type=submit]
+      color: white
+      font-family: $proxima
+      font-size: 1.15em
+      
+      &:not(.course_tile)
+        +inline-block
+        +box-sizing(border-box)
+        padding: 10px 20px 
+        
+      &.course_tile
+        background: black
+        display: block
+        padding: 100px 20px 10px
+
+        &:hover
+          color: white
+          // border-bottom-color: white
+        
+        &:active
+          position: relative
+          top: 0
+    
+    .button_to
+      +inline-block
+      width: 50%
+      font-size: 1.15em
+      div, input[type=submit]
+        width: 100%
+        margin: 0
+        border: none
+      input[type=submit]
+        padding: 6px 20px 7px 20px
