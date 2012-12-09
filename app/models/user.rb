@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
   end
 
   def self.teachers
-    self.all.select { |teacher| teacher.courses.count > 0 }
+    self.all.select { |teacher| teacher.creations.count > 0 }
   end
   
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
