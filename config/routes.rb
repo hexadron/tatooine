@@ -12,5 +12,7 @@ Tatooine::Application.routes.draw do
   root to: 'home#index', as: :root
   
   resources :courses
+  resources :teachers
+  resources :students
   
 end
