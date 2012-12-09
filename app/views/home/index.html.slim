@@ -1,10 +1,1 @@
-- if current_user
-  .facebook= link_to "Bienvenido, #{current_user.name}", ""
-  .twitter= link_to "Cerrar sesión", destroy_user_session_path, method: :delete
-  .options
-    .cursos= link_to "Cursos", courses_path
-    .alumnos= link_to "Alumnos", courses_path
-    .profesores= link_to "Profesores", courses_path
-- else 
-  .facebook.opt= link_to 'Inicia sesión con Facebook', user_omniauth_authorize_path(:facebook)
-  .twitter.opt= link_to 'Inicia sesión con Twitter', user_omniauth_authorize_path(:twitter)
+h2= "Bienvenido, #{current_user.name}"
