@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -9,8 +11,21 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :password,
                   :password_confirmation, :remember_me, :provider, :uid
 
+  has_many :creations, :class_name => "Course", :foreign_key => "creator_id"
+  
+  has_many :enrollments
+  has_many :courses, :through => :enrollments
+
   def name
     self.first_name || self.email
+  end
+  
+  def complete_name
+    "#{self.first_name} #{self.last_name}"
+  end
+  
+  def average_level
+    "básico"
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
