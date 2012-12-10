@@ -1,0 +1,433 @@
+es:
+  active_admin:
+    dashboard: Inicio
+    dashboard_welcome:
+      welcome: "Bienvenido a Active Admin. Esta es la página de inicio predeterminada."
+      call_to_action: "Para agregar secciones edite 'app/admin/dashboards.rb'"
+    view: "Ver"
+    edit: "Editar"
+    delete: "Eliminar"
+    delete_confirmation: "¿Está seguro de que quiere eliminar esto?"
+    new_model: "Nuevo(a) %{model}"
+    create_model: "Nuevo(a) %{model}"
+    edit_model: "Editar %{model}"
+    update_model: "Editar %{model}"
+    delete_model: "Eliminar %{model}"
+    details: "Detalles de %{model}"
+    cancel: "Cancelar"
+    empty: "Vacío"
+    previous: "Anterior"
+    next: "Siguiente"
+    download: "Descargar:"
+    has_many_new: "Agregar nuevo(a) %{model}"
+    has_many_delete: "Eliminar"
+    filter: "Filtrar"
+    clear_filters: "Quitar Filtros"
+    search_field: "Buscar por %{field}"
+    equal_to: "Igual a"
+    greater_than: "Mayor que"
+    less_than: "Menor que"
+    main_content: "Por favor implemente %{model}#main_content para mostrar contenido."
+    logout: "Salir"
+    sidebars:
+      filters: "Filtros"
+    pagination:
+      empty: "Ningún(a) %{model} encontrado"
+      one: "Mostrando <b>1</b> %{model}"
+      one_page: "Mostrando <b>todos(as) los(as) %{n}</b> %{model}"
+      multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
+    blank_slate:
+      content: "No hay %{resource_name} aún."
+      link: "Crea uno(a)"
+      entry:
+        one: "registro"
+        other: "registros"
+    any: "Cualquiera"
+    batch_actions:
+      button_label: "Acciones en masa"
+      delete_confirmation: "¿Está seguro de que quiere eliminar estos %{plural_model}? No podrá deshacer esta opción."
+      succesfully_destroyed:
+        one: "Se ha destruido 1 %{model} exitosamente"
+        other: "Se han destruido %{count} %{plural_model} exitosamente"
+      selection_toggle_explanation: "(Cambiar Selección)"
+      link: "Crea 1"
+      action_label: "%{title} Seleccionado"
+      labels:
+        destroy: "Borrar"
+    comments:
+      body: "Cuerpo"
+      author: "Autor"
+      title: "Comentario"
+      add: "Comentar"
+      resource: "Recurso"
+      no_comments_yet: "Sin comentarios todavía."
+      title_content: "Comentarios (%{count})"
+      errors:
+        empty_text: "El comentario no fue guardado, el texto estaba vacío."
+    devise:
+      login:
+        title: "iniciar sesión"
+        remember_me: "Recuérdame"
+        submit: "iniciar sesión"
+      reset_password:
+        title: "¿Olvidó su contraseña?"
+        submit: "Restablecer mi contraseña"
+      change_password:
+        title: "Cambie su contraseña"
+        submit: "Cambiar mi contraseña"
+      links:
+        sign_in: "registrarse"
+        forgot_your_password: "¿Olvidó su contraseña?"
+  configuration: Configuración
+  date:
+    abbr_day_names:
+    - Dom
+    - Lun
+    - Mar
+    - Mié
+    - Jue
+    - Vie
+    - Sáb
+    abbr_month_names:
+    - 
+    - Ene
+    - Feb
+    - Mar
+    - Abr
+    - May
+    - Jun
+    - Jul
+    - Ago
+    - Set
+    - Oct
+    - Nov
+    - Dic
+    day_names:
+    - Domingo
+    - Lunes
+    - Martes
+    - Miércoles
+    - Jueves
+    - Viernes
+    - Sábado
+    formats:
+      default: ! '%Y-%m-%d'
+      long: ! '%B %d, %Y'
+      short: ! '%b %d'
+    month_names:
+    - 
+    - Enero
+    - Febrero
+    - Marzo
+    - Abril
+    - Mayo
+    - Junio
+    - Julio
+    - Agosto
+    - Setiembre
+    - Octubre
+    - Noviembre
+    - Diciembre
+    order:
+    - :year
+    - :day
+    - :month
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_days:
+        one: 1 day
+        other: ! '%{count} days'
+      x_minutes:
+        one: 1 minute
+        other: ! '%{count} minutes'
+      x_months:
+        one: 1 month
+        other: ! '%{count} months'
+      x_seconds:
+        one: 1 second
+        other: ! '%{count} seconds'
+    prompts:
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Seconds
+      year: Year
+  errors: &errors
+    format: ! '%{attribute} %{message}'
+    messages:
+      accepted: must be accepted
+      blank: can't be blank
+      confirmation: doesn't match confirmation
+      empty: can't be empty
+      equal_to: must be equal to %{count}
+      even: must be even
+      exclusion: is reserved
+      greater_than: must be greater than %{count}
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+      inclusion: No está incluído en la lista
+      invalid: No es válido
+      less_than: must be less than %{count}
+      less_than_or_equal_to: must be less than or equal to %{count}
+      not_a_number: is not a number
+      not_an_integer: must be an integer
+      odd: must be odd
+      record_invalid: ! 'Validation failed: %{errors}'
+      taken: has already been taken
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+    template:
+      body: ! 'There were problems with the following fields:'
+      header:
+        one: 1 error prohibited this %{model} from being saved
+        other: ! '%{count} errors prohibited this %{model} from being saved'
+  formtastic:
+    yes: "Sí"
+    no: "No"
+    create: "Guardar %{model}"
+    update: "Guardar %{model}"
+    submit: "Aceptar"
+    cancel: "Cancelar"
+    reset: "Resetear %{model}"
+    required: "requerido"
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+  image: Imagen
+  images: "Imágenes"
+  number:
+    currency:
+      format:
+        delimiter: ! ','
+        format: ! '%u%n'
+        precision: 2
+        separator: .
+        significant: false
+        strip_insignificant_zeros: false
+        unit: $
+    format:
+      delimiter: ! ','
+      precision: 3
+      separator: .
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: ! '%n %u'
+        units:
+          billion: Billion
+          million: Million
+          quadrillion: Quadrillion
+          thousand: Thousand
+          trillion: Trillion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: ! '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ! ', and '
+      two_words_connector: ! ' and '
+      words_connector: ! ', '
+  time:
+    am: am
+    formats:
+      default: ! '%a, %d %b %Y %H:%M:%S %z'
+      long: ! '%B %d, %Y %H:%M'
+      short: ! '%d %b %H:%M'
+    pm: pm
+  views:
+      pagination:
+          truncate: "..."
+          first: "Inicio"
+          previous: "Anterior"
+          next: "Siguiente"
+          last: "Último"
+  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      <<: *errors
+  activerecord:
+    models:
+      admin_user:
+        one: Administrador
+        other: Administradores
+      content:
+        one: Contenido
+        other: Contenidos
+      customer:
+        one: Usuario
+        other: Usuarios
+      ingredient:
+        one: Ingrediente
+        other: Ingredientes
+      order:
+        one: Pedido
+        other: Pedidos
+      page:
+        one: Página
+        other: Páginas
+      post:
+        one: Post
+        other: Posts
+      product:
+        one: Producto
+        other: Productos
+      product_image:
+        one: "Imagen de Producto"
+        other: "Imágenes de Producto"
+      setting:
+        one: Preferencia
+        other: Preferencias
+      template:
+        one: Plantilla
+        other: Plantillas
+    attributes:
+      admin_user:
+        name: Nombre
+        password: "Contraseña"
+        password_confirmation: "Confirmación de Contraseña"
+        current_sign_in_at: "Conectado A Las"
+        last_sign_in_at: "Última Conexión"
+        sign_in_count: "Nro. de Conexiones"
+        edit_password: "¿Cambiar Contraseña?"
+      content:
+        page: Página
+        # Nombre no era un buen nombre. Pongamos "Contexto", por ahora
+        name: Contexto
+        content_type: Tipo de Contenido
+        string_content: "Texto Pequeño"
+        text_content: "Texto Extendido"
+        rich_text_content: "Texto Enriquecido"
+        image_content: "Imagen"
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      customer:
+        password: "Contraseña"
+        password_confirmation: "Confirmación de Contraseña"
+        current_sign_in_at: "Conectado A Las"
+        last_sign_in_at: "Última Conexión"
+        sign_in_count: "Nro. de Conexiones"
+      ingredient:
+        name: Nombre
+        description: "Descripción"
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      order:
+        state: Estado
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      page:
+        template: Plantilla
+        name: Nombre
+        title: Título
+        path: Ruta
+        parent_id: Página Padre
+        meta_description: Meta-Descripción
+        meta_keywords: Meta-Palabras Clave
+        meta_title: Meta-Título
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      post:
+        admin_user: Autor Original
+        template: Plantilla
+        name: Nombre
+        title: Título
+        content: Contenido
+        tags: Etiquetas
+        slug: Permalink
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      product:
+        price: Precio
+        name: Nombre
+        description: "Descripción"
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      product_image:
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+        image_file_name: "Nombre de Imagen"
+        image_content_type: "Tipo de Imagen"
+        image_file_size: "Tamaño de Imagen (bytes)"
+        image_updated_at: "Última Actualización de la Imagen"
+        product: Producto
+      setting:
+        key: Preferencia
+        description: Descripción
+        value: Valor
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      template:
+        name: Nombre
+        file: Archivo Fuente
+        context: Contextos
+        layout_file: Archivo de Layout
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+    errors:
+      <<: *errors
+  
+  app:
+    actions: Acciones
+    seo: "Optimización de Búsqueda"
+    content: "Contenido"
+    contents: "Contenidos"
+    administration: "Administración"
+    original_author: "Autor Original"
+    tags_hint: "palabras pequeñas separadas por coma. Ejemplo: Angie, Jules, Bebé, Gomita de Fresa, Pikachu, etc"
+    is_draft: "¿borrador?"
+    visualize_in_web: Link
+    preference_hint: "La funcionalidad de este campo debe programarse. No cambiar si no se es programador o no se conoce el código fuente"
+    contexts_hint: "Nombres de los Contextos usados en la plantilla separados por coma."
