@@ -303,36 +303,30 @@ es:
       admin_user:
         one: Administrador
         other: Administradores
-      content:
-        one: Contenido
-        other: Contenidos
+      achievement:
+        one: Logro
+        other: Logros
+      badge:
+        one: Medalla
+        other: Medallas
+      course:
+        one: Curso
+        other: Cursos
+      course_session:
+        one: Clase
+        other: Clases
       customer:
         one: Usuario
         other: Usuarios
-      ingredient:
-        one: Ingrediente
-        other: Ingredientes
-      order:
-        one: Pedido
-        other: Pedidos
-      page:
-        one: Página
-        other: Páginas
-      post:
-        one: Post
-        other: Posts
-      product:
-        one: Producto
-        other: Productos
-      product_image:
-        one: "Imagen de Producto"
-        other: "Imágenes de Producto"
-      setting:
-        one: Preferencia
-        other: Preferencias
-      template:
-        one: Plantilla
-        other: Plantillas
+      session_part:
+        one: Sección
+        other: Secciones
+      division:
+        one: Módulo
+        other: Módulos
+      enrollment:
+        one: Registro de Curso
+        other: Registros de Cursos
     attributes:
       admin_user:
         name: Nombre
@@ -342,6 +336,11 @@ es:
         last_sign_in_at: "Última Conexión"
         sign_in_count: "Nro. de Conexiones"
         edit_password: "¿Cambiar Contraseña?"
+      course:
+        name: Nombre de Curso
+        creator: Profesor
+        level: Nivel
+        can_be_published: ¿Puede publicarse?
       content:
         page: Página
         # Nombre no era un buen nombre. Pongamos "Contexto", por ahora
