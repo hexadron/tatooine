@@ -423,10 +423,10 @@ es:
       admin_user:
         email: Correo
       user:
-        first name: Nombre
-        last name: Apellido
+        first_name: Nombre
+        last_name: Apellido
         email: Correo
-        encrypted password: Contraseña Cifrada
+        encrypted_password: Contraseña Cifrada
         reset_password_set_at: Restablecer Contraseña Cifrada
         remember_create_at: Fecha de Creación
         current_sign_in_at: Muestra actualmente la Fecha
