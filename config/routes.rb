@@ -1,5 +1,7 @@
 Tatooine::Application.routes.draw do
   
+  get "feedbacks/create"
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -12,8 +14,12 @@ Tatooine::Application.routes.draw do
   root to: 'home#index', as: :root
   
   resources :courses do
+    resources :feedbacks
     member do
       post 'enroll'
+    end
+    collection do
+      get 'search'
     end
   end
   
