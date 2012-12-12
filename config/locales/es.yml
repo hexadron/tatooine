@@ -357,6 +357,8 @@ es:
         level: Nivel
         can_be_published: ¿Puede publicarse?
         available_at: Fecha Disponible
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
       course_session:
         title: Título
         content: Contenido
@@ -364,6 +366,77 @@ es:
         course: Curso
         created_at: "Fecha de Creación"
         updated_at: "Última Actualización"
+      enrollment:
+        user: usuario
+        course: Curso
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      session_part:
+        course_session: Seleccione el Curso
+        title: El Titulo del curso
+        content: El Contenido del curso
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      evaluation:
+        session_part: Seccione la seccion del Curso
+        course_session : Seleccione la Clase
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      exercise:
+        exercise_type: Tipo de Ejercicio
+        evaluation: Evaluación
+        question: Pregunta
+        result: Resultado
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+        exercise_data: Ejercicio de Datos
+      exercise_type:
+        name: Ejercicio
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+        kind: Tipo 
+      achievement:
+        course: Curso
+        evaluation: Evaluación
+        name: Nombre
+        description: Descripción
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      badge:
+        evaluation: Evaluación
+        course: Curso
+        name: Nombre de la Medalla
+        description: descr de la Medalla
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      division:
+        course: Curso
+        level: Nivel
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      level:
+        course: Curso
+        name: Buscar Nombre
+        position: posición
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      admin_user:
+        email: Correo
+      user:
+        first name: Nombre
+        last name: Apellido
+        email: Correo
+        encrypted password: Contraseña Cifrada
+        reset_password_set_at: Restablecer Contraseña Cifrada
+        remember_create_at: Fecha de Creación
+        current_sign_in_at: Muestra actualmente la Fecha
+        last_sign_in_at: Muestra Fecha Pasada
+        current_sign_in_ip: Muestra IP
+        last_sign_in_ip: Muestra la IP Pasada
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+        provider: Proveedor
+        uid: Uid
       content:
         page: Página
         # Nombre no era un buen nombre. Pongamos "Contexto", por ahora
