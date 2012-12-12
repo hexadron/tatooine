@@ -327,6 +327,21 @@ es:
       enrollment:
         one: Registro de Curso
         other: Registros de Cursos
+      evaluation:
+        one:  Evaluación
+        other: Evaluaciones
+      exercise:
+        one: Ejercicio
+        other: Ejercicios
+      exercise_type:
+        one: Tipo de Ejercicio
+        other: Tipos de Ejercicios
+      level:
+        one: Nivel
+        other: Niveles
+      user:
+        one: Usuario
+        other: Usuarios
     attributes:
       admin_user:
         name: Nombre
@@ -341,6 +356,14 @@ es:
         creator: Profesor
         level: Nivel
         can_be_published: ¿Puede publicarse?
+        available_at: Fecha Disponible
+      course_session:
+        title: Título
+        content: Contenido
+        division: Módulo
+        course: Curso
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
       content:
         page: Página
         # Nombre no era un buen nombre. Pongamos "Contexto", por ahora

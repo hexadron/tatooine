@@ -1,3 +1,8 @@
+para subirlo
+git add -A
+git commit -m "mensaje"
+git push
+
 # Tatooine
 
 ## Modelo De Datos
