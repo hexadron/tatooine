@@ -19,7 +19,7 @@ Tatooine::Application.routes.draw do
       post 'enroll'
     end
     collection do
-      get 'search'
+      post 'search'
     end
   end
   

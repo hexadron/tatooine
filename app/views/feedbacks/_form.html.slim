@@ -1,4 +1,7 @@
-ul
-  = semantic_form_for([@course, @course.feedbacks.build]) do |f|
-    = f.input :title, label: "Titulo"
-    = f.input :text, label: "Texto"
+section
+	h2 Feedbacks
+	ul
+	  = semantic_form_for([@course, @course.feedbacks.build]) do |f|
+	    = f.input :title, label: "Titulo"
+	    = f.input :text, label: "Texto"
+	    = f.submit "Submit"

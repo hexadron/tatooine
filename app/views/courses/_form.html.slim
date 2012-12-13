@@ -5,4 +5,5 @@ ul
     = f.input :available_at, as: :date_picker, label: "Disponible en:"
     = f.input :can_be_published, label: "¿Publicar?"
     = f.input :level, label: "Nivel", :include_blank => false
+    = f.input :faq, as: :markdown, label: "Preguntas Frecuentes"
     = f.submit "Guardar Curso"

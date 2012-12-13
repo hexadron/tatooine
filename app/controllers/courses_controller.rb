@@ -9,6 +9,14 @@ class CoursesController < ApplicationController
     @courses_you_created = current_user.creations
     @courses_you_take = current_user.courses
     @courses = Course.all
+    #This is required by formtastic to bind values in search form ;)
+    @search = Course.new
+  end
+
+  def search
+    #TODO: Eemm... ayuda recuperando los datos :D.
+    @courses_filtered = Course.all
+
   end
   
   def show

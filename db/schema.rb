@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212075448) do
+ActiveRecord::Schema.define(:version => 20121212235144) do
 
   create_table "achievements", :force => true do |t|
     t.integer  "course_id"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20121212075448) do
     t.text     "description"
     t.integer  "level_id"
     t.integer  "creator_id"
+    t.string   "faq"
   end
 
   add_index "courses", ["creator_id"], :name => "index_courses_on_creator_id"
