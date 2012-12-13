@@ -3,23 +3,27 @@ class CoursesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :protect_courses, only: [:edit, :update, :delete]
   before_filter :find_course, only: [:delete, :update, :edit, :show, :enroll]
+  before_filter :load_courses, only: [:index]
 
   def index
-    @your_level_courses = Course.with_level(current_user.average_level)
-    @courses_you_created = current_user.creations
-    @courses_you_take = current_user.courses
-    @courses = Course.all
-    #This is required by formtastic to bind values in search form ;)
-    @search = Course.new
-  end
-
-  def search
-    #TODO: Eemm... ayuda recuperando los datos :D.
-    @courses_filtered = Course.all
-
+    # OPTIMIZE
+    @levels = Level.select([:name]).map(&:name)
+    
+    if @search
+      @courses = @courses.to_a # fetch the query
+      @your_level_courses = Course.with_level(current_user.average_level, {array: @courses})
+      @courses_you_created = Course.created_by(current_user, {array: @courses})
+      @courses_you_take = Course.taken_by(current_user, {array: @courses})
+    else
+      @your_level_courses = @courses.with_level(current_user.average_level)
+      @courses_you_created = @courses.created_by(current_user)
+      @courses_you_take = @courses.taken_by(current_user)
+    end
   end
   
   def show
+    @feedbacks = @course.feedbacks
+    @feedback = Feedback.new
     respond_with(@course)
   end
   
@@ -61,6 +65,17 @@ class CoursesController < ApplicationController
   end
   
   private
+  
+  def load_courses
+    @q = Course.search(params[:q])
+    @search = !!params[:q]
+    
+    @courses = if params[:q]
+      @q.result(distinct: true).joins(:enrollments, :level).select("courses.*, enrollments.user_id as enrollment_user_id, levels.name as level_name")
+    else
+      Course.where("1 = 1")
+    end
+  end
   
   def load_defaults
     @course.load_defaults!

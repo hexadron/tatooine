@@ -1,7 +1,6 @@
 ul
-  = semantic_form_for @search, :url => search_courses_path, :html => { :id => 'search_course'} do |f|
-    = f.input :name, label: "Nombre"
-    = f.input :level, label: "Nivel", :include_blank => false
-    = f.semantic_fields_for :creator do |creator|
-    	= creator.input :complete_name
+  = search_form_for @q, :builder => Formtastic::FormBuilder, html: { id: 'search_course' } do |f|
+    = f.input :name_cont, label: "Nombre"
+    = f.input :level_name_cont, label: "Nivel", include_blank: false, as: :select, collection: @levels
+    = f.input :creator_first_name_or_creator_last_name_or_creator_email_cont, label: "Profesor"
     = f.submit "Buscar"

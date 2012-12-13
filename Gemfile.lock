@@ -222,6 +222,10 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.2)
+    ransack (0.6.0)
+      actionpack (~> 3.0)
+      activerecord (~> 3.0)
+      polyamorous (~> 0.5.0)
     rb-fchange (0.0.6)
       ffi
     rb-fsevent (0.9.2)
@@ -322,6 +326,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 3.2.8)
   rails-erd
+  ransack
   rb-fchange
   rb-fsevent
   rb-inotify

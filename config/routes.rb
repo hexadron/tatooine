@@ -21,11 +21,12 @@ Tatooine::Application.routes.draw do
       post 'enroll'
     end
     collection do
-      post 'search'
+      get 'search'
     end
   end
   
   resources :teachers
   resources :students
+  resources :users
   
 end

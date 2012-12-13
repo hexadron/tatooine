@@ -7,7 +7,13 @@ h2.course_title= @course.name
 
   - if current_user.courses.include?(@course)
     h2.yet_enrolled Actualmente estás llevando este curso
-    = render 'feedbacks/form' 
+    
+    section  
+      h2 Enviar feedback
+      = render 'feedbacks/form' 
+      h2 Feedbacks
+      = render 'feedbacks/index'
+    
   - else
     = form_tag(enroll_course_path(@course)) do
       = submit_tag "Registrarse", class: "button"
