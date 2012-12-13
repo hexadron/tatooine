@@ -1,0 +1,6 @@
+h2 Cursos encontrados
+h3 Criterios : 
+	
+ul.courses
+  - for course in @courses_filtered
+    li= link_to course.name, course_url(course), class: 'course_tile'

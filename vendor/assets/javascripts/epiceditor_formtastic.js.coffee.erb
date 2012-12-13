@@ -1,0 +1,32 @@
+$ ->
+  editors = {}
+
+  $('.mdeditor').each (i, el) ->
+    _id = el.id
+    elementEditor = $(el)
+    input = elementEditor.prev()
+    
+    editor = new EpicEditor({
+      clientSideStorage: elementEditor.hasClass('persist')
+      container: _id
+      basePath: ''
+      theme:
+        base:'<%= asset_path("themes/epiceditor.css") %>'
+        preview:'<%= asset_path("themes/github.css") %>'
+        editor:'<%= asset_path("themes/epic-light.css") %>'
+      images:
+        edit: '<%= asset_path("epiceditor/edit.png") %>'
+        fullscreen: '<%= asset_path("epiceditor/fullscreen.png") %>'
+        preview: '<%= asset_path("epiceditor/preview.png") %>'
+      file:
+        defaultContent: elementEditor.data('content')
+    }).load()
+    
+    ((_input) ->
+      editor.on 'update', ->
+        _input.value = @exportFile()
+    )(input[0])
+    
+    editors[_id] = editor
+    
+  window.MarkdownEditors = editors
