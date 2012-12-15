@@ -6,7 +6,6 @@ class CoursesController < ApplicationController
   before_filter :load_courses, only: [:index]
 
   def index
-    # OPTIMIZE
     @levels = Level.select([:name]).map(&:name)
     
     if @search
@@ -71,7 +70,7 @@ class CoursesController < ApplicationController
     @search = !!params[:q]
     
     @courses = if params[:q]
-      @q.result(distinct: true).joins(:enrollments, :level).select("courses.*, enrollments.user_id as enrollment_user_id, levels.name as level_name")
+      @q.result(distinct: true).joins("left join enrollments on enrollments.course_id = courses.id").joins(:level).select("courses.*, enrollments.user_id as enrollment_user_id, levels.name as level_name")
     else
       Course.where("1 = 1")
     end
