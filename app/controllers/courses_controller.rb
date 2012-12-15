@@ -70,9 +70,9 @@ class CoursesController < ApplicationController
     @search = !!params[:q]
     
     @courses = if params[:q]
-      @q.result(distinct: true).joins("left join enrollments on enrollments.course_id = courses.id").joins(:level).select("courses.*, enrollments.user_id as enrollment_user_id, levels.name as level_name")
+      @q.result(distinct: true).joins("left join enrollments on enrollments.course_id = courses.id").joins(:level).select("courses.*, enrollments.user_id as enrollment_user_id, levels.name as level_name").availables
     else
-      Course.where("1 = 1")
+      Course.where("1 = 1").availables
     end
   end
   
@@ -81,7 +81,10 @@ class CoursesController < ApplicationController
   end
   
   def find_course
-    @course ||= Course.find(params[:id])
+    @course = @course || Course.find(params[:id])
+    unless @course.available?
+      redirect_to '/404'
+    end
   end
   
   def protect_courses

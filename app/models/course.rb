@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :available_at, :can_be_published, :description, :name, :level_id, :faq
+  attr_accessible :available_at, :can_be_published, :description, :name, :level_id, :faq, :creator_id
   
   validates :name, presence: true
   validates :description, presence: true
@@ -24,7 +24,15 @@ class Course < ActiveRecord::Base
     enrollment.save
   end
   
+  def available?
+    available_at < Date.tomorrow
+  end
+  
   class << self
+    def availables
+      self.where("available_at < ?", Date.tomorrow)
+    end
+    
     def with_level(level, options = { array: false })
       if xs = options[:array]
         xs.select { |row|

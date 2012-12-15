@@ -13,7 +13,7 @@ end
 group :development do
   gem 'sqlite3'
   gem 'quiet_assets'
-  gem 'rails-erd'
+  gem 'rails-erd' 
   # to use rails-erd:
   # sudo aptitude install graphviz
   # brew install graphviz
