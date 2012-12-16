@@ -179,7 +179,7 @@ es:
     format: ! '%{attribute} %{message}'
     messages:
       accepted: must be accepted
-      blank: can't be blank
+      blank: no puede estar en blanco
       confirmation: doesn't match confirmation
       empty: can't be empty
       equal_to: must be equal to %{count}
@@ -394,7 +394,8 @@ es:
         name: Ejercicio
         created_at: "Fecha de Creación"
         updated_at: "Última Actualización"
-        kind: Tipo 
+        kind: Tipo
+        active: ¿Activo?
       achievement:
         course: Curso
         evaluation: Evaluación
@@ -426,6 +427,7 @@ es:
         first_name: Nombre
         last_name: Apellido
         email: Correo
+        password: Contraseña
         encrypted_password: Contraseña Cifrada
         reset_password_set_at: Restablecer Contraseña Cifrada
         remember_create_at: Fecha de Creación
@@ -437,80 +439,6 @@ es:
         updated_at: "Última Actualización"
         provider: Proveedor
         uid: Uid
-      content:
-        page: Página
-        # Nombre no era un buen nombre. Pongamos "Contexto", por ahora
-        name: Contexto
-        content_type: Tipo de Contenido
-        string_content: "Texto Pequeño"
-        text_content: "Texto Extendido"
-        rich_text_content: "Texto Enriquecido"
-        image_content: "Imagen"
-        created_at: "Fecha de Creación"
-        updated_at: "Última Actualización"
-      customer:
-        password: "Contraseña"
-        password_confirmation: "Confirmación de Contraseña"
-        current_sign_in_at: "Conectado A Las"
-        last_sign_in_at: "Última Conexión"
-        sign_in_count: "Nro. de Conexiones"
-      ingredient:
-        name: Nombre
-        description: "Descripción"
-        created_at: "Fecha de Creación"
-        updated_at: "Última Actualización"
-      order:
-        state: Estado
-        created_at: "Fecha de Creación"
-        updated_at: "Última Actualización"
-      page:
-        template: Plantilla
-        name: Nombre
-        title: Título
-        path: Ruta
-        parent_id: Página Padre
-        meta_description: Meta-Descripción
-        meta_keywords: Meta-Palabras Clave
-        meta_title: Meta-Título
-        created_at: "Fecha de Creación"
-        updated_at: "Última Actualización"
-      post:
-        admin_user: Autor Original
-        template: Plantilla
-        name: Nombre
-        title: Título
-        content: Contenido
-        tags: Etiquetas
-        slug: Permalink
-        created_at: "Fecha de Creación"
-        updated_at: "Última Actualización"
-      product:
-        price: Precio
-        name: Nombre
-        description: "Descripción"
-        created_at: "Fecha de Creación"
-        updated_at: "Última Actualización"
-      product_image:
-        created_at: "Fecha de Creación"
-        updated_at: "Última Actualización"
-        image_file_name: "Nombre de Imagen"
-        image_content_type: "Tipo de Imagen"
-        image_file_size: "Tamaño de Imagen (bytes)"
-        image_updated_at: "Última Actualización de la Imagen"
-        product: Producto
-      setting:
-        key: Preferencia
-        description: Descripción
-        value: Valor
-        created_at: "Fecha de Creación"
-        updated_at: "Última Actualización"
-      template:
-        name: Nombre
-        file: Archivo Fuente
-        context: Contextos
-        layout_file: Archivo de Layout
-        created_at: "Fecha de Creación"
-        updated_at: "Última Actualización"
     errors:
       <<: *errors
   

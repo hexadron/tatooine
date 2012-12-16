@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     if current_user
-      @courses = Course.all
+      @courses = Course.availables
       @teachers = User.teachers
     else
       render 'login'

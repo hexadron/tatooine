@@ -7,7 +7,7 @@ avanzado = Level.create({name: "Avanzado", position: 3})
 manuel = User.create({
   first_name: "Manuel",
   last_name: "Eguiluz",
-  email: "manuel@example.com",
+  email: "manuel@tatooine.com",
   password: "password",
   password_confirmation: "password"
 })
@@ -15,7 +15,7 @@ manuel = User.create({
 hoss = User.create({
   first_name: "Hoss",
   last_name: "Fernández",
-  email: "hoss@example.com",
+  email: "hoss@tatooine.com",
   password: "password",
   password_confirmation: "password"
 })
@@ -23,7 +23,7 @@ hoss = User.create({
 julio = User.create({
   first_name: "Julio",
   last_name: "García",
-  email: "julio@example.com",
+  email: "julio@tatooine.com",
   password: "password",
   password_confirmation: "password"
 })
@@ -31,7 +31,7 @@ julio = User.create({
 milton = User.create({
   first_name: "Milton",
   last_name: "Chumacero",
-  email: "milton@example.com",
+  email: "milton@tatooine.com",
   password: "password",
   password_confirmation: "password"
 })
@@ -39,7 +39,7 @@ milton = User.create({
 lidia = User.create({
   first_name: "Lidia",
   last_name: "Cuchi",
-  email: "cuchi_cuchi@example.com",
+  email: "cuchi_cuchi@tatooine.com",
   password: "password",
   password_confirmation: "password"
 })
@@ -47,6 +47,7 @@ lidia = User.create({
 damaso = User.create({
   first_name: "Dámaso",
   last_name: "López",
+  email: "damaso@tatooine.com",
   password: "password",
   password_confirmation: "password"
 })
@@ -90,3 +91,5 @@ base_de_datos_2 = Course.create({
   level_id: basico.id,
   creator_id: damaso.id
 })
+
+AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')

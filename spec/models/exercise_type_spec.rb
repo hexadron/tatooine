@@ -4,6 +4,8 @@ require 'spec_helper'
 
 describe ExerciseType do
   
+  Exercise.new({value: "A", value: "B"})
+  
   let(:exercise) { Exercise.new }
   
   let(:text_type) do

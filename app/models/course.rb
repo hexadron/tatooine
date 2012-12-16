@@ -11,6 +11,8 @@ class Course < ActiveRecord::Base
   has_many :feedbacks
   has_many :students, through: :enrollments, source: :user
   
+  after_initialize :load_defaults!
+  
   def load_defaults!
     self.available_at ||= Date.today
     self.can_be_published ||= true

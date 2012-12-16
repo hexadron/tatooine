@@ -4,6 +4,7 @@ es:
       not_found: 'no encontrado'
       already_confirmed: 'ya ha sido confirmada'
       not_locked: 'no está bloqueada'
+      not_saved: "usuario no registrado"
 
   devise:
     failure:

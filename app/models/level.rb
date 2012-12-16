@@ -5,8 +5,6 @@ class Level < ActiveRecord::Base
 
   attr_accessor :course_id
   
-  belongs_to :course
-  
   class << self
     def basic
       Level.where(name: "básico").first

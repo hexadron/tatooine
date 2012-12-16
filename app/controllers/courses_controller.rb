@@ -36,7 +36,6 @@ class CoursesController < ApplicationController
   
   def new
     @course = Course.new
-    load_defaults
   end
   
   def destroy
@@ -74,10 +73,6 @@ class CoursesController < ApplicationController
     else
       Course.where("1 = 1").availables
     end
-  end
-  
-  def load_defaults
-    @course.load_defaults!
   end
   
   def find_course
