@@ -5,9 +5,17 @@ html
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  body
+  body      
     - if current_user
       = render partial: 'navigation'
     - else
       = render partial: 'login'
+    
+    - if flash[:alert]
+      .notification.alert
+        p= flash[:alert]
+    - elsif flash[:notice]
+      .notification
+        p= flash[:notice]
+      
     = yield
