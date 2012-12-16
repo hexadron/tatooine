@@ -10,6 +10,11 @@ body
     background: hsl(0, 0, 20)
     color: white
     overflow: hidden
+    
+    #toggle-search
+      float: right
+      a
+        padding: 1em 2em
 
     li
       float: left
@@ -79,6 +84,31 @@ input[type=submit], .button
   &:active
     color: white
     background: hsl(350, 50, 45)
+
+.courses-zone
+  position: relative
+  
+  .search-zone
+    background-color: #333
+    display: none
+    padding: 1em
+    position: absolute
+    right: 0
+    top: -2em
+    width: 18em
+    &.deployed
+      display: block
+    label
+      color: hsl(0, 0, 95)
+      width: 7em
+    label, input[type=text], select
+      +inline-block
+    input[type=text], select
+      width: 12em
+    abbr
+      display: none
+    input[type=submit]
+      margin-top: 1em
 
 .courses
   margin-bottom: 1em

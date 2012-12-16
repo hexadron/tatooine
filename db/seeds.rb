@@ -4,7 +4,7 @@ basico = Level.create({name: "Básico", position: 1})
 intermedio = Level.create({name: "Intermedio", position: 2})
 avanzado = Level.create({name: "Avanzado", position: 3})
 
-manuel = User.create({
+manuel = User.create!({
   first_name: "Manuel",
   last_name: "Eguiluz",
   email: "manuel@tatooine.com",
@@ -52,44 +52,54 @@ damaso = User.create({
   password_confirmation: "password"
 })
 
-mate_basica = Course.create({
+mate_basica = Course.new({
   name: "Matemática Básica",
   available_at: DateTime.now,
   description: "Curso de Matemática para dummies",
-  level_id: basico.id,
   creator_id: hoss.id
 })
 
-teoria_cuantica_1 = Course.create({
+mate_basica.level_id = intermedio.id
+mate_basica.save
+
+teoria_cuantica_1 = Course.new({
   name: "Teoría Cuántica",
   available_at: 7.days.from_now,
   description: "Quema tu cerebro!!",
-  level_id: avanzado.id,
   creator_id: manuel.id
 })
 
-daw_2 = Course.create({
+teoria_cuantica_1.level_id = basico.id
+teoria_cuantica_1.save
+
+daw_2 = Course.new({
   name: "Desarrollo de Aplicaciones Web 2",
   available_at: DateTime.now,
   description: "No le hagan caso al profe",
-  level_id: intermedio.id,
   creator_id: hoss.id
 })
 
-base_de_datos_1 = Course.create({
+daw_2.level_id = basico.id
+daw_2.save
+
+base_de_datos_1 = Course.new({
   name: "Base de Datos 1",
   available_at: 1.week.from_now,
   description: "No lo lleves con Lidia",
-  level_id: basico.id,
   creator_id: lidia.id
 })
 
-base_de_datos_2 = Course.create({
+base_de_datos_1.level_id = basico.id
+base_de_datos_1.save
+
+base_de_datos_2 = Course.new({
   name: "Base de Datos 2",
   available_at: 1.week.from_now,
   description: ":D",
-  level_id: basico.id,
   creator_id: damaso.id
 })
+
+base_de_datos_2.level_id = basico.id
+base_de_datos_2.save
 
 AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')

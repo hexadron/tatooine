@@ -1,5 +1,7 @@
 $ ->
   
+  $('#toggle-search').click -> $('.search-zone').toggle()
+  
   $('.datepicker').datepicker()
   
   randomColor = ->

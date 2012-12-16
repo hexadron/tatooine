@@ -27,12 +27,12 @@ class Course < ActiveRecord::Base
   end
   
   def available?
-    available_at < Date.tomorrow
+    available_at >= Date.today
   end
   
   class << self
     def availables
-      self.where("available_at < ?", Date.tomorrow)
+      self.where("available_at >= ?", Date.today)
     end
     
     def with_level(level, options = { array: false })

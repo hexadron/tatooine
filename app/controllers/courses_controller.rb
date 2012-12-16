@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
     @levels = Level.select([:name]).map(&:name)
     
     if @search
+      
       @courses = @courses.to_a # fetch the query
       @your_level_courses = Course.with_level(current_user.average_level, {array: @courses})
       @courses_you_created = Course.created_by(current_user, {array: @courses})
