@@ -403,6 +403,8 @@ es:
         description: Descripción
         created_at: "Fecha de Creación"
         updated_at: "Última Actualización"
+      feedback:
+        text: El texto
       badge:
         evaluation: Evaluación
         course: Curso

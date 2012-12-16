@@ -8,6 +8,9 @@ class FeedbacksController < ApplicationController
     @feedback.save
     respond_with([@course, @feedback]) do |f|
       f.html do
+        if errs = @feedback.errors and !errs.empty?
+          flash[:alert] = @feedback.errors.full_messages.join(", ")
+        end
         redirect_to @course
       end
     end

@@ -1,9 +1,11 @@
+# encoding: utf-8
 class CoursesController < ApplicationController
   
   before_filter :authenticate_user!
   before_filter :protect_courses, only: [:edit, :update, :delete]
   before_filter :find_course, only: [:delete, :update, :edit, :show, :enroll]
   before_filter :load_courses, only: [:index]
+  before_filter :reject_unpublished_courses, only: [:show]
 
   def index
     @levels = Level.select([:name]).map(&:name)
@@ -37,6 +39,7 @@ class CoursesController < ApplicationController
   
   def new
     @course = Course.new
+    respond_with(@course)
   end
   
   def destroy
@@ -49,17 +52,27 @@ class CoursesController < ApplicationController
     @course = Course.new(params[:course])
     @course.creator = current_user
     @course.save
-    respond_with(@course)
+    respond_with(@course) do |format|
+      format.html do
+        flash[:notice] = "¡Curso creado exitosamente!"
+        redirect_to(edit_course_url(@course))
+      end
+    end
   end
   
   def update
     @course.update_attributes(params[:course])
-    respond_with(@course)
+    respond_with(@course) do |format|
+      format.html do
+        flash[:notice] = "¡Curso actualizado exitosamente!"
+        redirect_to(edit_course_url(@course))
+      end
+    end
   end
   
   def enroll
     @course.add_student(current_user)
-    flash[:notice] = "You have enrolled to this course :)"
+    flash[:notice] = "Has sido registrado en este curso"
     redirect_to(@course)
   end
   
@@ -78,14 +91,18 @@ class CoursesController < ApplicationController
   
   def find_course
     @course = @course || Course.find(params[:id])
-    unless @course.available?
-      redirect_to '/404'
-    end
   end
   
   def protect_courses
     find_course
     @course.creator == current_user
+  end
+  
+  def reject_unpublished_courses
+    find_course
+    unless @course.available?
+      redirect_to '/404'
+    end
   end
   
 end

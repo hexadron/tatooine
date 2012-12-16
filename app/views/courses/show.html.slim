@@ -6,9 +6,19 @@ h2.course_title= @course.name
   p.course_creator Creado por: #{@course.creator.first_name}
 
   - if current_user.courses.include?(@course)
-    h2.yet_enrolled Actualmente estás llevando este curso
+      
+    ul.menu.tabs
+      li= link_to_javascript("Feedbacks", data: { tab: "feedbacks" }, class: 'current')
+      li= link_to_javascript("Preguntas Frecuentes", data: { tab: "faq" })
     
-    section  
+    section.tabcontent#faq
+      h2 Preguntas Frecuentes
+      - if @course.faq
+        == @course.faq
+      - else
+        p No hay preguntas frecuentes todavía.
+    
+    section.tabcontent#feedbacks style="display: block"
       h2 Enviar feedback
       = render 'feedbacks/form' 
       h2 Feedbacks

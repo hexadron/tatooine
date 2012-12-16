@@ -1,5 +1,17 @@
 $ ->
   
+  $('.tabs a').click ->
+    $('.tabcontent').hide()
+    $("##{$(this).data('tab')}").show()
+    $('.current').removeClass('current')
+    $(this).addClass('current')
+  
+  notifs = $('.notification')
+  if notifs.length > 0
+    setTimeout ->
+      notifs.fadeOut(1000)
+    , 1200
+  
   $('#toggle-search').click -> $('.search-zone').toggle()
   
   $('.datepicker').datepicker()
