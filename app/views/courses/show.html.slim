@@ -3,7 +3,7 @@ h2.course_title= @course.name
 .course-detail
   p.course_description= @course.description
 
-  p.course_creator Creado por: #{@course.creator.name}
+  p.course_creator Creado por: #{ link_to @course.creator.name, @course.creator }
 
   - unless @enrolled
     = form_tag(enroll_course_path(@course), id: "enroll-course") do

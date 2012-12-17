@@ -1,1 +1,16 @@
-h1 # TODO
+h2= @user.name
+
+.foto
+  = link_to image_tag(@user.avatar.url(:thumb), class: 'profile'), @user.avatar.url(:original), target: "_blank"
+  
+h2 Cursos que dicta
+
+ul.courses
+  - for course in @courses_you_teach
+    li= link_to course.name, course_url(course), class: 'course_tile'
+
+h2 Cursos que toma
+
+ul.courses
+  - for course in @courses_you_take
+    li= link_to course.name, course_url(course), class: 'course_tile'

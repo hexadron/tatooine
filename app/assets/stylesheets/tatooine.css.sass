@@ -97,6 +97,7 @@ input[type=submit], .button
     right: 0
     top: -2em
     width: 18em
+    z-index: 999999999
     &.deployed
       display: block
     label
@@ -222,6 +223,9 @@ input[type=submit], .button
 .field_with_errors
   display: inline
   margin: 0 !important
+
+.error
+  color: $error-color
 
 #error_explanation
   h2

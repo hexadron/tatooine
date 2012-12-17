@@ -1,4 +1,12 @@
 ul.feedbacks
+  - if @feedbacks.empty?
+    li
+      p No hay comentarios actualmente.
+  - else
+    li
+      - count = @feedbacks.count
+      p #{count} #{count > 1 ? "comentarios" : "comentario"}:
+
   - for feedback in @feedbacks
     - user = feedback.user
     li
