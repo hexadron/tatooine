@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 class Level < ActiveRecord::Base
-  attr_accessible :name, :position, :course_id
+  attr_accessible :name, :position
 
-  attr_accessor :course_id
+  has_many :courses
   
   class << self
     def basic

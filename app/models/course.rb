@@ -15,8 +15,8 @@ class Course < ActiveRecord::Base
   
   def load_defaults!
     self.available_at ||= Date.today
-    self.can_be_published ||= true
-    self.level = Level.basic
+    self.can_be_published = true if self.can_be_published.nil?
+    self.level ||= Level.basic
   end
   
   def add_student(user)
