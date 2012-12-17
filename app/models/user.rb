@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :complete_name, :email, :password,
-                  :password_confirmation, :remember_me, :provider, :uid, :old_password, :edit_password
+                  :password_confirmation, :remember_me, :provider, :uid, :old_password, :edit_password, :avatar
+  
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
   attr_accessor :old_password, :edit_password
 

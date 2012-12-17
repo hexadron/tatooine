@@ -1,4 +1,15 @@
-h2 Cambiar Contraseña
+h2 Cambia tu imagen de perfil
+ul
+  - if current_user.avatar
+    li
+      img src="#{current_user.avatar.url}"
+  = semantic_form_for(current_user, html: { multipart: true } ) do |f|
+    = f.inputs do
+      li= flash[:errors]
+      li= f.file_field :avatar, label: "Imagen de perfil"
+      li= f.submit "Actualizar imagen"
+
+h2 Cambia tu contraseña
 ul
   = semantic_form_for(current_user) do |f|
     = f.inputs do
@@ -6,4 +17,4 @@ ul
       = f.input :old_password, label: "Contraseña Anterior"
       = f.input :password, label: "Nueva Contraseña"
       = f.input :password_confirmation, label: "Confirmar Nueva Contraseña"
-      = f.submit "Actualizar Contraseña"
+      = f.submit "Actualizar contraseña"

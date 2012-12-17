@@ -8,14 +8,20 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
+
+    if params[:user][:avatar]
+      @user.update_attributes(params[:user])
+      flash[:notice] = "Imagen actualizada"
+      redirect_to edit_user_url(@user)
+    end
     
     if @user.valid_password?(params[:user][:old_password])
-      flash[:notice] = "Contraseña Inválida"
+      flash[:notice] = "Contraseña inválida"
       redirect_to edit_user_url(@user)
     else
       if @user.update_attributes(params[:user])
         sign_in @user, :bypass => true
-        flash[:notice] = "Contraseña Cambiada con Éxito"
+        flash[:notice] = "Contraseña actualizada"
       else
         flash[:errors] = @user.errors.full_messages.to_sentence
         redirect_to edit_user_url(@user)
