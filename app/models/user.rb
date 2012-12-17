@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :complete_name, :email, :password,
-                  :password_confirmation, :remember_me, :provider, :uid, :old_password
+                  :password_confirmation, :remember_me, :provider, :uid, :old_password, :edit_password
 
-  attr_accessor :old_password
+  attr_accessor :old_password, :edit_password
 
   has_many :creations, :class_name => "Course", :foreign_key => "creator_id"
   

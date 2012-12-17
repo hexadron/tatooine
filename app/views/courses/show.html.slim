@@ -12,9 +12,10 @@ h2.course_title= @course.name
   ul.menu.tabs
     li= link_to_javascript("Clases", data: { tab: "classes" }, class: 'current')
     li= link_to_javascript("Preguntas Frecuentes", data: { tab: "faq" })
-    li= link_to_javascript("Feedbacks", data: { tab: "feedbacks" })
+    li= link_to_javascript("Comentarios", data: { tab: "feedbacks" })
   
   section.tabcontent#classes style="display: block"
+    = render 'course_sessions/index'
   
   section.tabcontent#faq
     h2 Preguntas Frecuentes
@@ -24,8 +25,11 @@ h2.course_title= @course.name
       p No hay preguntas frecuentes todavía.
   
   section.tabcontent#feedbacks
+    h2 Comentar
     - if @enrolled
-      h2 Enviar feedback
       = render 'feedbacks/form'
-    h2 Feedbacks
+    - else
+      p Debes registrarte en el curso para poder realizar comentarios.
+      
+    h2 Comentarios
     = render 'feedbacks/index'

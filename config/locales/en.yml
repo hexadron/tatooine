@@ -203,3 +203,160 @@ en-US:
   activerecord:
     errors:
       <<: *errors
+    models:
+      admin_user:
+        one: Administrator
+        other: Administrators
+      achievement:
+        one: Achievement
+        other: Achievements
+      badge:
+        one: Badge
+        other: Badges
+      course:
+        one: Course
+        other: Courses
+      course_session:
+        one: Class
+        other: Classes
+      customer:
+        one: User
+        other: Users
+      session_part:
+        one: Section
+        other: Sections
+      division:
+        one: Module
+        other: Modules
+      enrollment:
+        one: Course Registration
+        other: Course Registrations
+      evaluation:
+        one:  Evaluación
+        other: Evaluaciones
+      exercise:
+        one: Ejercicio
+        other: Ejercicios
+      exercise_type:
+        one: Tipo de Ejercicio
+        other: Tipos de Ejercicios
+      level:
+        one: Nivel
+        other: Niveles
+      user:
+        one: Usuario
+        other: Usuarios
+    attributes:
+      admin_user:
+        name: Nombre
+        password: "Contraseña"
+        password_confirmation: "Confirmación de Contraseña"
+        current_sign_in_at: "Conectado A Las"
+        last_sign_in_at: "Última Conexión"
+        sign_in_count: "Nro. de Conexiones"
+        edit_password: "¿Cambiar Contraseña?"
+      course:
+        name: Nombre de Curso
+        creator: Profesor
+        level: Nivel
+        can_be_published: ¿Puede publicarse?
+        available_at: Fecha Disponible
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      course_session:
+        title: Título
+        content: Contenido
+        division: Módulo
+        course: Curso
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      enrollment:
+        user: usuario
+        course: Curso
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      session_part:
+        course_session: Seleccione el Curso
+        title: El Titulo del curso
+        content: El Contenido del curso
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      evaluation:
+        session_part: Seccione la seccion del Curso
+        course_session : Seleccione la Clase
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      exercise:
+        exercise_type: Tipo de Ejercicio
+        evaluation: Evaluación
+        question: Pregunta
+        result: Resultado
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+        exercise_data: Ejercicio de Datos
+      exercise_type:
+        name: Ejercicio
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+        kind: Tipo
+        active: ¿Activo?
+      achievement:
+        course: Curso
+        evaluation: Evaluación
+        name: Nombre
+        description: Descripción
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      feedback:
+        text: El texto
+      badge:
+        evaluation: Evaluación
+        course: Curso
+        name: Nombre de la Medalla
+        description: descr de la Medalla
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      division:
+        course: Curso
+        level: Nivel
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      level:
+        course: Curso
+        name: Buscar Nombre
+        position: posición
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+      admin_user:
+        email: Correo
+      user:
+        first_name: Nombre
+        last_name: Apellido
+        email: Correo
+        password: Contraseña
+        encrypted_password: Contraseña Cifrada
+        reset_password_set_at: Restablecer Contraseña Cifrada
+        remember_create_at: Fecha de Creación
+        current_sign_in_at: Muestra actualmente la Fecha
+        last_sign_in_at: Muestra Fecha Pasada
+        current_sign_in_ip: Muestra IP
+        last_sign_in_ip: Muestra la IP Pasada
+        created_at: "Fecha de Creación"
+        updated_at: "Última Actualización"
+        provider: Proveedor
+        uid: Uid
+    errors:
+      <<: *errors
+  
+  app:
+    actions: Acciones
+    seo: "Optimización de Búsqueda"
+    content: "Contenido"
+    contents: "Contenidos"
+    administration: "Administración"
+    original_author: "Autor Original"
+    tags_hint: "palabras pequeñas separadas por coma. Ejemplo: Angie, Jules, Bebé, Gomita de Fresa, Pikachu, etc"
+    is_draft: "¿borrador?"
+    visualize_in_web: Link
+    preference_hint: "La funcionalidad de este campo debe programarse. No cambiar si no se es programador o no se conoce el código fuente"
+    contexts_hint: "Nombres de los Contextos usados en la plantilla separados por coma."

@@ -10,6 +10,7 @@ class Course < ActiveRecord::Base
   has_many :enrollments
   has_many :feedbacks
   has_many :students, through: :enrollments, source: :user
+  has_many :course_sessions
   
   after_initialize :load_defaults!
   

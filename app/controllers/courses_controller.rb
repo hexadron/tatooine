@@ -27,6 +27,7 @@ class CoursesController < ApplicationController
     @feedbacks = @course.feedbacks
     @feedback = Feedback.new
     @enrolled = current_user.courses.include?(@course)
+    @classes = @course.course_sessions
     respond_with(@course)
   end
   

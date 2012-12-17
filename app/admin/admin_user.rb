@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do   
-  menu parent: 'Users'
+  menu parent: I18n.t("activerecord.models.user.other")
     
   index do                            
     column :email                     
