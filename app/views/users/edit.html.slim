@@ -1,7 +1,7 @@
+h2 Cambiar Contraseña
 ul
-  
   = semantic_form_for(current_user) do |f|
-    = f.inputs "<h2>Cambiar Contraseña</h2>" do
+    = f.inputs do
       = flash[:errors]
       = f.input :old_password, label: "Contraseña Anterior"
       = f.input :password, label: "Nueva Contraseña"
