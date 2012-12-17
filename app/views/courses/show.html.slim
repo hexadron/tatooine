@@ -5,25 +5,29 @@ h2.course_title= @course.name
 
   p.course_creator Creado por: #{@course.creator.name}
 
-  - if current_user.courses.include?(@course)
-      
-    ul.menu.tabs
-      li= link_to_javascript("Feedbacks", data: { tab: "feedbacks" }, class: 'current')
+  - enrolled = current_user.courses.include?(@course)
+
+  - unless enrolled
+    = form_tag(enroll_course_path(@course), id: "enroll-course") do
+      = submit_tag "Registrarse", class: "button"
+
+  ul.menu.tabs
+    - if enrolled
       li= link_to_javascript("Preguntas Frecuentes", data: { tab: "faq" })
-    
-    section.tabcontent#faq
-      h2 Preguntas Frecuentes
-      - if @course.faq
-        == @course.faq
-      - else
-        p No hay preguntas frecuentes todavía.
-    
+      li= link_to_javascript("Feedbacks", data: { tab: "feedbacks" }, class: 'current')
+    - else
+      li= link_to_javascript("Preguntas Frecuentes", data: { tab: "faq" }, class: 'current')
+  
+  section.tabcontent#faq style="#{enrolled ? '' : 'display: block' }"
+    h2 Preguntas Frecuentes
+    - if @course.faq
+      == @course.faq
+    - else
+      p No hay preguntas frecuentes todavía.
+  
+  - if enrolled
     section.tabcontent#feedbacks style="display: block"
       h2 Enviar feedback
       = render 'feedbacks/form' 
       h2 Feedbacks
       = render 'feedbacks/index'
-    
-  - else
-    = form_tag(enroll_course_path(@course)) do
-      = submit_tag "Registrarse", class: "button"
