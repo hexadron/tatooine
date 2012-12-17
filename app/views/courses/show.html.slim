@@ -3,7 +3,7 @@ h2.course_title= @course.name
 .course-detail
   p.course_description= @course.description
 
-  p.course_creator Creado por: #{@course.creator.first_name}
+  p.course_creator Creado por: #{@course.creator.name}
 
   - if current_user.courses.include?(@course)
       

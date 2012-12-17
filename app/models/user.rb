@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_many :courses, :through => :enrollments
 
   def name
-    self.first_name || self.email
+    strip_email(self.first_name || self.email)
   end
 
   def complete_name

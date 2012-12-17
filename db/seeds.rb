@@ -72,34 +72,28 @@ teoria_cuantica_1 = Course.new({
 teoria_cuantica_1.level_id = basico.id
 teoria_cuantica_1.save
 
-daw_2 = Course.new({
+daw_2 = Course.create({
   name: "Desarrollo de Aplicaciones Web 2",
   available_at: DateTime.now,
   description: "No le hagan caso al profe",
-  creator_id: hoss.id
+  creator_id: hoss.id,
+  level_id: basico.id
 })
 
-daw_2.level_id = basico.id
-daw_2.save
-
-base_de_datos_1 = Course.new({
+base_de_datos_1 = Course.create({
   name: "Base de Datos 1",
   available_at: 1.week.from_now,
   description: "No lo lleves con Lidia",
-  creator_id: lidia.id
+  creator_id: lidia.id,
+  level_id: basico.id
 })
 
-base_de_datos_1.level_id = basico.id
-base_de_datos_1.save
-
-base_de_datos_2 = Course.new({
+base_de_datos_2 = Course.create({
   name: "Base de Datos 2",
   available_at: 1.week.from_now,
   description: ":D",
-  creator_id: damaso.id
+  creator_id: damaso.id,
+  level_id: basico.id
 })
-
-base_de_datos_2.level_id = basico.id
-base_de_datos_2.save
 
 AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')
