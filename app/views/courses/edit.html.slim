@@ -1,11 +1,1 @@
-h2 Editar Curso #{@course.name}
-ul.menu.tabs
-  li= link_to_javascript "Detalles del Curso", data: { tab: "details" }, class: 'current'
-  li= link_to_javascript "Clases", data: { tab: "classes" }
-  
-.edit
-  section.tabcontent#details style="display: block"
-    = render 'form'
-  
-  section.tabcontent#classes style="display: block"
-    = render 'course_sessions/form'
+- @current_tab = 'details'

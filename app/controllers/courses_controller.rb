@@ -33,7 +33,11 @@ class CoursesController < ApplicationController
   
   def edit
     if current_user.creations.include? @course
-      respond_with(@course)
+      respond_with(@course) do |format|
+        format.html do
+          render layout: 'edit_course'
+        end
+      end
     else
       redirect_to course_path(@course)
     end

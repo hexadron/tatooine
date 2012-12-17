@@ -1,0 +1,15 @@
+= render :template => 'layouts/application'
+
+- @current_tab ||= 'classes'
+
+h2 Editar Curso #{@course.name}
+ul.menu
+  li= link_to "Detalles del Curso", edit_course_url(@course), data: { tab: "details" }, class: "#{ 'current' if @current_tab == 'details' }"
+  li= link_to "Clases", course_course_sessions_url(@course), data: { tab: "classes" }, class: "#{ 'current' if @current_tab == 'classes' }"
+  
+.edit
+  section.tabcontent#details style="#{ "display: block" if @current_tab == 'details' }"
+    = render 'courses/form'
+  
+  section.tabcontent#classes style="#{ "display: block" if @current_tab == 'classes' }"
+    = yield :inside_classes
