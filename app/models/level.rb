@@ -7,7 +7,7 @@ class Level < ActiveRecord::Base
   
   class << self
     def basic
-      Level.where(name: "básico").first
+      Level.where(name: "Básico").first
     end
   end
 end

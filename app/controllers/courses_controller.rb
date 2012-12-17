@@ -51,6 +51,8 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(params[:course])
     @course.creator = current_user
+    @course.level = Level.find params[:course][:level_id]
+    puts params[:course][:level_id]
     @course.save
     respond_with(@course) do |format|
       format.html do
