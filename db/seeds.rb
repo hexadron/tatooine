@@ -96,4 +96,4 @@ base_de_datos_2 = Course.create({
   level_id: basico.id
 })
 
-AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')
+AdminUser.create(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')
