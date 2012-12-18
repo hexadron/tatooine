@@ -1,0 +1,21 @@
+- content_for :js do
+  = javascript_include_tag "sections"
+
+- content_for :outside do
+  .notform#new_section_form
+    .inside
+      ul
+        = semantic_form_for [@course, @session, @section] do |f|
+          = f.input :title, label: "Título"
+          = f.submit "Crear Sección"
+          = f.submit "Cancelar", class: 'cancel'
+
+- content_for :deep_inside_classes do
+  .section-zone
+    .section-list
+      ul
+        li= link_to_javascript 'Nueva Sección', class: 'button', id: 'bring_section_form'
+        - for section in @sections
+          li.section-element= link_to_javascript section.title
+    .section-edit
+  

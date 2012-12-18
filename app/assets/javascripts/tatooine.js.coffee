@@ -1,16 +1,11 @@
 $ ->
+  Note.flash()
+  
   $('.tabs a').click ->
     $('.tabcontent').hide()
     $("##{$(this).data('tab')}").show()
     $('.current').removeClass('current')
     $(this).addClass('current')
-  
-  # Notifications
-  notifs = $('.notification')
-  if notifs.length > 0
-    setTimeout ->
-      notifs.fadeOut(1000)
-    , 1200
   
   # Previews
   $('input[type=file][data-preview]').on 'change', (evt) ->

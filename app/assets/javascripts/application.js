@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require jquery.isotope
 //= require epiceditor
-//= require_tree .
+//= require jquery-ui
+//= require epiceditor_formtastic
+//= require notifs
+//= require tatooine

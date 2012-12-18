@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class SectionsController < ApplicationController
   
   before_filter :load_session_and_course
@@ -6,7 +8,22 @@ class SectionsController < ApplicationController
   layout 'edit_session'
   
   def index
+    @sections = @session.sections
+    @section = Section.new
+    respond_with(@course, @session, @sections)
+  end
+  
+  def create
+    @section = Section.new(params[:section])
+    @section.course_session = @session
+    @section.save
     
+    respond_with(@section) do |format|
+      format.html do
+        flash[:notice] = 'Nueva Sección Creada'
+        redirect_to course_course_session_sections_url
+      end
+    end
   end
   
   private

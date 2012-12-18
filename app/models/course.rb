@@ -33,7 +33,7 @@ class Course < ActiveRecord::Base
   
   class << self
     def availables
-      self.where("available_at >= ?", Date.today)
+      self.where("available_at >= ?", Date.today).where(can_be_published: true)
     end
     
     def with_level(level, options = { array: false })
@@ -58,7 +58,6 @@ class Course < ActiveRecord::Base
     
     def taken_by(user, options = { array: false })
       if xs = options[:array]
-        puts xs
         xs.select { |row|
           row.enrollment_user_id == user.id
         }.uniq

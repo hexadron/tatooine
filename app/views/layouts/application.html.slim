@@ -3,7 +3,6 @@ html
   head
     title tatooine
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
     = csrf_meta_tags
   body      
     - if current_user
@@ -17,5 +16,10 @@ html
     - elsif flash[:notice]
       .notification
         p= flash[:notice]
+    
+    = yield :outside
       
     = yield
+    
+    = javascript_include_tag "application"
+    = yield :js

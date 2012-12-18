@@ -4,12 +4,11 @@ require 'spec_helper'
 
 feature 'Home' do
 
-  # background do
-  #   log_in_user
-  # end
+  background do
+    log_in_user
+  end
 
   scenario 'Inicia sesión y visita el home', js: true do
-    # visit login_path
     visit root_path
     page.should have_content 'tatooine'
   end

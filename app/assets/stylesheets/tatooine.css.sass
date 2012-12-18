@@ -6,11 +6,15 @@ body
   margin: auto
   margin-bottom: 3.5em
   width: 960px
+  
+  .header
+    z-index: 9999999999
 
   .menu
     background: hsl(0, 0, 20)
     color: white
     overflow: hidden
+    position: relative
     
     #toggle-search
       float: right
@@ -24,7 +28,7 @@ body
       color: white
       border-bottom: none
       padding: 1em
-      display: inline-block
+      +inline-block
       text-align: center
 
       &:hover
@@ -48,7 +52,7 @@ body
     margin-bottom: 1em
 
   a
-    display: inline-block
+    +inline-block
     margin-bottom: 0.5em
 
 h2
@@ -70,7 +74,7 @@ a
     top: 1px
 
 input[type=submit], .button
-  display: inline-block
+  +inline-block
   color: white
   cursor: pointer
   background: hsl(350, 50, 50)
@@ -203,10 +207,9 @@ input[type=submit], .button
     border: 1px solid hsl(0, 0, 20)
     margin-top: 0.5em
 
-.notification
+=noti
   position: absolute
   width: 70.3%
-
   p
     text-align: center
     margin: 0.5em auto
@@ -220,6 +223,33 @@ input[type=submit], .button
     background-color: hsla(350, 75, 34, 0.9)
     color: hsl(0, 0, 95)
 
+.notification
+  +noti
+    
+.notform
+  +noti
+  z-index: 88888
+  .inside
+    background-color: hsla(0, 0, 100, 0.95)
+    border: 1px solid hsl(0, 0, 20)
+    border-top: 0
+    margin: 0 auto
+    padding: 0.6em
+    text-align: center
+    width: 40%
+    ol, ul
+      margin: 0
+      padding: 0
+    li
+      list-style: none
+    label, #{$all-text-inputs}
+      display: block
+      margin: 0.5em auto
+    label
+      font-size: 1.2em
+    #{$all-text-inputs}
+      padding: 0.2em
+    
 .field_with_errors
   display: inline
   margin: 0 !important
@@ -242,7 +272,23 @@ input[type=submit], .button
     +inline-block
     vertical-align: middle
 
-// Esto es todo lo que estoy agregando de estilos. Si tienes problemas en el merge, quítalo, no hay problemas.
 .edit
   .tabcontent
     margin-top: 1em
+
+#new_section_form
+  top: -6.5em
+
+.section-zone
+  +row
+  .section-list
+    +span-columns(3 of 12)
+    li:first-child
+      margin-bottom: 1em
+    .section-element
+      font-size: 1.2em
+      padding: 0.4em
+  .section-edit
+    +span-columns(9 of 12)
+    +box-shadow(inset 0px 0px 2px black)
+    min-height: 17em
