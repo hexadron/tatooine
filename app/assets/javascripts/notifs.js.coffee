@@ -25,10 +25,10 @@ Note =
     form.animate(top: top, 400, fn)
     
   flash: ->
-    notifs = $('.notification')
+    notifs = $('.notification:not(.consumed)')
     if notifs.length > 0
       setTimeout ->
-        notifs.fadeOut(1000)
+        notifs.fadeOut(1000).addClass('consumed')
       , 1200
 
 window.Note = Note

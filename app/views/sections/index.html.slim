@@ -16,6 +16,6 @@
       ul
         li= link_to_javascript 'Nueva Sección', class: 'button', id: 'bring_section_form'
         - for section in @sections
-          li.section-element= link_to section.title, course_course_session_section_url(@course, @session, section), remote: true
+          li.section-element= link_to section.title, course_course_session_section_url(@course, @session, section), remote: true, id: section.id
     .section-edit
       

@@ -1,0 +1,15 @@
+ul.tabs.menu
+  li= link_to_javascript "Contenido", data: { tab: 'section-content' }
+  li= link_to_javascript "Ejercicios", data: { tab: 'section-exercises' }
+  li= link_to_javascript "Logros", data: { tab: 'section-achievements' }
+
+#section-content.tabcontent
+  = semantic_form_for [@course, @session, @section], remote: true do |f|
+    = f.input :content, label: false
+    = f.submit "Actualizar Contenido"
+
+#section-exercises.tabcontent
+  h2 Coming Soon...
+
+#section-achievements.tabcontent
+  h2 Coming Soon...

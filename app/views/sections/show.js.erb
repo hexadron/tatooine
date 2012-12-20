@@ -1,1 +1,22 @@
-$('.section-edit').html("<%= escape_javascript render(@section) %>")
+<% if notice = flash[:notice] and notice != "" %>
+  var html = $('<div class="notification"></div>').html("<p><%= escape_javascript notice %></p>")
+  html.insertAfter('.header')
+  Note.flash()
+  // El flash sobrevive. Debe morir aquí u_u
+  <% flash[:notice] = nil  %>
+<% end %>
+
+if (window.currentSection !== <%= @section.id %>) {
+  // Aquí le damos una clase para dar estilo a la sección seleccionada de la lista de la izquierda. Dado que quiero diferenciar bien por ahora y no quiero seguir tocando el css, le doy un estilo en línea feo pero que me permite diferenciar bien. 
+  
+  // TODO: Aplicar luego estilos a .section-selected y borrar esas llaamadas a css.
+  
+  $('.section-selected').removeClass('section-selected').css('font-weight', 'normal')
+  $("#<%= @section.id %>").addClass('section-selected').css('font-weight', 'bold')
+  
+  var sect = $('.section-edit')
+  sect.html("<%= escape_javascript render(@section) %>")
+  sect.find('.tabs a').eq(0).trigger('click')
+}
+
+window.currentSection = <%= @section.id %>

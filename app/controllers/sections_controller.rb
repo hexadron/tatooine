@@ -31,6 +31,12 @@ class SectionsController < ApplicationController
     end
   end
   
+  def update
+    @section.update_attributes(params[:section])
+    flash[:notice] = "Contenido Actualizado"
+    render :show
+  end
+  
   private
   
   def load_session_and_course

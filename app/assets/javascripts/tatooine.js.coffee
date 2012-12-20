@@ -1,11 +1,24 @@
 $ ->
   Note.flash()
   
-  $('.tabs a').click ->
-    $('.tabcontent').hide()
-    $("##{$(this).data('tab')}").show()
-    $('.current').removeClass('current')
-    $(this).addClass('current')
+  $(document).on 'click', '.tabs a', ->
+    self = $(this)
+    li = $(this).parent()
+    content = $("##{self.data('tab')}")
+      
+    if content.length > 0
+      siblings = li.siblings().find('a')
+      
+      contents = for sib in siblings
+        $("##{$(sib).data('tab')}")
+      
+      for c in contents
+        if c.attr('id') != content.attr('id')
+          c.hide()
+      
+      content.show()
+      $('.current').removeClass('current')
+      self.addClass('current')
   
   # Previews
   $('input[type=file][data-preview]').on 'change', (evt) ->
