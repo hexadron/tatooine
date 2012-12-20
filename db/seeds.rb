@@ -1,5 +1,10 @@
 # encoding: utf-8
 
+AdminUser.destroy_all
+Level.destroy_all
+User.destroy_all
+Course.destroy_all
+
 basico = Level.create({name: "Básico", position: 1})
 intermedio = Level.create({name: "Intermedio", position: 2})
 avanzado = Level.create({name: "Avanzado", position: 3})
@@ -96,4 +101,4 @@ base_de_datos_2 = Course.create({
   level_id: basico.id
 })
 
-# AdminUser.create(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')
+AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')

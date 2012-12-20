@@ -102,13 +102,15 @@ class CoursesController < ApplicationController
   
   def protect_courses
     find_course
-    @course.creator == current_user
+    if @course.creator != current_user
+      redirect_to '/404.html'
+    end
   end
   
   def reject_unpublished_courses
     find_course
     unless @course.available?
-      redirect_to '/404'
+      redirect_to '/404.html'
     end
   end
   

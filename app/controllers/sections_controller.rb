@@ -1,11 +1,16 @@
 # encoding: utf-8
-
 class SectionsController < ApplicationController
+  
+  respond_to :html, :js, :json, :xml
   
   before_filter :load_session_and_course
   before_filter :load_section, only: [:show, :edit, :update, :destroy]
   
   layout 'edit_session'
+  
+  def show
+    respond_with(@course, @session, @section)
+  end
   
   def index
     @sections = @session.sections
