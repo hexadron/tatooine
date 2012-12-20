@@ -28,7 +28,7 @@ Note =
     notifs = $('.notification:not(.consumed)')
     if notifs.length > 0
       setTimeout ->
-        notifs.fadeOut(1000).addClass('consumed')
+        notifs.fadeOut(5000).addClass('consumed')
       , 1200
 
 window.Note = Note
