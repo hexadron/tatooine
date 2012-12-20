@@ -27,8 +27,9 @@ Note =
   flash: ->
     notifs = $('.notification:not(.consumed)')
     if notifs.length > 0
-      setTimeout ->
-        notifs.fadeOut(5000).addClass('consumed')
-      , 1200
+      notifs.fadeIn 400, ->
+        setTimeout ->
+          notifs.fadeOut(400).addClass('consumed')
+        , 4200
 
 window.Note = Note

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121218160319) do
+ActiveRecord::Schema.define(:version => 20121220080710) do
 
   create_table "achievements", :force => true do |t|
     t.integer  "course_id"
@@ -138,14 +138,14 @@ ActiveRecord::Schema.define(:version => 20121218160319) do
     t.text     "question"
     t.text     "result"
     t.integer  "exercise_type_id"
-    t.integer  "evaluation_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.text     "exercise_data"
+    t.integer  "section_id"
   end
 
-  add_index "exercises", ["evaluation_id"], :name => "index_exercises_on_evaluation_id"
   add_index "exercises", ["exercise_type_id"], :name => "index_exercises_on_exercise_type_id"
+  add_index "exercises", ["section_id"], :name => "index_exercises_on_section_id"
 
   create_table "feedbacks", :force => true do |t|
     t.text     "text",       :limit => 255

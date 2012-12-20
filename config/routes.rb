@@ -28,6 +28,16 @@ Tatooine::Application.routes.draw do
     end
   end
   
+  resources :sections do
+    resources :exercises
+  end
+  
+  resources :exercises do
+    member do
+      put 'customize'
+    end
+  end
+  
   resources :teachers
   resources :students
   resources :users

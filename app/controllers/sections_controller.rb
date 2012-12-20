@@ -9,6 +9,7 @@ class SectionsController < ApplicationController
   layout 'edit_session'
   
   def show
+    @exercises = @section.exercises
     respond_with(@course, @session, @section)
   end
   

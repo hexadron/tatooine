@@ -9,7 +9,10 @@ ul.tabs.menu
     = f.submit "Actualizar Contenido"
 
 #section-exercises.tabcontent
-  h2 Coming Soon...
+  = button_to "Nuevo", section_exercises_url(@section.id), _method: "post", remote: true
+  ul.exercises_list
+    - for exercise in @exercises
+      = render 'exercises/exercise_list_member', exercise: exercise, section: @section
 
 #section-achievements.tabcontent
   h2 Coming Soon...
