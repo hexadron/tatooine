@@ -1,7 +1,7 @@
 class Exercise < ActiveRecord::Base
   belongs_to :exercise_type
   belongs_to :section
-  attr_accessible :question, :result, :exercise_data
+  attr_accessible :question, :result, :exercise_data, :exercise_type_id
   
   attr_accessor :context, :solver
   

@@ -7,12 +7,15 @@ class ExercisesController < ApplicationController
     
     @exercise = Exercise.new
     @exercise.section = @section
+    @exercise.exercise_type = ExerciseType.first
     @exercise.save
     respond_with(@exercise)
   end
   
   def customize
     load_exercise
+    @exercise.update_attributes!(params[:exercise])
+    @exercise_type = @exercise.exercise_type
     respond_with(@exercise)
   end
   

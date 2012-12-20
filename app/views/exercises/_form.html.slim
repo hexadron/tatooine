@@ -1,0 +1,10 @@
+= semantic_form_for @exercise do |f|
+  h2 Ejercicio
+  = f.inputs do
+    = f.input :question, label: "Pregunta"
+  
+  h2 Tipo de Ejercicio: #{t(@exercise_type.name.to_sym)}
+  / TODO: Aquí es donde cada tipo de ejercicio debe renderizar su partial de edición de ejercicios.
+  
+  = f.submit "Actualizar"
+  = f.submit "Cancelar", class: 'cancel'

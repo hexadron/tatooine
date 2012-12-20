@@ -4,7 +4,7 @@ html
     title tatooine
     = stylesheet_link_tag    "application", :media => "all"
     = csrf_meta_tags
-  body      
+  body
     - if current_user
       = render partial: 'navigation'
     - else

@@ -1,0 +1,7 @@
+$('html').addClass('overlay-active')
+$('#edit_exercise_form').addClass('active').find('ul').html("<%= escape_javascript render('form') %>")
+
+Note.bringForm('#edit_exercise_form', function() {}, function() {
+  $('html').removeClass('overlay-active')
+  $('#edit_exercise_form').removeClass('active')
+})

@@ -279,8 +279,8 @@ input[type=submit], .button
   .tabcontent
     margin-top: 1em
 
-#new_section_form
-  top: -6.5em
+#new_section_form, #edit_exercise_form
+  top: -100%
 
 .section-zone
   +row
@@ -304,3 +304,20 @@ input[type=submit], .button
       margin-right: 0.5em
   input[type=submit]
     margin: 0
+
+#edit_exercise_form
+  &.active
+    height: 100%
+    width: 100%
+    left: 0px
+    .inside
+      top: 48px
+  .inside
+    width: 55%
+    padding-bottom: 1em
+    .type-form
+      label, #{$all-text-inputs}
+
+.overlay-active
+  body, #edit_exercise_form
+    background-color: hsla(0, 0, 95, 0.5)

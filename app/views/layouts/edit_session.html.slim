@@ -1,5 +1,8 @@
 - @current_second_tab ||= 'sections'
 
+- content_for :outside do
+  = yield :outside
+
 - content_for :inside_classes do
   h2 Clase: #{@session.title}
   ul.menu

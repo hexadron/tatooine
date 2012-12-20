@@ -1,22 +1,23 @@
 Note =
-  bringForm: (selector, fn) ->
+  bringForm: (selector, inCallback, outCallback) ->
     form = $(selector)
-    @attachCancel(form)
-    @reallyBring(form, fn)
+    @attachCancel(form, outCallback)
+    @reallyBring(form, inCallback)
   
   submit: (selector, fn) ->
     $(selector).on 'submit', (evt) ->
       evt.preventDefault()
       fn?()
   
-  attachCancel: (form) ->
+  attachCancel: (form, callback) ->
     form.find('.cancel').one 'click', (evt) =>
       evt.preventDefault()
-      @closeForm $(evt.target).closest('.notform')
+      @closeForm $(evt.target).closest('.notform'), callback
   
-  closeForm: (form) ->
+  closeForm: (form, callback) ->
     top = form.data('top')
-    form.animate(top: top)
+    form.animate {top: top}, 600, ->
+      callback?()
   
   reallyBring: (form, fn) ->
     top = $('.header.menu').height()

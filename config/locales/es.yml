@@ -456,3 +456,8 @@ es:
     visualize_in_web: Link
     preference_hint: "La funcionalidad de este campo debe programarse. No cambiar si no se es programador o no se conoce el código fuente"
     contexts_hint: "Nombres de los Contextos usados en la plantilla separados por coma."
+  
+  true_or_false: Verdadero o Falso
+  multiple_true_or_false: Verdadero o Falso Múltiple
+  simple_text: Texto Simple
+  alternatives: Alternativas
