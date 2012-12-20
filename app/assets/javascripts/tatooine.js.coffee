@@ -3,7 +3,8 @@ $ ->
   
   $(document).on 'click', '.tabs a', ->
     self = $(this)
-    li = $(this).parent()
+    li = self.parent()
+    ul = self.closest('ul, ol')
     content = $("##{self.data('tab')}")
       
     if content.length > 0
@@ -17,7 +18,7 @@ $ ->
           c.hide()
       
       content.show()
-      $('.current').removeClass('current')
+      ul.find('.current').removeClass('current')
       self.addClass('current')
   
   # Previews
