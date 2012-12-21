@@ -114,10 +114,10 @@ ExerciseType.create({
   implementor: ExerciseTypes::SimpleText
 })
 
-# ExerciseType.create({
-#   name: 'true_or_false',
-#   implementor: ExerciseTypes::TrueOrFalse
-# })
+ExerciseType.create({
+  name: 'true_or_false',
+  implementor: ExerciseTypes::TrueOrFalse
+})
 
 # ExerciseType.create({
 #   name: 'multiple_true_or_false',

@@ -10,7 +10,7 @@ class ExercisesController < ApplicationController
     
     @exercise = Exercise.new
     @exercise.section = @section
-    @exercise.exercise_type = ExerciseType.first
+    @exercise.exercise_type_id = ExerciseType.first
     @exercise.save
     
     respond_with(@exercise)
@@ -19,6 +19,7 @@ class ExercisesController < ApplicationController
   def customize
     load_exercise
     
+    @exercise.exercise_type_id = params[:exercise][:exercise_type_id]
     @exercise_type = @exercise.exercise_type
     
     @exercise.load_context
