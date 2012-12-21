@@ -68,6 +68,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    commands (0.0.1)
+      rails (>= 3.0.0)
     daemons (1.1.9)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
@@ -294,6 +296,7 @@ DEPENDENCIES
   bourbon
   capybara
   coffee-rails (~> 3.2.1)
+  commands
   devise
   factory_girl_rails
   formtastic

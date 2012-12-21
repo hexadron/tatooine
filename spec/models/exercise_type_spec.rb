@@ -65,28 +65,40 @@ describe ExerciseType do
     exercise.solve_with(:answer => "1939").should be(true)
   end
   
+  it "should fill a saved simple_test exercise" do
+    exercise.question = "¿En qué año comenzó la 2da guerra mundial?"
+    exercise.exercise_type = text_type
+    exercise.define :answer => "1939"
+    exercise.save
+    
+    Exercise.first.solve_with(:answer => "1939").should be(true)
+  end
+  
   it "should fill a true_or_false exercise" do
     exercise.question = "¿Hitler murió en 1947?"
     exercise.exercise_type = true_or_false_type
     exercise.define :answer => false
+    exercise.save
     
-    exercise.solve_with(:answer => true).should be(false)
+    Exercise.first.solve_with(:answer => true).should be(false)
   end
   
   it "should fill exercise with alternatives using a string" do
     exercise.question = "¿Quién escribió 'Cien Años de Soledad'?"
     exercise.exercise_type = alternatives_type
     exercise.define :alternatives => ["Mario Vargas Llosa", "Ernest Hemingway", "Gabriel García Marquez", "Gabriela Mistral", "Octavio Paz"], :answer => "Gabriel García Marquez"
+    exercise.save
     
-    exercise.solve_with(:answer => "Gabriel García Marquez").should be(true)
+    Exercise.first.solve_with(:answer => "Gabriel García Marquez").should be(true)
   end
 
   it "should fill exercise with alternatives using an index integer" do
     exercise.question = "¿Con qué letra empieza la palabra 'Puerta' en inglés?"
     exercise.exercise_type = alternatives_type
     exercise.define :alternatives => ["A", "D", "M", "E", "F"], :answer => "D"
+    exercise.save
     
-    exercise.solve_with(:answer => 1).should be(true)
+    Exercise.first.solve_with(:answer => 1).should be(true)
   end
   
   it "should fill exercise with multiples T y F" do
@@ -103,9 +115,11 @@ describe ExerciseType do
     
     exercise.define :questions => questions
     
+    exercise.save
+    
     answers = [false, false, false, true, true]
     
-    exercise.solve_with(:answers => answers).should be(true)
+    Exercise.first.solve_with(:answers => answers).should be(true)
   end
   
   it "should print the errors of a multiple true or false" do
@@ -122,11 +136,14 @@ describe ExerciseType do
     
     exercise.define :questions => questions
     
+    exercise.save
+    
     answers = [false, true, false, true, true]
     
-    exercise.solve_with(:answers => answers)
+    fetched = Exercise.first
+    fetched.solve_with(:answers => answers)
     
-    exercise.mistakes.count.should == 1
+    fetched.mistakes.count.should == 1
   end
   
 end

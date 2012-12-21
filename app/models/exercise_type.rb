@@ -29,6 +29,10 @@ class ExerciseType < ActiveRecord::Base
     @implementor
   end
   
+  def update_implementor!
+    @implementor_instance = implementor.new if @implementor_instance.nil?
+  end
+  
   def formatted_question
     if implementor
       File.join(Rails.root, "views", "exercise_types", "_#{implementor.name.underscore}_question")
