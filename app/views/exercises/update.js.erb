@@ -1,0 +1,13 @@
+<% if alert = flash[:alert] and alert != "" %>
+  var html = $('<div class="notification alert"></div>').html("<p><%= escape_javascript alert %></p>")
+  html.insertAfter('.header')
+  Note.flash()
+  // El flash sobrevive. Debe morir aquí u_u
+  <% flash[:alert] = nil  %>
+  
+<% else %>
+
+  Note.notice("Ejercicio actualizado.")
+  Note.closeForm('#edit_exercise_form')
+  
+<% end %>

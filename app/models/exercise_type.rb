@@ -33,9 +33,10 @@ class ExerciseType < ActiveRecord::Base
     @implementor_instance = implementor.new if @implementor_instance.nil?
   end
   
-  def formatted_question
+  def question_partial
     if implementor
-      File.join(Rails.root, "views", "exercise_types", "_#{implementor.name.underscore}_question")
+      underscored_simple_class_name = implementor.name.gsub(/^.*::/,'').underscore
+      File.join("exercise_types", "#{underscored_simple_class_name}_question")
     end
   end
   

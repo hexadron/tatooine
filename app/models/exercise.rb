@@ -3,16 +3,15 @@ class Exercise < ActiveRecord::Base
   belongs_to :section
   attr_accessible :question, :result, :exercise_type_id
   
-  attr_accessor :context, :solver
+  attr_accessor :context, :solver, :question_data
   
   after_initialize :create_context
-  
   
   before_save :sync_definitions
   
   def formatted_question(type="html")
     if type.to_s == "html"
-      exercise_type.formatted_question
+      exercise_type.question_partial
     end
   end
   

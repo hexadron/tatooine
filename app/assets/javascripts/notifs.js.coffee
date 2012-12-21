@@ -15,6 +15,7 @@ Note =
       @closeForm $(evt.target).closest('.notform'), callback
   
   closeForm: (form, callback) ->
+    form = $(form)
     top = form.data('top')
     form.animate {top: top}, 600, ->
       callback?()
@@ -24,6 +25,14 @@ Note =
     old_top = form.css('top')
     form.data('top', old_top)
     form.animate(top: top, 400, fn)
+  
+  notice: (text) ->
+    noti = $("<div class='notification'></div>")
+    noti.append("<p>#{text}</p>")
+    noti.insertAfter('.header').fadeIn 400, ->
+      setTimeout ->
+        noti.fadeOut(400).addClass('consumed')
+      , 4200
     
   flash: ->
     notifs = $('.notification:not(.consumed)')
