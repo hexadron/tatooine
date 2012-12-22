@@ -56,3 +56,4 @@ gem 'jquery-ui-rails'
 gem 'squeel'
 gem 'ransack'
 gem 'commands'
+gem 'simplecov', :require => false, :group => :test

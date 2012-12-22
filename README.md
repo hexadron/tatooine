@@ -1,4 +1,4 @@
-para subirlo
+Para subirlo
 git add -A
 git commit -m "mensaje"
 git push
