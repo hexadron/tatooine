@@ -10,7 +10,7 @@ class CourseSessionsController < ApplicationController
   end
   
   def show
-    
+    render layout: 'show_session'
   end
   
   def edit
@@ -45,6 +45,7 @@ class CourseSessionsController < ApplicationController
   
   def load_course
     @course = Course.find(params[:course_id])
+    @enrolled = current_user.courses.include?(@course)
   end
   
 end

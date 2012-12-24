@@ -8,9 +8,9 @@ module ExerciseTypes
     def solve(solution)
       student_answer = solution[:answer]
       case student_answer
-        when String
+        when String # Match string content
           student_answer == @data[:answer]
-        when Fixnum
+        when Fixnum # Match index position
           @data[:alternatives][student_answer] == @data[:answer]
         end
     end

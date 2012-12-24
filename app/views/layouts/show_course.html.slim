@@ -1,0 +1,14 @@
+= render :template => 'layouts/application'
+
+h2.course_title= @course.name
+
+.course-detail
+  p.course_description= @course.description
+
+  p.course_creator Creado por: #{ link_to @course.creator.name, @course.creator }
+
+  - unless @enrolled
+    = form_tag(enroll_course_path(@course), id: "enroll-course") do
+      = submit_tag "Registrarse", class: "button"
+  
+  = yield :more_for_courses

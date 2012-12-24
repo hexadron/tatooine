@@ -28,7 +28,11 @@ class CoursesController < ApplicationController
     @feedback = Feedback.new
     @enrolled = current_user.courses.include?(@course)
     @classes = @course.course_sessions
-    respond_with(@course)
+    respond_with(@course) do |format|
+      format.html do
+        render layout: 'show_course'
+      end
+    end
   end
   
   def edit

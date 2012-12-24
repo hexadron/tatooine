@@ -1,1 +1,8 @@
 h2 Clases
+
+- if @classes.count == 0
+  p No hay clases creadas aún.
+
+ul.sessions
+  - for session in @classes
+      li= link_to session.title, course_course_session_url(@course, session)

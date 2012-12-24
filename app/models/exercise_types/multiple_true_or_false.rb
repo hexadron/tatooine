@@ -9,8 +9,7 @@ module ExerciseTypes
       user_answers = solution[:answers]
       @errors = []
       
-      data[:questions].each_with_index do |q, i|
-        question, answer = q[0], q[1]
+      data[:questions].each_with_index do |(question, answer), i|
         user_answer = !!user_answers[i]
         
         unless !!answer == user_answer

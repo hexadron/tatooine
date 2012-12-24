@@ -5,7 +5,7 @@
   
   h2 Tipo de Ejercicio: #{t(@exercise_type.name.to_sym)}
   
-  - if partial = @exercise.formatted_question
+  - if partial = @exercise.question_form
     = semantic_fields_for :question_data do |nested_form|
       = render partial, f: nested_form
   

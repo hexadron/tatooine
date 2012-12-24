@@ -1,32 +1,41 @@
+require 'ostruct'
+
 class Exercise < ActiveRecord::Base
+  
+  # Solver: Instancia de la clase que manipula el ejercicio
+  # Context: Hashmap con la información que se le pasa al solver
+  attr_accessor :context, :solver
+  
   belongs_to :exercise_type
   belongs_to :section
-  attr_accessible :question, :result, :exercise_type_id
   
-  attr_accessor :context, :solver, :question_data
+  # Inicializa el contexto al iniciar el objeto.
+  after_initialize :create_empty_context
   
-  after_initialize :create_context
-  
+  # Filtro... ver método sync_definitions
   before_save :sync_definitions
   
-  def formatted_question(type="html")
+  # Formulario de pregunta. Sólo un string con el nombre del partial
+  # a usar, a partir del exercise_type.
+  def question_form(type="html")
     if type.to_s == "html"
       exercise_type.question_partial
     end
   end
   
+  # Ingresa data al hash de contexto. Carga
+  # el contexto si no está cargado
   def define(definitions)
-    if exercise_type
-      definitions.each do |k, v|
-        self.context[k] = v
-      end
-    end
+    load_context unless self.context
+    self.context = self.context.merge(definitions)
   end
   
-  def create_context
+  # Nuevo contexto vacío
+  def create_empty_context
     self.context = Hash.new
   end
   
+  # Errores: proxy para solver#errors
   def mistakes
     if @solver and errors = @solver.errors
       errors
@@ -35,22 +44,29 @@ class Exercise < ActiveRecord::Base
     end
   end
   
+  # Solucionar
+  # - Recibe un hash de solución
+  # - Llena a solver con la información del contexto
+  # - Delega a solver la solución del ejercicio enviandole el objeto solución
+  # - Devuelve true o false
   def solve_with(solution = Hash.new)
     exercise_type.update_implementor! if exercise_type
     if exercise_type and @solver = exercise_type.implementor_instance
-      load_context
+      load_context unless context
       
       solver.fill(self.context)
       solver.solve(solution)
     end
   end
   
+  # Carga el contexto desde la base de datos,
+  # donde éste está serializado como JSON.
   def load_context
     if self.data and self.context.empty?
       decoded = ActiveSupport::JSON.decode self.data
       
-      # Transformamos los hashes de "string" => OTHER to
-      # :string => OTHER.
+      # Transformamos los hashes de STRING => OTHER to
+      # SYMBOL => OTHER.
       self.context = decoded.inject({}) do |h, (k, v)|
         h[k.to_sym] = v
         h
@@ -58,11 +74,30 @@ class Exercise < ActiveRecord::Base
     end
   end
   
+  # Sincroniza las definiciones del contexto en el atributo data,
+  # que será guardado en la base de datos. Serializa el objeto
+  # como JSON.
   def sync_definitions
-    if self.context
-      serialized_context = ActiveSupport::JSON.encode self.context
+    load_context unless context
+    if context
+      serialized_context = ActiveSupport::JSON.encode(context)
       self.data = serialized_context
       self
     end
+  end
+  
+  # Representación del contexto en un struct.
+  def question_data
+    hash_to_struct context
+  end
+  
+  private
+  
+  def hash_to_struct(hash)
+    o = OpenStruct.new
+    hash.each do |k, v|
+      o.send("#{k}=", v)
+    end
+    o
   end
 end
