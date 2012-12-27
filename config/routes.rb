@@ -15,13 +15,14 @@ Tatooine::Application.routes.draw do
   get 'reset' => 'home#reset'
   root to: 'home#index', as: :root
   
-  resources :courses do
+  resources :courses do    
     resources :feedbacks
     resources :course_sessions do
       resources :sections
     end
     member do
       post 'enroll'
+      get 'faq'
     end
     collection do
       get 'search'
@@ -35,6 +36,7 @@ Tatooine::Application.routes.draw do
   resources :exercises do
     member do
       put 'customize'
+      put 'solve'
     end
   end
   

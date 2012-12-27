@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121221005411) do
+ActiveRecord::Schema.define(:version => 20121227185632) do
 
   create_table "achievements", :force => true do |t|
     t.integer  "course_id"
@@ -136,11 +136,9 @@ ActiveRecord::Schema.define(:version => 20121221005411) do
 
   create_table "exercises", :force => true do |t|
     t.text     "question"
-    t.text     "result"
     t.integer  "exercise_type_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.text     "exercise_data"
     t.integer  "section_id"
     t.text     "data"
   end

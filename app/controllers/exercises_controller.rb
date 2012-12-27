@@ -4,7 +4,7 @@ class ExercisesController < ApplicationController
   
   respond_to :html, :js, :json, :xml
   
-  before_filter :load_exercise, only: [:customize, :update, :destroy]
+  before_filter :load_exercise, only: [:customize, :update, :destroy, :solve]
   
   def create
     load_section
@@ -38,6 +38,14 @@ class ExercisesController < ApplicationController
     end
 
     respond_with(@exercise)
+  end
+  
+  def solve
+    solution = params[:answer_data]
+    
+    @result = @exercise.solve_with(solution)
+    @mistakes = @exercise.mistakes
+    @invalidations = @exercise.invalidations
   end
   
   def destroy

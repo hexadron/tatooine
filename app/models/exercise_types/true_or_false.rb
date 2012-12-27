@@ -6,7 +6,11 @@ module ExerciseTypes
     end
     
     def solve(solution)
-      !!@data[:answer] == !!solution[:answer]
+      answer = solution[:answer]
+      answer = true if ["1", 1].include?(answer)
+      answer = false if ["0", 0].include?(answer)
+      
+      !!@data[:answer] == !!answer
     end
   end
 end

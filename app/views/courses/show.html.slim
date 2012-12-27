@@ -1,25 +1,5 @@
+- @class_tab = 'classes'
+
 - content_for :more_for_courses do
-  ul.menu.tabs
-    li= link_to_javascript("Clases", data: { tab: "classes" }, class: 'current')
-    li= link_to_javascript("Preguntas Frecuentes", data: { tab: "faq" })
-    li= link_to_javascript("Comentarios", data: { tab: "feedbacks" })
-
-  section.tabcontent#classes style="display: block"
+  section#classes
     = render 'course_sessions/index'
-
-  section.tabcontent#faq
-    h2 Preguntas Frecuentes
-    - if @course.faq
-      == @course.faq
-    - else
-      p No hay preguntas frecuentes todavía.
-
-  section.tabcontent#feedbacks
-    h2 Comentar
-    - if @enrolled
-      = render 'feedbacks/form'
-    - else
-      p Debes registrarte en el curso para poder realizar comentarios.
-      
-    h2 Comentarios
-    = render 'feedbacks/index'

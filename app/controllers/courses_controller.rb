@@ -3,9 +3,9 @@ class CoursesController < ApplicationController
   
   before_filter :authenticate_user!
   before_filter :protect_courses, only: [:edit, :update, :delete]
-  before_filter :find_course, only: [:delete, :update, :edit, :show, :enroll]
+  before_filter :find_course, only: [:delete, :update, :edit, :show, :enroll, :faq]
   before_filter :load_courses, only: [:index]
-  before_filter :reject_unpublished_courses, only: [:show]
+  before_filter :reject_unpublished_courses, only: [:show, :faq]
 
   def index
     @levels = Level.select([:name]).map(&:name)
@@ -24,10 +24,8 @@ class CoursesController < ApplicationController
   end
   
   def show
-    @feedbacks = @course.feedbacks
-    @feedback = Feedback.new
-    @enrolled = current_user.courses.include?(@course)
     @classes = @course.course_sessions
+    
     respond_with(@course) do |format|
       format.html do
         render layout: 'show_course'
@@ -85,6 +83,14 @@ class CoursesController < ApplicationController
     @course.add_student(current_user)
     flash[:notice] = "Has sido registrado en este curso"
     redirect_to(@course)
+  end
+  
+  def faq
+    respond_with(@course) do |format|
+      format.html do
+        render layout: 'show_course'
+      end
+    end
   end
   
   private

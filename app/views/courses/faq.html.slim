@@ -1,0 +1,9 @@
+- @class_tab = 'faq'
+
+- content_for :more_for_courses do
+  section#faq
+    h2 Preguntas Frecuentes
+    - if @course.faq
+      == @course.faq
+    - else
+      p No hay preguntas frecuentes todavía.

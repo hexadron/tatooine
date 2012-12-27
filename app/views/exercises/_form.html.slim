@@ -7,7 +7,7 @@
   
   - if partial = @exercise.question_form
     = semantic_fields_for :question_data do |nested_form|
-      = render partial, f: nested_form
+      = render partial, f: nested_form, exercise: @exercise
   
   = f.submit "Actualizar"
   = f.submit "Cancelar", class: 'cancel'

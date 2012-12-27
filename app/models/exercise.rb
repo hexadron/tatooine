@@ -17,9 +17,16 @@ class Exercise < ActiveRecord::Base
   
   # Formulario de pregunta. Sólo un string con el nombre del partial
   # a usar, a partir del exercise_type.
-  def question_form(type="html")
-    if type.to_s == "html"
+  def question_form(type='html')
+    if type.to_s == 'html'
       exercise_type.question_partial
+    end
+  end
+  
+  # Formulario de respuesta. Nombre del partial a usar
+  def answer_form(type='html')
+    if type.to_s == 'html'
+      exercise_type.answer_partial
     end
   end
   
@@ -44,6 +51,15 @@ class Exercise < ActiveRecord::Base
     end
   end
   
+  # Invalidaciones: proxy para solver#invalidations
+  def invalidations
+    if @solver and invalidations = @solver.invalidations
+      invalidations
+    else
+      []
+    end
+  end
+  
   # Solucionar
   # - Recibe un hash de solución
   # - Llena a solver con la información del contexto
@@ -52,10 +68,10 @@ class Exercise < ActiveRecord::Base
   def solve_with(solution = Hash.new)
     exercise_type.update_implementor! if exercise_type
     if exercise_type and @solver = exercise_type.implementor_instance
-      load_context unless context
+      load_context if context.empty?
       
       solver.fill(self.context)
-      solver.solve(solution)
+      solver.solve_exercise(solution)
     end
   end
   
@@ -89,6 +105,11 @@ class Exercise < ActiveRecord::Base
   # Representación del contexto en un struct.
   def question_data
     hash_to_struct context
+  end
+  
+  # Representación de la data de respuesta.
+  def answer_data
+    Hash.new
   end
   
   private

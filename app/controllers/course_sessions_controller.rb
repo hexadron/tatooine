@@ -10,7 +10,12 @@ class CourseSessionsController < ApplicationController
   end
   
   def show
-    render layout: 'show_session'
+    @sections = @session.sections
+    respond_with(@session) do |f|
+      f.html {
+        render layout: 'show_course'
+      }
+    end
   end
   
   def edit

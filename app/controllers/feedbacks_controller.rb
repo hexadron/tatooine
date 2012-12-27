@@ -1,6 +1,16 @@
 class FeedbacksController < ApplicationController
 
   before_filter :load_course
+  
+  def index
+    @feedback = Feedback.new
+    @feedbacks = @course.feedbacks
+    respond_with(@feedbacks) do |f|
+      f.html do
+        render layout: 'show_course'
+      end
+    end
+  end
 
   def create
     @feedback = @course.feedbacks.build(params[:feedback])
@@ -11,7 +21,7 @@ class FeedbacksController < ApplicationController
         if errs = @feedback.errors and !errs.empty?
           flash[:alert] = @feedback.errors.full_messages.join(", ")
         end
-        redirect_to @course
+        render :index
       end
     end
   end

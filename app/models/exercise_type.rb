@@ -35,12 +35,21 @@ class ExerciseType < ActiveRecord::Base
   
   def question_partial
     if implementor
-      underscored_simple_class_name = implementor.name.gsub(/^.*::/,'').underscore
       File.join("exercise_types", "#{underscored_simple_class_name}_question")
     end
   end
   
+  def answer_partial
+    if implementor
+      File.join("exercise_types", "#{underscored_simple_class_name}_answer")
+    end
+  end
+  
   private
+  
+  def underscored_simple_class_name
+    implementor.name.gsub(/^.*::/,'').underscore
+  end
   
   def transform_implementor_to_kind
     if implementor
