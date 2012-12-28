@@ -1,16 +1,14 @@
 - @current_second_tab ||= 'sections'
 
-- content_for :outside do
-  = yield :outside
-
 - content_for :inside_classes do
-  h2 Clase: #{@session.title}
-  ul.menu
-    li= link_to "Detalles de la Clase", edit_course_course_session_url(@course, @session), data: { tab: "details" }, class: "#{ 'current' if @current_second_tab == 'details' }"
-    li= link_to "Secciones", course_course_session_sections_url(@course, @session), data: { tab: "sessions" }, class: "#{ 'current' if @current_second_tab == 'sections' }"
+  .edit-session
+    h2 Clase: #{@session.title}
+    ul.menu
+      li= link_to "Detalles de la Clase", edit_course_course_session_url(@course, @session), data: { tab: "details" }, class: "#{ 'current' if @current_second_tab == 'details' }"
+      li= link_to "Secciones", course_course_session_sections_url(@course, @session), data: { tab: "sessions" }, class: "#{ 'current' if @current_second_tab == 'sections' }"
 
-  .edit
-    .tabcontent style="display: block"
-      = yield :deep_inside_classes
+    .edit-zone
+      .tabcontent style="display: block"
+        = yield :deep_inside_classes
 
 = render :template => 'layouts/edit_course'

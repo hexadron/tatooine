@@ -1,9 +1,8 @@
-ul.header.menu
-  li
-    h1= link_to "tatooine", root_path
-  li
-    .facebook= link_to 'Facebook', user_omniauth_authorize_path(:facebook)
-  li
-    .twitter= link_to 'Twitter', user_omniauth_authorize_path(:twitter)
-  li= link_to 'Inicia sesión', new_user_session_path
-  li= link_to 'Regístrate', new_user_registration_path
+li
+  h1= link_to "tatooine", root_path
+li
+  .facebook= link_to 'Facebook', user_omniauth_authorize_path(:facebook)
+li
+  .twitter= link_to 'Twitter', user_omniauth_authorize_path(:twitter)
+li= link_to 'Inicia sesión', new_user_session_path
+li= link_to 'Regístrate', new_user_registration_path

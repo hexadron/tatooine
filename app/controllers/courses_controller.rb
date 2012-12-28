@@ -11,7 +11,6 @@ class CoursesController < ApplicationController
     @levels = Level.select([:name]).map(&:name)
     
     if @search
-      
       @courses = @courses.to_a # fetch the query
       @your_level_courses = Course.with_level(current_user.average_level, {array: @courses})
       @courses_you_created = Course.created_by(current_user, {array: @courses})
@@ -63,8 +62,12 @@ class CoursesController < ApplicationController
     @course.save
     respond_with(@course) do |format|
       format.html do
-        flash[:notice] = "¡Curso creado exitosamente!"
-        redirect_to(edit_course_url(@course))
+        if @course.errors.empty?
+          flash[:notice] = "¡Curso creado exitosamente!"
+          redirect_to(edit_course_url(@course))
+        else
+          render :new
+        end
       end
     end
   end
@@ -73,8 +76,13 @@ class CoursesController < ApplicationController
     @course.update_attributes(params[:course])
     respond_with(@course) do |format|
       format.html do
-        flash[:notice] = "¡Curso actualizado exitosamente!"
-        redirect_to(edit_course_url(@course))
+        if @course.errors.empty?
+          flash[:notice] = "¡Curso actualizado exitosamente!"
+          redirect_to(edit_course_url(@course))
+        else
+          flash[:alert] = format_errors(@course)
+          redirect_to(edit_course_url(@course))
+        end
       end
     end
   end

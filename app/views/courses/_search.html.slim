@@ -1,5 +1,5 @@
-ul
-  = search_form_for @q, :builder => Formtastic::FormBuilder, html: { id: 'search_course' } do |f|
+= search_form_for @q, :builder => Formtastic::FormBuilder, html: { id: 'search_course', class: 'formtastic' } do |f|
+  ul
     = f.input :name_cont, label: "Nombre"
     = f.input :level_name_cont, label: "Nivel", include_blank: false, as: :select, collection: @levels
     = f.input :creator_first_name_or_creator_last_name_or_creator_email_cont, label: "Profesor"

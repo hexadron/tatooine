@@ -20,6 +20,7 @@ class UsersController < ApplicationController
       @user.update_attributes(params[:user])
       flash[:notice] = "Imagen actualizada"
       redirect_to edit_user_url(@user)
+      return
     end
     
     if @user.valid_password?(params[:user][:old_password])

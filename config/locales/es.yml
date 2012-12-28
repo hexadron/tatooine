@@ -371,9 +371,9 @@ es:
         course: Curso
         created_at: "Fecha de Creación"
         updated_at: "Última Actualización"
-      session_part:
+      section:
         course_session: Seleccione el Curso
-        title: El Titulo del curso
+        title: El título de la sección
         content: El Contenido del curso
         created_at: "Fecha de Creación"
         updated_at: "Última Actualización"

@@ -1,25 +1,34 @@
 doctype html
 html
   head
+    meta charset="utf-8"
     title tatooine
-    = stylesheet_link_tag    "application", :media => "all"
+    = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tags
-  body
-    - if current_user
-      = render partial: 'navigation'
-    - else
-      = render partial: 'login'
+  body class="#{@body_classes}"
+    ul.header.menu
+      .band-of-power
+      .inside= render partial: current_user ? 'navigation' : 'login'
     
     - if flash[:alert]
       .notification.alert
-        p= flash[:alert]
+        .inside
+          p= flash[:alert]
     - elsif flash[:notice]
       .notification
+        .inside
         p= flash[:notice]
+    / TODO
+    / Hack: En el registro de usuarios, devise no escribe en el objeto flash cuando hay errores. Para poder capturar estos errores en la notificación debemos acceder a devise_error_messages! que requiere la existencia de un método resource. Caso contrario, una excepción será lanzada.
+    - elsif self.methods.include?(:resource) and (errors = devise_error_messages!) != ''
+        .notification.alert
+          .inside
+            o= errors
     
     = yield :outside
-      
-    = yield
+    
+    .page
+      .inside= content_for?(:content) ? yield(:content) : yield
     
     = javascript_include_tag "application"
     = yield :js

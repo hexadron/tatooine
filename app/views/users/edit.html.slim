@@ -1,19 +1,23 @@
-h2 Cambia tu imagen de perfil
-ul
-  li
-    img.profile src="#{@user.avatar.url(:thumb)}"
-    
-  = semantic_form_for(@user, html: { multipart: true } ) do |f|
-    = f.inputs do
-      li= f.file_field :avatar, label: "Imagen de perfil", data: { preview: '.profile' }
-      li= f.submit "Actualizar imagen"
+.profile
+  h2.username title="#{@user.name}"
+    #{truncate(@user.name, length: 30)}#{link_to "Ver Perfil Público", @user, target: "_blank"}
 
-h2 Cambia tu contraseña
-ul
-  = semantic_form_for(@user) do |f|
-    = f.inputs do
-      li.error= flash[:errors]
-      = f.input :old_password, label: "Contraseña Anterior"
-      = f.input :password, label: "Nueva Contraseña"
-      = f.input :password_confirmation, label: "Confirmar Nueva Contraseña"
-      = f.submit "Actualizar contraseña"
+  h2 Cambia tu imagen de perfil
+  ul
+    li
+      img.avatar src="#{@user.avatar.url(:thumb)}"
+      
+    = semantic_form_for(@user, html: { multipart: true } ) do |f|
+      = f.inputs do
+        li= f.file_field :avatar, label: "Imagen de perfil", data: { preview: '.profile' }
+        li= f.submit "Actualizar imagen"
+
+  h2 Cambia tu contraseña
+  ul
+    = semantic_form_for(@user) do |f|
+      = f.inputs do
+        li.error= flash[:errors]
+        = f.input :old_password, label: "Contraseña Anterior"
+        = f.input :password, label: "Nueva Contraseña"
+        = f.input :password_confirmation, label: "Confirmar Nueva Contraseña"
+        = f.submit "Actualizar contraseña"

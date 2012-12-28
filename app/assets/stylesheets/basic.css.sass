@@ -1,5 +1,176 @@
+$gutter: 0em
+$proxima: "proxima_nova_ltregular", sans-serif
+$top-z-index: 99999999999999
+
+$color-errors: hsl(0, 60, 40)
+$color-fondo: hsl(0, 0, 80)
+
+$color-twitter: #45adee
+$color-facebook: #3f5d97
+
+$color-menu-fondo: hsl(0, 0, 92)
+$color-menu-texto: hsl(0, 0, 10)
+$color-menu-texto-hover: hsl(0, 0, 98)
+$color-menu-hover: hsl(172, 60, 55)
+
+$color-notifications: hsl(180, 60, 40)
+$color-notifications-text: hsl(0, 0, 95)
+$color-alerts: hsl(340, 60, 40)
+
+$color-pg-1: hsl(139, 82%, 76%)
+$color-pg-2: hsl(172, 51%, 57%)
+$color-pg-3: hsl(354, 69%, 56%)
+$color-pg-4: hsl(39, 96%, 62%)
+
+$power-gradient: linear-gradient(left, $color-pg-1 0, $color-pg-1 25%, $color-pg-2 25%, $color-pg-2 50%, $color-pg-3 50%, $color-pg-3 75%, $color-pg-4 75%, $color-pg-4 100%)
+
 html
-  font-family: "proxima_nova_rgregular", sans-serif
+  font-family: $proxima, sans-serif
 
 a
   text-decoration: none
+
+li
+  list-style: none
+
+body
+  background-color: $color-fondo
+  
+.inside
+  width: 960px
+  margin: auto
+  position: relative
+
+h2
+  color: hsl(0, 0, 20)
+  font-size: 2em
+  margin-top: 1em
+  margin-bottom: 0.5em
+
+a
+  color: hsl(200, 70, 40)
+  text-decoration: none
+
+  &:hover
+    color: hsl(200, 70, 40)
+  
+input[type=submit], .button
+  +inline-block
+  +box-shadow(0px 1px 0px hsl(0, 0, 70))
+  background: hsl(0, 0, 100)
+  border: 1px solid hsl(0, 0, 80)
+  border-radius: 0.4em
+  color: hsl(0, 0, 18)
+  cursor: pointer
+  font-size: 1em
+  margin: 0
+  padding: 0.5em 1.2em
+
+  &:hover
+    color: hsl(0, 0, 6)
+    background: hsl(0, 0, 96)
+
+  &:active
+    color: hsl(0, 0, 6)
+    background: hsl(0, 0, 94)
+
+=tile_button
+  +box-shadow(none)
+  background-color: hsl(0, 0, 10)
+  border: none
+  border-radius: 0px
+  font-family: $proxima
+  padding: 0.5em 1.2em
+  text-align: center
+  &:hover
+    background-color: hsl(0, 0, 20)
+
+.tile_button
+  +tile_button
+
+form
+  #{$all-text-inputs}, textarea, .mdeditor
+    border: 1px solid hsl(0, 0, 50)
+    font-size: 0.8em
+    outline-color: hsl(354, 59, 72)
+    padding: 0.3em 0.5em
+
+.formtastic
+  li
+    margin-bottom: 0.3em
+  label
+    color: hsl(0, 0, 25)
+    width: 10.5em
+  label, #{$all-text-inputs}, select, textarea, .mdeditor
+    +inline-block
+    vertical-align: middle
+  #{$all-text-inputs}, select
+    width: 12em
+  abbr
+    display: none
+  input[type=submit]
+    margin-top: 1em
+  textarea, .mdeditor
+    height: 170px
+    margin: 0
+    resize: none
+    width: 400px
+  .error
+    color: hsl(0, 50, 50)
+    font-style: italic
+    margin: 1em 0em
+  .inline-errors
+    display: inline-block
+    padding-left: 1em
+
+.notification
+  +box-shadow(inset 0px 0px 3px hsl(0, 0, 50))
+  background-color: $color-notifications
+  color: $color-notifications-text
+  display: none
+  padding: 1em
+  text-align: center
+  &.alert
+    background-color: $color-alerts
+  #error_explanation
+    li
+      margin-bottom: 0.5em
+
+.notform
+  position: absolute
+  width: 100%
+  top: -100%
+  z-index: 6666666
+  .inside
+    +box-shadow(0px 0px 3px hsl(0, 0, 40))
+    background-color: hsla(0, 0, 100, 0.95)
+    border: 1px solid hsl(0, 0, 60)
+    border-top: 0
+    margin: 0 auto
+    padding: 0.6em 0.8em 1.2em 0.8em
+    text-align: center
+    width: 40%
+    label, #{$all-text-inputs}
+      display: block
+      margin: 0.5em auto
+    label
+      font-size: 1.2em
+    #{$all-text-inputs}
+      padding: 0.2em
+  .cancel
+    margin-left: 0.7em
+
+.arrow
+  &:after
+    +inline-block
+    font-size: 0.3em
+    padding-left: 0.7em
+    position: relative
+    top: -0.2em
+  &.down:after
+    content: "\25BC"
+  &.up:after
+    content: "\25B2"
+
+.tabcontent
+  display: none

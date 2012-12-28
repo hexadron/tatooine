@@ -24,22 +24,22 @@ Note =
     top = $('.header.menu').height()
     old_top = form.css('top')
     form.data('top', old_top)
-    form.animate(top: top, 400, fn)
+    form.animate(top: top, 600, fn)
   
   notice: (text) ->
     noti = $("<div class='notification'></div>")
     noti.append("<p>#{text}</p>")
-    noti.insertAfter('.header').fadeIn 400, ->
+    noti.insertAfter('.header').slideDown 500, ->
       setTimeout ->
-        noti.fadeOut(400).addClass('consumed')
+        noti.slideUp(600).addClass('consumed')
       , 4200
     
   flash: ->
     notifs = $('.notification:not(.consumed)')
     if notifs.length > 0
-      notifs.fadeIn 400, ->
+      notifs.slideDown 500, ->
         setTimeout ->
-          notifs.fadeOut(400).addClass('consumed')
+          notifs.slideUp(600).addClass('consumed')
         , 4200
 
 window.Note = Note

@@ -26,8 +26,13 @@ class SectionsController < ApplicationController
     
     respond_with(@section) do |format|
       format.html do
-        flash[:notice] = 'Nueva Sección Creada'
-        redirect_to course_course_session_sections_url
+        if @section.errors.empty?
+          flash[:notice] = 'Nueva Sección Creada'
+          redirect_to course_course_session_sections_url
+        else
+          flash[:alert] = format_errors(@section)
+          redirect_to course_course_session_sections_url
+        end
       end
     end
   end

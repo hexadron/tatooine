@@ -2,6 +2,9 @@
   = link_to("Nueva Clase", new_course_course_session_url(@course), class: 'button')
   h2 Clases
   
+  - if @course_sessions.empty?
+    p No hay clases creadas actualmente para este curso.
+  
   ul
     - for session in @course_sessions
       li

@@ -15,7 +15,7 @@
     - for course in @courses_you_created  
       li
         = link_to course.name, course_url(course), class: 'course_tile'
-        = link_to "editar", edit_course_url(course), class: 'actions'
+        = link_to "editar", edit_course_url(course), class: 'actions tile_button'
         = button_to "eliminar", course, method: 'delete', class: 'delete actions', confirm: "¿Deseas eliminar este curso?"
 
   = link_to 'Crear un curso', new_course_path, class: 'button'

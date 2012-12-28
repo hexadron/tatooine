@@ -62,7 +62,7 @@ class Course < ActiveRecord::Base
           row.enrollment_user_id == user.id
         }.uniq
       else
-        self.joins(:enrollments).select("courses.*, enrollments.*").where("enrollments.user_id = ?", user.id)
+        self.joins(:enrollments).select("courses.*, enrollments.user_id").where("enrollments.user_id = ?", user.id)
       end
     end
   end

@@ -1,4 +1,4 @@
-h2= "Cursos llevados por #{@student.complete_name}"
+h2 Cursos dictados por #{link_to @student.complete_name, @student}
 ul.courses
   - for course in @courses
     li= link_to course.name, course_url(course), class: 'course_tile'
