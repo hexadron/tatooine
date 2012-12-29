@@ -16,24 +16,29 @@ class UsersController < ApplicationController
   end
   
   def update
-    if params[:user][:avatar]
-      @user.update_attributes(params[:user])
-      flash[:notice] = "Imagen actualizada"
-      redirect_to edit_user_url(@user)
-      return
-    end
-    
-    if @user.valid_password?(params[:user][:old_password])
-      if @user.update_attributes(params[:user])
-        sign_in @user, :bypass => true
-        flash[:notice] = "Contraseña actualizada"
+    if params[:user]
+      if params[:user][:avatar]
+        @user.update_attributes(params[:user])
+        flash[:notice] = "Imagen actualizada"
         redirect_to edit_user_url(@user)
+        return
+      end
+      
+      if @user.valid_password?(params[:user][:old_password])
+        if @user.update_attributes(params[:user])
+          sign_in @user, :bypass => true
+          flash[:notice] = "Contraseña actualizada"
+          redirect_to edit_user_url(@user)
+        else
+          flash[:errors] = @user.errors.full_messages.to_sentence
+          redirect_to edit_user_url(@user)
+        end
       else
-        flash[:errors] = @user.errors.full_messages.to_sentence
+        flash[:alert] = "Contraseña inválida"
         redirect_to edit_user_url(@user)
       end
     else
-      flash[:alert] = "Contraseña inválida"
+      flash[:alert] = "Imagen no seleccionada"
       redirect_to edit_user_url(@user)
     end
   end
