@@ -59,6 +59,7 @@ input[type=submit], .button
   +box-shadow(0px 1px 0px hsl(0, 0, 70))
   background: hsl(0, 0, 100)
   border: 1px solid hsl(0, 0, 80)
+  -webkit-border-radius: 0.4em
   border-radius: 0.4em
   color: hsl(0, 0, 18)
   cursor: pointer
@@ -73,6 +74,17 @@ input[type=submit], .button
   &:active
     color: hsl(0, 0, 6)
     background: hsl(0, 0, 94)
+
+=awesome_list_item($width: 5em)
+  a
+    +inline-block
+    background-color: hsl(0, 0, 92)
+    border-bottom: 1px solid hsl(0, 0, 80)
+    padding: 0.5em 0.8em
+    width: $width
+    &:hover
+      color: hsl(0, 0, 95)
+      background-color: hsl(0, 0, 50)
 
 =tile_button
   +box-shadow(none)
@@ -94,6 +106,10 @@ form
     font-size: 0.8em
     outline-color: hsl(354, 59, 72)
     padding: 0.3em 0.5em
+  
+  // Para iOS
+  input[type=submit]
+    -webkit-appearance: none
 
 .formtastic
   li
@@ -135,6 +151,14 @@ form
   #error_explanation
     li
       margin-bottom: 0.5em
+
+#form-of-destruction
+  p
+    margin-top: 0.5em
+  .actions
+    margin-top: 0.5em
+    li
+      +inline-block
 
 .notform
   position: absolute

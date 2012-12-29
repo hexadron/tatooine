@@ -4,7 +4,7 @@ class FeedbacksController < ApplicationController
   
   def index
     @feedback = Feedback.new
-    @feedbacks = @course.feedbacks
+    load_feedbacks
     respond_with(@feedbacks) do |f|
       f.html do
         render layout: 'show_course'
@@ -19,9 +19,9 @@ class FeedbacksController < ApplicationController
     respond_with([@course, @feedback]) do |f|
       f.html do
         if errs = @feedback.errors and !errs.empty?
-          flash[:alert] = @feedback.errors.full_messages.join(", ")
+          flash[:alert] = format_errors(@feedback)
         end
-        render :index
+        redirect_to course_feedbacks_url(@course)
       end
     end
   end
@@ -30,6 +30,10 @@ class FeedbacksController < ApplicationController
   
   def load_course
     @course = Course.find(params[:course_id])
+  end
+  
+  def load_feedbacks
+    @feedbacks = @course.feedbacks
   end
 
 end

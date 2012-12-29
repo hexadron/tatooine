@@ -1,9 +1,9 @@
 h2 Tus profesores
 ul.courses
   - for teacher in @my_teachers
-    li= link_to teacher.name, teacher_path(teacher), class: 'course_tile'
+    li= link_to teacher.name, teacher_path(teacher), {class: 'course_tile'}.merge(avatar_image_data(teacher)).merge(color_style_from_image(teacher, :avatar))
 
 h2 Todos los profesores
 ul.courses
-  - for teacher in @teachers  
-    li= link_to teacher.name, teacher_path(teacher), class: 'course_tile'
+  - for teacher in @teachers
+    li= link_to teacher.name, teacher_path(teacher), {class: 'course_tile'}.merge(avatar_image_data(teacher)).merge(color_style_from_image(teacher, :avatar))

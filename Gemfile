@@ -37,6 +37,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
+  gem 'simplecov', require: false
 end
 
 gem 'activeadmin'
@@ -56,4 +57,5 @@ gem 'jquery-ui-rails'
 gem 'squeel'
 gem 'ransack'
 gem 'commands'
-gem 'simplecov', :require => false, :group => :test
+gem 'miro'
+gem 'ancestry'

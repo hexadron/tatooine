@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121227185632) do
+ActiveRecord::Schema.define(:version => 20121228212637) do
 
   create_table "achievements", :force => true do |t|
     t.integer  "course_id"
@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(:version => 20121227185632) do
     t.integer  "course_session_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.integer  "position"
   end
 
   add_index "sections", ["course_session_id"], :name => "index_session_parts_on_course_session_id"

@@ -1,4 +1,3 @@
-ul
-  = semantic_form_for([@course, @feedback]) do |f|
-    = f.input :text, label: "Contenido"
-    = f.submit "Enviar"
+= semantic_form_for([@course, @feedback]) do |f|
+  = f.input :text, label: "Comentario"
+  = f.submit "Comentar"

@@ -19,6 +19,9 @@ Tatooine::Application.routes.draw do
     resources :feedbacks
     resources :course_sessions do
       resources :sections
+      member do
+        post 'resort'
+      end
     end
     member do
       post 'enroll'

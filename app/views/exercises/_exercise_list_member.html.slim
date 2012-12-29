@@ -1,5 +1,5 @@
 li.exercise id="exercise-#{exercise.id}"
   = semantic_form_for [exercise], url: customize_exercise_url(exercise), remote: true do |f|
-    = f.input :exercise_type, include_blank: false
+    = f.input :exercise_type, include_blank: false, collection: @types_for_select
     = f.submit "Editar"
   = button_to "Eliminar", { controller: :exercises, action: :destroy, id: exercise.id}, {method: :delete, remote: true, confirm: "¿Deseas eliminar este ejercicio? No quedarán rastros de él."}

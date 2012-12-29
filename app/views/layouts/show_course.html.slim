@@ -1,21 +1,23 @@
 - @enrolled ||= are_you_enrolled?(@course)
 
+- content_for :content do
+  .show-course
+    h2.course-title= @course.name
+
+    .course-detail
+      p.course-description= @course.description
+
+      p.course-creator Creado por: #{ link_to @course.creator.name, @course.creator }
+
+      - unless @enrolled
+        = form_tag(enroll_course_path(@course), id: "enroll-course") do
+          = submit_tag "Registrarse", class: "button"
+      
+      ul.menu
+        li= link_to "Clases", course_url(@course), class: @class_tab == 'classes' ? 'current' : ''
+        li= link_to "Preguntas Frecuentes", faq_course_url(@course), class: @class_tab == 'faq' ? 'current' : ''
+        li= link_to "Comentarios", course_feedbacks_url(@course), class: @class_tab == 'feedbacks' ? 'current' : ''
+      
+      = yield :more_for_courses
+
 = render :template => 'layouts/application'
-
-h2.course_title= @course.name
-
-.course-detail
-  p.course_description= @course.description
-
-  p.course_creator Creado por: #{ link_to @course.creator.name, @course.creator }
-
-  - unless @enrolled
-    = form_tag(enroll_course_path(@course), id: "enroll-course") do
-      = submit_tag "Registrarse", class: "button"
-  
-  ul.menu
-    li= link_to "Clases", course_url(@course), class: @class_tab == 'classes' ? 'current' : ''
-    li= link_to "Preguntas Frecuentes", faq_course_url(@course), class: @class_tab == 'faq' ? 'current' : ''
-    li= link_to "Comentarios", course_feedbacks_url(@course), class: @class_tab == 'feedbacks' ? 'current' : ''
-  
-  = yield :more_for_courses

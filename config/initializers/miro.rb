@@ -1,0 +1,1 @@
+Miro.options[:image_magick_path] = '/usr/local/bin/convert'

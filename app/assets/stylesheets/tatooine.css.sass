@@ -12,9 +12,7 @@
     color: $color-menu-texto
     padding: 1em
     text-align: center
-    +transition(all 0.2s linear)
     &:hover, &.current
-      +transition(all 0.2s linear)
       background: $color-menu-hover
       color: $color-menu-texto-hover
   .facebook a:hover
@@ -88,10 +86,14 @@
   > li
     border: 1px solid white
     width: 25%
-    a
+    .course_tile
+      background-position: center
       color: white
       padding: 100px 10px 10px
       width: 100%
+      &.with-image
+        font-weight: bold
+        text-shadow: 0px 0px 5px white
     > .actions, .button_to
       +inline-block
       vertical-align: top
@@ -112,10 +114,67 @@
   a
     +inline-block
 
-// CURSOS / EDIT
+// CURSOS / MOSTRAR
+.show-course
+  .course-description, .course-creator
+    margin-bottom: 1em
+  #feedbacks
+    +row
+    .do-a-comment
+      +span-columns(5 of 12)
+    .look-comments
+      +span-columns(7 of 12)
+    label
+      margin-bottom: 0.5em
+    textarea, label
+      display: block
+    textarea
+      height: 7em
+      padding: 0.5em
+      width: 25em
+    input[type=submit]
+      margin-top: 0.4em
+  .feedbacks
+    li
+      +box-shadow(0px 0px 1px hsl(0, 0, 60))
+      background-color: $color-menu-fondo
+      border: 1px solid hsl(0, 0, 70)
+      border-radius: 0.7em
+      margin-bottom: 1em
+      padding: 0.8em
+
+// CURSOS / EDITAR
 .edit-course
   .edit-zone
     padding: 1.2em 0em
+  .section-zone
+    +row
+    .section-edit
+      +span-columns(8 of 12)
+      min-height: 19em
+      .tabcontent
+        padding-top: 0.9em
+    .section-list
+      +span-columns(4 of 12)
+      li:first-child
+        margin-bottom: 1em
+      .section-element
+        +awesome_list_item(12em)
+        &.section-selected a
+          background-color: hsl(0, 0, 40)
+          color: hsl(0, 0, 98)
+  .exercises_list
+    > li
+      border: 1px solid hsl(0, 0, 70)
+      border-radius: 7px
+      box-shadow: inset 0px 0px 2px hsl(0, 0, 70)
+      margin-top: 0.5em
+      padding: 0.5em
+    li, form
+      +inline-block
+      margin-right: 0.5em
+      input[type=submit]
+        margin: 0
 
 // PROFILE
 .profile
@@ -131,6 +190,11 @@
     +box-shadow(2px 2px 5px black)
     +inline-block
     margin-bottom: 0.5em
+  &.public
+    .foto
+      +clearfix
+    .avatar
+      float: right
   
 // .courses
 //   margin-bottom: 1em

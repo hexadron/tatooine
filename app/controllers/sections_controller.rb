@@ -9,12 +9,13 @@ class SectionsController < ApplicationController
   layout 'edit_session'
   
   def show
-    @exercises = @section.exercises
+    load_exercises
+    load_types_for_select
     respond_with(@course, @session, @section)
   end
   
   def index
-    @sections = @session.sections
+    @sections = @session.sections.order(:position)
     @section = Section.new
     respond_with(@course, @session, @sections)
   end
@@ -40,10 +41,15 @@ class SectionsController < ApplicationController
   def update
     @section.update_attributes(params[:section])
     flash[:notice] = "Contenido Actualizado"
+    load_exercises
     render :show
   end
   
   private
+  
+  def load_exercises
+    @exercises = @section.exercises
+  end
   
   def load_session_and_course
     @course ||= Course.find(params[:course_id])

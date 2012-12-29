@@ -3,24 +3,23 @@
 
 - content_for :more_for_courses do
   section#feedbacks
-    h2 Comentar
-    - if @enrolled
-      = render 'feedbacks/form'
-    - else
-      p Debes registrarte en el curso para poder realizar comentarios.
-      
-    h2 Comentarios
-    ul.feedbacks
-      - if @feedbacks.empty?
-        li
-          p No hay comentarios actualmente.
+    .do-a-comment
+      h2 Comentar
+      - if @enrolled
+        = render 'feedbacks/form'
       - else
-        li
-          - count = @feedbacks.count
-          p #{count} #{count > 1 ? "comentarios" : "comentario"}:
+        p Debes registrarte en el curso para poder realizar comentarios.
+      
+    .look-comments
+    
+      h2= @feedbacks.empty? ? "Comentarios" : "#{@feedbacks.count} #{@feedbacks.count == 1 ? "comentario" : "comentarios" }"
+      
+      ul.feedbacks
+        - if @feedbacks.empty?
+          p No hay comentarios actualmente.
 
-      - for feedback in @feedbacks
-        - user = feedback.user
-        li
-          p.by #{ link_to user.complete_name, user } opina:
-          p.content= feedback.text
+        - for feedback in @feedbacks
+          - user = feedback.user
+          li
+            p.by #{ link_to user.complete_name, user } opina:
+            p.content= feedback.text

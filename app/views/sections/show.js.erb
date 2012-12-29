@@ -11,8 +11,8 @@ if (window.currentSection !== <%= @section.id %>) {
   
   // TODO: Aplicar luego estilos a .section-selected y borrar esas llaamadas a css.
   
-  $('.section-selected').removeClass('section-selected').css('font-weight', 'normal')
-  $("#<%= @section.id %>").addClass('section-selected').css('font-weight', 'bold')
+  $('.section-selected').removeClass('section-selected')
+  $("#<%= @section.id %>").addClass('section-selected')
   
   var sect = $('.section-edit')
   sect.html("<%= escape_javascript render(@section) %>")

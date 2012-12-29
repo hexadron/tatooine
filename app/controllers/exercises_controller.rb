@@ -8,6 +8,7 @@ class ExercisesController < ApplicationController
   
   def create
     load_section
+    load_types_for_select
 
     @exercise = Exercise.new
     @exercise.section = @section

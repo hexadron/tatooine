@@ -50,10 +50,21 @@ $ ->
     color += Math.floor(Math.random() * 6) + 3 for i in [1..6]
     return color
 
-  for course in $('.courses a:not(.actions)')
-    $(course).css 'background', randomColor()
+  for course in $('.course_tile')
+    $course = $(course)
+    if avatar = $course.data('avatar')
+      $course.css('background-image', "url(#{avatar})").addClass('with-image')
+    else
+      $course.css 'background', randomColor()
 
   $('.courses').isotope
     itemSelector : 'li'
     layoutMode : 'masonry'
   
+  # SORTABLE
+  $(".section-list ul").sortable
+    items: '.section-element'
+    update: (evt, ui) ->
+      url = $(this).data('url')
+      params = { sections: $(this).sortable('toArray') }
+      $.post(url, params)

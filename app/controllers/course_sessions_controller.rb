@@ -1,6 +1,6 @@
 class CourseSessionsController < ApplicationController
   
-  before_filter :load_course
+  before_filter :load_course, except: [:resort]
   before_filter :load_session, only: [:show, :edit, :update, :destroy]
   
   layout 'edit_course'
@@ -10,7 +10,7 @@ class CourseSessionsController < ApplicationController
   end
   
   def show
-    @sections = @session.sections
+    @sections = @session.sections.order(:position)
     respond_with(@session) do |f|
       f.html {
         render layout: 'show_course'
@@ -39,6 +39,16 @@ class CourseSessionsController < ApplicationController
         redirect_to edit_course_course_session_url(@course, @session)
       end
     end
+  end
+  
+  def resort
+    ids = params[:sections]
+    ids.each_with_index do |id, idx|
+      section = Section.find(id)
+      section.position = idx
+      section.save
+    end
+    render nothing: true
   end
   
   private

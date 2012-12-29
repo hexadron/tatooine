@@ -43,3 +43,27 @@ Note =
         , 4200
 
 window.Note = Note
+
+# This will override the default "Confirm" included in Rails with button_to :destroy
+
+$.rails.allowAction = (link) ->
+  return true unless link.attr('data-confirm')
+  $.rails.showConfirmDialog(link)
+  false
+
+$.rails.confirmed = (link) ->
+  link.removeAttr('data-confirm')
+  link.trigger('click.rails')
+
+# An ugly implementation, but meh, i want to try :)
+$.rails.showConfirmDialog = (link) ->
+  message = link.attr 'data-confirm'
+  
+  form = $('#form-of-destruction')
+  form.find('.message').text(message)
+  
+  form.find('.perform').one 'click', ->
+    $.rails.confirmed link
+    Note.closeForm '#form-of-destruction'
+  
+  Note.bringForm "#form-of-destruction"

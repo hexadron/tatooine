@@ -25,6 +25,15 @@ html
           .inside
             o= errors
     
+    .notform#form-of-destruction
+      .inside
+        p.message
+        ul.actions
+          li
+            input type="submit" class="perform" value="Sí"
+          li
+            input type="submit" class="cancel" value="No"
+    
     = yield :outside
     
     .page
