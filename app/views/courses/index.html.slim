@@ -2,15 +2,20 @@
 
 .courses-zone
 
-  section.search-zone class="#{@search ? 'deployed' : ''}"
-    = render 'search'
-
   h2 Cursos que tomas
+  
+  - if @courses_you_take.empty?
+    p No llevas ningún curso todavía.
+  
   ul.courses
     - for course in @courses_you_take
       li= tile_to course.name, course_url(course)
 
   h2 Cursos que dictas
+  
+  - if @courses_you_created.empty?
+    p No dictas ningún curso todavía.
+  
   ul.courses
     - for course in @courses_you_created  
       li
@@ -21,11 +26,19 @@
   = link_to 'Crear un curso', new_course_path, class: 'button'
 
   h2 Otros cursos de tu nivel
+  
+  - if @your_level_courses.empty?
+    p No hay ningún curso todavía.
+  
   ul.courses
     - for course in @your_level_courses
       li= tile_to course.name, course_url(course)
 
   h2 Todos los cursos
+  
+  - if @courses.empty?
+    p No hay ningún curso todavía.
+  
   ul.courses
     - for course in @courses
       li= tile_to course.name, course_url(course)

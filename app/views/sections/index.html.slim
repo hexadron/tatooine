@@ -16,6 +16,10 @@
 
 - content_for :deep_inside_classes do
   .section-zone
+    .help-trigger
+      = link_to_javascript "¿Qué es una sección?"
+      p.help-text Toda clase está compuesta de secciones. Éstas ayudan a dividir el curso en pequeñas unidades. Cada una de estas unidades puede tener ejercicios que deben ser llenados por el alumno para completar el curso.
+  
     .section-list
       / Sortable URL
       ul data-url="#{resort_course_course_session_url(@course, @session)}"

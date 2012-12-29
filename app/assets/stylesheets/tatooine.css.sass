@@ -1,7 +1,7 @@
 // MENU
 .menu
   +clearfix
-  +box-shadow(0px 0px 6px hsl(0, 0, 70))
+  // +box-shadow(0px 0px 6px hsl(0, 0, 70))
   background: $color-menu-fondo
   border-bottom: 1px solid white
   position: relative
@@ -44,13 +44,19 @@
     padding-bottom: 0.2em
 
 // HEADER
+.header-container
+  position: fixed
+  top: 0em
+  width: 100%
+
 .header
+  +box-shadow(0px 1px 2px hsl(0, 0, 70))
   position: relative
   z-index: $top-z-index
 
 // PAGE
 .page
-  border-top: 1px solid hsl(0, 0, 70)
+  margin-top: 4em
   padding-bottom: 1em
   .inside
     +box-shadow(0px 1px 0px 0px hsl(0, 0, 40))
@@ -71,7 +77,7 @@
   padding: 1em
   position: absolute
   right: 0
-  top: -1em
+  top: 3em
   width: 18em
   z-index: 999999999
   &.deployed
@@ -159,12 +165,13 @@
   .section-zone
     +row
     .section-edit
-      +span-columns(8 of 12)
+      +span-columns(9 of 12)
+      margin-top: 0.8em
       min-height: 19em
       .tabcontent
-        padding-top: 0.9em
+        padding: 0.9em 0.5em
     .section-list
-      +span-columns(4 of 12)
+      +span-columns(3 of 12)
       li:first-child
         margin-bottom: 1em
       .section-element
@@ -173,17 +180,31 @@
           background-color: hsl(0, 0, 40)
           color: hsl(0, 0, 98)
   .exercises_list
+    margin-top: 1em
     > li
-      border: 1px solid hsl(0, 0, 70)
-      border-radius: 7px
-      box-shadow: inset 0px 0px 2px hsl(0, 0, 70)
+      // border: 1px solid hsl(0, 0, 70)
+      // border-radius: 7px
+      // box-shadow: inset 0px 0px 2px hsl(0, 0, 70)
+      background-color: hsl(0, 0, 92)
       margin-top: 0.5em
-      padding: 0.5em
+      padding: 0.6em 0.7em
     li, form
       +inline-block
       margin-right: 0.5em
       input[type=submit]
         margin: 0
+
+// EDIT EXERCISE
+#edit_exercise_form
+  padding-bottom: 10em
+  .inside
+    background-color: hsl(0, 0, 94)
+  h2
+    font-size: 1.3em
+  textarea
+    height: 100px
+  label
+    color: hsl(0, 0, 40)
 
 // PROFILE
 .profile

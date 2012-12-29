@@ -6,9 +6,11 @@ html
     = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tags
   body class="#{@body_classes}"
-    ul.header.menu
-      .band-of-power
-      .inside= render partial: current_user ? 'navigation' : 'login'
+  
+    .header-container
+      ul.header.menu
+        .band-of-power
+        .inside= render partial: current_user ? 'navigation' : 'login'
     
     - if flash[:alert]
       .notification.alert

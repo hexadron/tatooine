@@ -36,7 +36,11 @@ class CourseSessionsController < ApplicationController
     @session.save
     respond_with(@session) do |format|
       format.html do
-        redirect_to edit_course_course_session_url(@course, @session)
+        if @session.errors.empty?
+          redirect_to edit_course_course_session_url(@course, @session)
+        else
+          render :new
+        end
       end
     end
   end

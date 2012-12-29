@@ -1,3 +1,29 @@
+$.fn.realHeight = ->
+  visibleParent = @closest(':visible').children()
+  visibleParent.addClass('temp-show')
+  thisHeight = @outerHeight()
+  visibleParent.removeClass('temp-show')
+  
+  thisHeight
+
+# Empuja la página hacia abajo.
+pushPage = (height, speed) ->
+  page = $('.page')
+  originalMTop = page.css('marginTop')
+  origMTopNum = +originalMTop.match(/\d+/)[0]
+  
+  page.data('originalMTop', originalMTop)
+  page.animate marginTop: origMTopNum + height, speed
+
+restorePage = (speed) ->
+  page = $('.page')
+  page.animate marginTop: page.data('originalMTop'), speed
+
+# El tiempo que una alerta permanezca depende de la longitud de la cadena.
+# En este caso, consideramos que 1 segundo para 15 letras es un buen tiempo.
+timeFor = (str) ->
+  (str.length / 15) * 1000
+
 Note =
   bringForm: (selector, inCallback, outCallback) ->
     form = $(selector)
@@ -29,18 +55,32 @@ Note =
   notice: (text) ->
     noti = $("<div class='notification'></div>")
     noti.append("<p>#{text}</p>")
-    noti.insertAfter('.header').slideDown 500, ->
+    duration = timeFor text
+    
+    noti.insertAfter('.header')
+    
+    rHeight = noti.realHeight()
+    
+    pushPage(rHeight, 500)
+    
+    noti.slideDown 500, ->
       setTimeout ->
+        restorePage(600)
         noti.slideUp(600).addClass('consumed')
-      , 4200
+      , duration
     
   flash: ->
     notifs = $('.notification:not(.consumed)')
+    duration = timeFor notifs.text()
+    rHeight = notifs.realHeight()
+    
     if notifs.length > 0
+      pushPage(rHeight, 500)
       notifs.slideDown 500, ->
         setTimeout ->
+          restorePage(600)
           notifs.slideUp(600).addClass('consumed')
-        , 4200
+        , duration
 
 window.Note = Note
 
@@ -62,7 +102,7 @@ $.rails.showConfirmDialog = (link) ->
   form = $('#form-of-destruction')
   form.find('.message').text(message)
   
-  form.find('.perform').one 'click', ->
+  form.find('.perform').off('click').on 'click', ->
     $.rails.confirmed link
     Note.closeForm '#form-of-destruction'
   

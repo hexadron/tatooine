@@ -6,4 +6,7 @@ li= link_to 'Alumnos', students_path
 li= link_to "Perfil", edit_user_url(current_user)
 li= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete
 - if @include_search
-  li#toggle-search= link_to_javascript "Buscar Curso".html_safe, class: 'arrow down'
+  li#toggle-search
+    = link_to_javascript "Buscar Curso".html_safe, class: 'arrow down'
+    section.search-zone class="#{@search ? 'deployed' : ''}"
+      = render 'search'

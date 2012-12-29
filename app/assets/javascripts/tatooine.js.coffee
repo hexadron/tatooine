@@ -1,6 +1,9 @@
 $ ->
   Note.flash()
   
+  $(document).on 'click', '.help-trigger a', ->
+    $(this).parent().find('.help-text').toggle()
+  
   $(document).on 'click', '.tabs a', ->
     self = $(this)
     li = self.parent()
