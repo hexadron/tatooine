@@ -23,6 +23,7 @@ module ApplicationHelper
   end
   
   def are_you_enrolled?(course)
+    return false if current_user.nil?
     current_user.courses.include?(course)
   end
   

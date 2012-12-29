@@ -1,5 +1,6 @@
 class CourseSessionsController < ApplicationController
   
+  before_filter :authenticate_user!, except: [:show]
   before_filter :load_course, except: [:resort]
   before_filter :load_session, only: [:show, :edit, :update, :destroy]
   
@@ -64,7 +65,11 @@ class CourseSessionsController < ApplicationController
   
   def load_course
     @course = Course.find(params[:course_id])
-    @enrolled = current_user.courses.include?(@course)
+    @enrolled = if current_user
+      current_user.courses.include?(@course)
+    else
+      false
+    end
   end
   
 end

@@ -6,26 +6,29 @@
       h2= @session.title
       .session-description== @session.content
     
-    .session-sections
-    
-      .index-of-sections
-        ul
-          - for section in @sections
-            li= link_to_javascript section.title, data: { id: "section_#{section.title}" }
-            
-      .content-of-sections
-        ul.sections
-          - for section in @sections
-            li.section
-              .info
-                h1.title= section.title
-                .content== section.content
-              ul.exercises
-                - for exercise in section.exercises
-                  - partial = exercise.answer_form
-                  li.exercise
-                    p= exercise.question
-                    = semantic_form_for exercise, url: solve_exercise_url(exercise), remote: true do |form|
-                      = semantic_fields_for :answer_data do |nested_form|
-                        ul= render partial, exercise: exercise, f: nested_form
-                      = form.submit "Resolver"
+      - unless current_user
+        p.no-user Tienes que iniciar sesión para poder ver esta información.
+      - else
+        .session-sections
+        
+          .index-of-sections
+            ul
+              - for section in @sections
+                li= link_to_javascript section.title, data: { id: "section_#{section.title}" }
+                
+          .content-of-sections
+            ul.sections
+              - for section in @sections
+                li.section
+                  .info
+                    h1.title= section.title
+                    .content== section.content
+                  ul.exercises
+                    - for exercise in section.exercises
+                      - partial = exercise.answer_form
+                      li.exercise
+                        p= exercise.question
+                        = semantic_form_for exercise, url: solve_exercise_url(exercise), remote: true do |form|
+                          = semantic_fields_for :answer_data do |nested_form|
+                            ul= render partial, exercise: exercise, f: nested_form
+                          = form.submit "Resolver"

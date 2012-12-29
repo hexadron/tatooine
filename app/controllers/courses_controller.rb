@@ -1,7 +1,7 @@
 # encoding: utf-8
 class CoursesController < ApplicationController
   
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:show, :faq]
   before_filter :protect_courses, only: [:edit, :update, :delete]
   before_filter :find_course, only: [:delete, :update, :edit, :show, :enroll, :faq]
   before_filter :load_courses, only: [:index]

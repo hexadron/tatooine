@@ -4,6 +4,7 @@ class ExercisesController < ApplicationController
   
   respond_to :html, :js, :json, :xml
   
+  before_filter :authenticate_user!
   before_filter :load_exercise, only: [:customize, :update, :destroy, :solve]
   
   def create

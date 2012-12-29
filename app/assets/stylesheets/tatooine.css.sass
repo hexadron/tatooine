@@ -19,13 +19,15 @@
     background: $color-facebook
   .twitter a:hover
     background: $color-twitter
-  .band-of-power
-    height: 0.25em
-    +background-image($power-gradient)
   #toggle-search
     float: right
     a
       padding: 1em 2em
+
+// BAND OF POWER
+.band-of-power
+  height: 0.25em
+  +background-image($power-gradient)
 
 // DEVISE
 .devise
@@ -67,7 +69,53 @@
 // LOGIN (INITIAL PAGE)
 .login
   .page
-    display: none
+    > .inside
+      padding: 0
+  .super-home
+    text-align: center
+    .inside
+      +box-shadow(none)
+      background-color: transparent
+    header.inside
+      +box-shadow(inset 0px 0px 10px hsl(0, 0, 20))
+      background-color: hsl(0, 0, 36)
+      color: hsl(0, 0, 96)
+      padding-top: 2.2em
+      padding-bottom: 1.7em
+    h1, blockquote
+      text-shadow: 0px 0px 4px hsl(0, 0, 10)
+    h1
+      font-size: 4em
+    blockquote
+      font-size: 1.5em
+      margin: 1em 0em
+    #more.inside
+      margin: 0
+      padding-top: 2em
+      h2
+        border-bottom: 1px solid hsl(0, 0, 50)
+        font-size: 1.6em
+        margin: 0 auto
+        width: 32%
+        span, a
+          +fill-parent
+          color: inherit
+          display: block
+          padding:
+            left: 1em
+            right: 1em
+            top: 0.8em
+            bottom: 0.6em
+      .explanation
+        padding: 1em 0em
+        font-size: 1.1em
+        line-height: 1.5em
+        margin: 0.5em auto
+        width: 50%
+        .courses li
+          width: 50%
+          span
+            text-align: left
 
 // BÚSQUEDA
 .search-zone
@@ -96,12 +144,13 @@
       background-position: center
       color: white
       height: 7.9em
-      padding: 10px
+      padding: 10px 20px 10px 10px
       position: relative
       width: 100%
       span
         bottom: 0.8em
         position: absolute
+        max-width: 90%
       &.with-image
         font-weight: bold
         text-shadow: 0px 0px 5px white
@@ -203,6 +252,11 @@
       margin-right: 0.5em
       input[type=submit]
         margin: 0
+
+// SHOW SESSION
+.show-session
+  p.no-user
+    margin: 1em 0em
 
 // EDIT EXERCISE
 #edit_exercise_form

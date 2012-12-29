@@ -3,6 +3,7 @@ class SectionsController < ApplicationController
   
   respond_to :html, :js, :json, :xml
   
+  before_filter :authenticate_user!
   before_filter :load_session_and_course
   before_filter :load_section, only: [:show, :edit, :update, :destroy]
   

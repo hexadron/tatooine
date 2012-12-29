@@ -1,1 +1,34 @@
 - @body_classes = "login"
+
+.super-home
+  header.inside
+    h1 Tatooine
+    blockquote "May The Force Be With You"
+  .band-of-power
+  section#more.inside
+    h2
+      span ¿Qué es Tatooine?
+    .explanation.what-is-tatooine
+      p Tatooine es una plataforma de aprendizaje super boni. [Nota para los desarrolladores: Editen este texto por algo más apropiado]
+    
+    h2
+      span Algunos cursos
+    .explanation.some-courses
+      ul.courses
+        - for course in @featured_courses
+          li= tile_to course.name, course_path(course)
+    
+    h2
+      span Aprende
+    .explanation.learn
+      p En Tatooine puedes aprender cursos dictados por cualquier persona. Puedes incluso aprender cosas poco comunes de forma sencilla. [Nota para los desarrolladores: Editen este texto por algo más apropiado]
+    
+    h2
+      span Enseña
+    .explanation.teach
+      p Aparte de aprender, tienes la posibilidad de enseñar en todo momento. En Tatooine, todos podemos ser maestros de todos. Podrías terminar enseñándole algo a tu profesor de escuela. [Nota para los desarrolladores: Editen este texto por algo más apropiado]
+    
+    h2
+      span Comienza tu camino
+    .explanation.begin-your-path
+      p Iniciar en Tatooine es sencillo. Sólo regístrate o, si se te hace muy engorroso llenar un formulario, conéctate por medio de Facebook o Twitter. Que la fuerza esté contigo.

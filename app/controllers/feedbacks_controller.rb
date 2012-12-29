@@ -1,6 +1,7 @@
 class FeedbacksController < ApplicationController
 
   before_filter :load_course
+  before_filter :authenticate_user!, except: [:index]
   
   def index
     @feedback = Feedback.new
