@@ -18,16 +18,19 @@ module ApplicationHelper
     image_data(model, :avatar, size)
   end
   
-  # Paint the best color for an image background
+  # Pinta un color dependiendo del color predominante de una imagen.
+  # En Heroku, la gema Miro no funciona.
+  # Fix rápido: Begin / Rescue.
   def color_style_from_image(model, property, size=:thumb)
     if model.send(property).exists?
       image = model.send(property).path(size)
       best_color = text_color_for_image(image)
-      
       { style: "color: #{best_color};" }
     else
       Hash.new
     end
+  rescue => e
+    Hash.new
   end
   
   private
