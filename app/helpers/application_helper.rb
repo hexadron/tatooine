@@ -1,4 +1,23 @@
 module ApplicationHelper
+  
+  # Text: Texto para el Tile
+  # Link: Link al que dirigirá el tile
+  # Options:
+  # Background -> [model, :attribute]
+  def tile_to(text, link, options=nil, html_options={})
+    final_html_opts = { class: 'course_tile' }.merge(html_options)
+    
+    if options and options[:background]
+      bg_model, bg_prop = options[:background]
+      prop_image_data = image_data(bg_model, bg_prop, :medium)
+      color_style = color_style_from_image(bg_model, bg_prop)
+      
+      final_html_opts = final_html_opts.merge(prop_image_data).merge(color_style)
+    end
+    
+    link_to(content_tag(:span, text), link, final_html_opts)
+  end
+  
   def link_to_javascript(content, attrs = {})
     link_to(content, "javascript:void(0);", attrs)
   end

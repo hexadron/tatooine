@@ -1,4 +1,4 @@
 h2 Tus alumnos
 ul.courses
   - for student in @my_students
-    li= link_to student.name, student_path(student), { class: 'course_tile' }.merge(avatar_image_data(student)).merge(color_style_from_image(student, :avatar))
+    li= tile_to student.name, student_path(student), background: [student, :avatar]
