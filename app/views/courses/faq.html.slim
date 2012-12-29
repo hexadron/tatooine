@@ -3,7 +3,7 @@
 - content_for :more_for_courses do
   section#faq
     h2 Preguntas Frecuentes
-    - if @course.faq
-      == @course.faq
+    - if @course.faq.present?
+      .faq-content== markdown @course.faq
     - else
       p No hay preguntas frecuentes todavía.

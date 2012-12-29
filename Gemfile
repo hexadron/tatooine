@@ -59,3 +59,9 @@ gem 'ransack'
 gem 'commands'
 gem 'miro'
 gem 'ancestry'
+gem 'yajl-ruby'
+
+# Markdown
+gem 'redcarpet'
+gem 'sanitize'
+gem 'htmlentities'
