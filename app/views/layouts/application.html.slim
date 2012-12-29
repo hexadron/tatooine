@@ -23,7 +23,7 @@ html
     - elsif self.methods.include?(:resource) and (errors = devise_error_messages!) != ''
         .notification.alert
           .inside
-            o= errors
+            p= errors
     
     .notform#form-of-destruction
       .inside
