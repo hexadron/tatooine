@@ -36,7 +36,7 @@ $ ->
         (evt) ->
           previewElement.attr
             src: evt.target.result
-            width: origWidth
+            width: 100
       )(previewElement)
       
       if image = @files[0]

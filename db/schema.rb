@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121228212637) do
+ActiveRecord::Schema.define(:version => 20121230192336) do
 
   create_table "achievements", :force => true do |t|
     t.integer  "course_id"
@@ -86,12 +86,16 @@ ActiveRecord::Schema.define(:version => 20121228212637) do
     t.string   "name"
     t.date     "available_at"
     t.boolean  "can_be_published"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.text     "description"
     t.integer  "level_id"
     t.integer  "creator_id"
     t.string   "faq"
+    t.string   "background_image_file_name"
+    t.string   "background_image_content_type"
+    t.integer  "background_image_file_size"
+    t.datetime "background_image_updated_at"
   end
 
   add_index "courses", ["creator_id"], :name => "index_courses_on_creator_id"

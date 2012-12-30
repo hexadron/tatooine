@@ -5,5 +5,11 @@
     = f.input :available_at, as: :date_picker, label: "Disponible en:"
     = f.input :level, label: "Nivel", :include_blank => false
     = f.input :faq, as: :markdown, label: "Preguntas Frecuentes"
+    = f.input :background_image, as: :file, label: "Imagen", input_html: { data: { preview: '.course-background' } }
+    li.course-background-container
+      - if @course.background_image.present?
+        img.course-background src="#{@course.background_image.url(:thumb)}"
+      - else
+        img.course-background
     = f.input :can_be_published, label: "¿Publicar?"
     = f.submit "Guardar Curso"

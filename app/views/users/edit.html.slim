@@ -9,7 +9,7 @@
       
     = semantic_form_for(@user, html: { multipart: true } ) do |f|
       = f.inputs do
-        li= f.file_field :avatar, label: "Imagen de perfil", data: { preview: '.profile' }
+        li= f.input :avatar, as: :file, label: false, input_html: { data: { preview: '.avatar' } }
         li= f.submit "Actualizar imagen"
 
   h2 Cambia tu contraseña

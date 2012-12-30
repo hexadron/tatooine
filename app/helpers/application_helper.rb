@@ -8,14 +8,18 @@ module ApplicationHelper
     final_html_opts = { class: 'course_tile' }.merge(html_options)
     
     if options and options[:background]
-      bg_model, bg_prop = options[:background]
-      prop_image_data = image_data(bg_model, bg_prop, :medium)
+      bg_model, bg_prop, size = options[:background]
+      prop_image_data = image_data(bg_model, bg_prop, (size or :tile))
       color_style = color_style_from_image(bg_model, bg_prop)
       
       final_html_opts = final_html_opts.merge(prop_image_data).merge(color_style)
     end
     
     link_to(content_tag(:span, text), link, final_html_opts)
+  end
+  
+  def course_tile_to(course)
+    tile_to course.name, course_url(course), background: [course, :background_image]
   end
   
   def link_to_javascript(content, attrs = {})
@@ -43,13 +47,14 @@ module ApplicationHelper
   # Fix rápido: Begin / Rescue.
   def color_style_from_image(model, property, size=:thumb)
     if model.send(property).exists?
-      image = model.send(property).path(size)
+      image = model.send(property).url(size)
       best_color = text_color_for_image(image)
       { style: "color: #{best_color};" }
     else
       Hash.new
     end
   rescue => e
+    Rails.logger.warn(e)
     Hash.new
   end
   

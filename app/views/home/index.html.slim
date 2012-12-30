@@ -5,7 +5,7 @@ p Bienvenido a tatooine, te recomendamos revisar nuestra lista de cursos y profe
 h2 Cursos recomendados
 ul.courses
   - for course in @courses
-    li= tile_to course.name, course_path(course)
+    li= course_tile_to course
 
 h2 Profesores recomendados
 ul.courses

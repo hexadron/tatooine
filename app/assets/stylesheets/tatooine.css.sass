@@ -1,7 +1,6 @@
 // MENU
 .menu
   +clearfix
-  // +box-shadow(0px 0px 6px hsl(0, 0, 70))
   background: $color-menu-fondo
   border-bottom: 1px solid white
   position: relative
@@ -153,8 +152,7 @@
         position: absolute
         max-width: 90%
       &.with-image
-        font-weight: bold
-        text-shadow: 0px 0px 5px white
+        text-shadow: 0px 0px 4px white
     > .actions, .button_to
       +inline-block
       position: relative
@@ -220,6 +218,8 @@
 
 // CURSOS / EDITAR
 .edit-course
+  .course-background-container
+    padding-left: 10.5em
   .edit-zone
     padding: 1.2em 0em
   .section-zone
@@ -242,9 +242,6 @@
   .exercises_list
     margin-top: 1em
     > li
-      // border: 1px solid hsl(0, 0, 70)
-      // border-radius: 7px
-      // box-shadow: inset 0px 0px 2px hsl(0, 0, 70)
       background-color: hsl(0, 0, 92)
       margin-top: 0.5em
       padding: 0.6em 0.7em

@@ -9,7 +9,7 @@
   
   ul.courses
     - for course in @courses_you_take
-      li= tile_to course.name, course_url(course)
+      li= course_tile_to(course)
 
   h2 Cursos que dictas
   
@@ -19,7 +19,7 @@
   ul.courses
     - for course in @courses_you_created  
       li
-        = tile_to course.name, course_url(course)
+        = course_tile_to(course)
         = link_to "editar", edit_course_url(course), class: 'actions tile_button'
         = button_to "eliminar", course, method: 'delete', class: 'delete actions', confirm: "¿Deseas eliminar este curso?"
 
@@ -32,7 +32,7 @@
   
   ul.courses
     - for course in @your_level_courses
-      li= tile_to course.name, course_url(course)
+      li= course_tile_to(course)
 
   h2 Todos los cursos
   
@@ -41,4 +41,4 @@
   
   ul.courses
     - for course in @courses
-      li= tile_to course.name, course_url(course)
+      li= course_tile_to(course)

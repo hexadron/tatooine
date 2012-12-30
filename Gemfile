@@ -47,7 +47,6 @@ gem 'slim'
 gem 'formtastic'
 gem 'kaminari'
 gem 'responders'
-gem 'paperclip'
 gem 'friendly_id'
 gem 'devise'
 gem 'omniauth'
@@ -57,9 +56,12 @@ gem 'jquery-ui-rails'
 gem 'squeel'
 gem 'ransack'
 gem 'commands'
-gem 'miro'
-gem 'ancestry'
 gem 'yajl-ruby'
+
+# Image Upload and Processing
+gem 'miro'
+gem 'paperclip'
+gem 'paperclipdropbox'
 
 # Markdown
 gem 'redcarpet'

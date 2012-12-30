@@ -1,11 +1,17 @@
 class Course < ActiveRecord::Base
-  attr_accessible :available_at, :can_be_published, :description, :name, :level_id, :faq, :creator_id
+  attr_accessible :available_at, :can_be_published, :description, :name, :level_id, :faq, :creator_id, :background_image
   
   validates :name, presence: true
   validates :description, presence: true
   
   belongs_to :level
   belongs_to :creator, class_name: "User", foreign_key: "creator_id"
+  
+  has_attached_file :background_image,
+    :styles => { :medium => "300x300>", :thumb => "100x100>", :tile => '225>x127>' },
+    :storage => :Dropboxstorage,
+    :default_url => "/images/:style/missing.png",
+    :path => "/tatooine/:attachment/:id/:style/:filename"
   
   has_many :enrollments
   has_many :feedbacks

@@ -1,4 +1,5 @@
 class TeachersController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
     @my_teachers = current_user.teachers

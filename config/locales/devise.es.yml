@@ -8,6 +8,7 @@ es:
 
   devise:
     failure:
+      already_authenticated: 'Ya has ingresado a Tatooine.'
       unauthenticated: 'Necesitas acceder a tu cuenta o registrarte antes de continuar.'
       unconfirmed: 'Necesitas confirmar tu cuenta antes de continuar.'
       locked: 'Tu cuenta esta bloqueada.'
