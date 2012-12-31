@@ -1,6 +1,6 @@
 # encoding: utf-8
-
 class ExercisesController < ApplicationController
+  include CoursesProtector
   
   respond_to :html, :js, :json, :xml
   
@@ -67,6 +67,13 @@ class ExercisesController < ApplicationController
       @exercise.exercise_type_id = kind_id
       @exercise.load_context
     end
+  end
+  
+  def load_course
+    exercise = Exercise.find(params[:id])
+    section = exercise.section
+    session = section.course_session
+    @course = session.course
   end
   
   def load_question_data

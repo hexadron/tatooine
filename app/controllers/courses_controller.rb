@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
   
   before_filter :authenticate_user!, except: [:show, :faq]
   before_filter :protect_courses, only: [:edit, :update, :delete]
-  before_filter :find_course, only: [:delete, :update, :edit, :show, :enroll, :faq]
+  before_filter :load_course, only: [:delete, :update, :edit, :show, :enroll, :faq]
   before_filter :load_courses, only: [:index]
   before_filter :reject_unpublished_courses, only: [:show, :faq]
 
@@ -114,19 +114,19 @@ class CoursesController < ApplicationController
     end
   end
   
-  def find_course
+  def load_course
     @course = @course || Course.find(params[:id])
   end
   
   def protect_courses
-    find_course
+    load_course
     if @course.creator != current_user
       redirect_to '/404.html'
     end
   end
   
   def reject_unpublished_courses
-    find_course
+    load_course
     unless @course.available?
       redirect_to '/404.html'
     end

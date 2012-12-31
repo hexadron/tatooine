@@ -1,1 +1,3 @@
+<%= render 'shared/alerts_to_js' %>
+
 $("<%= escape_javascript(render 'exercises/exercise_list_member', exercise: @exercise, section: @section) %>").css('display', 'none').appendTo('.exercises_list').fadeIn()

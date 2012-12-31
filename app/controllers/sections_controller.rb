@@ -1,5 +1,6 @@
 # encoding: utf-8
 class SectionsController < ApplicationController
+  include CoursesProtector
   
   respond_to :html, :js, :json, :xml
   
@@ -41,7 +42,13 @@ class SectionsController < ApplicationController
   
   def update
     @section.update_attributes(params[:section])
-    flash[:notice] = "Contenido Actualizado"
+    if @section.errors.empty?
+      flash[:notice] = "Contenido Actualizado"
+      @success = true
+    else
+      flash[:alert] = format_errors(@section)
+      @success = false
+    end
     load_exercises
     render :show
   end
@@ -52,8 +59,12 @@ class SectionsController < ApplicationController
     @exercises = @section.exercises
   end
   
-  def load_session_and_course
+  def load_course
     @course ||= Course.find(params[:course_id])
+  end
+  
+  def load_session_and_course
+    load_course
     @session ||= CourseSession.find(params[:course_session_id])
   end
   

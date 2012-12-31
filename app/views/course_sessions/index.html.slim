@@ -11,3 +11,5 @@
         = session.title
         |   |  
         = link_to("Editar Clase", edit_course_course_session_url(@course, session))
+        |   |  
+        = link_to "Eliminar Clase", course_course_session_url(@course, session), method: 'delete', confirm: 'Todos los datos sobre esta clase serán eliminados. ¿Deseas eliminar esta clase?'

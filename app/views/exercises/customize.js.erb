@@ -1,3 +1,5 @@
+<%= render 'shared/alerts_to_js' %>
+
 $('html').addClass('overlay-active')
 $('#edit_exercise_form').addClass('active').find('ul').html("<%= escape_javascript render('form') %>")
 

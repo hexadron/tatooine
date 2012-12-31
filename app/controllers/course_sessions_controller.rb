@@ -1,4 +1,5 @@
 class CourseSessionsController < ApplicationController
+  include CoursesProtector
   
   before_filter :authenticate_user!, except: [:show]
   before_filter :load_course, except: [:resort]
@@ -46,12 +47,20 @@ class CourseSessionsController < ApplicationController
     end
   end
   
+  def destroy
+    @session.destroy
+    flash[:notice] = "Clase eliminada correctamente"
+    respond_with(@session) do |format|
+      format.html do
+        redirect_to course_course_sessions_url(@course)
+      end
+    end
+  end
+  
   def resort
     ids = params[:sections]
     ids.each_with_index do |id, idx|
-      section = Section.find(id)
-      section.position = idx
-      section.save
+      Section.update(id, position: idx)
     end
     render nothing: true
   end

@@ -1,3 +1,5 @@
+<%= render 'shared/alerts_to_js' %>
+
 $("#exercise-<%= @exercise.id %>").fadeOut(function() {
   $(this).remove()
 })
