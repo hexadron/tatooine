@@ -66,7 +66,7 @@ module Tatooine
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
-    config.assets.precompile += %w(*.js *.css)
+    config.assets.precompile += %w(active_admin.css active_admin/print.css active_admin.js sections.js themes/epic-dark.css themes/epic-light.css themes/epiceditor.css themes/github.css themes/preview-dark.css)
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
   end
