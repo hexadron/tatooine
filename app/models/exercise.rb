@@ -104,6 +104,7 @@ class Exercise < ActiveRecord::Base
   
   # Representación del contexto en un struct.
   def question_data
+    load_context
     hash_to_struct context
   end
   
