@@ -71,3 +71,30 @@ $ ->
       url = $(this).data('url')
       params = { sections: $(this).sortable('toArray') }
       $.post(url, params)
+  
+  # FULL-FIXED INDEX OF SECTIONS
+  ios = $('.index-of-sections')
+  ios.height(ios.height())
+  ul = ios.find('ul')
+  
+  trottle = 55
+  
+  ul.waypoint((evt, direction) ->
+    self = $(this)
+    self.css 'width', self.css('width')
+    if direction is 'down'
+      self.css
+        position: 'fixed'
+        top: trottle
+        left: self.offset().left
+    else
+      self.css
+        position: 'relative'
+        top: 0
+        left: 0
+  , offset: trottle).on 'click', 'a', (evt) ->
+    evt.preventDefault()
+    elem = $($(this).attr('href'))
+    $('html, body').animate({
+      scrollTop: elem.offset().top - 150
+    }, 700)

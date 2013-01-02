@@ -16,5 +16,6 @@
 //= require epiceditor
 //= require jquery-ui
 //= require epiceditor_formtastic
+//= require waypoints
 //= require notifs
 //= require tatooine

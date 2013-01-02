@@ -58,7 +58,7 @@ class ExercisesController < ApplicationController
   private
   
   def load_section
-    @section = Section.find(params[:section_id])
+    @section ||= Section.find(params[:section_id])
   end
   
   def load_exercise
@@ -70,10 +70,15 @@ class ExercisesController < ApplicationController
   end
   
   def load_course
-    exercise = Exercise.find(params[:id])
-    section = exercise.section
-    session = section.course_session
-    @course = session.course
+    exercises = Exercise.where(id: params[:id])
+    if exercises.empty?
+      load_section
+      session = @section.course_session
+    else
+      section = exercises.first.section
+      session = section.course_session
+    end
+    @course ||= session.course
   end
   
   def load_question_data

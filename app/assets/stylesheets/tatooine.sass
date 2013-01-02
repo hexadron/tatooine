@@ -251,11 +251,6 @@
       input[type=submit]
         margin: 0
 
-// SHOW SESSION
-.show-session
-  p.no-user
-    margin: 1em 0em
-
 // EDIT EXERCISE
 #edit_exercise_form
   padding-bottom: 10em
@@ -287,3 +282,43 @@
       +clearfix
     .avatar
       float: right
+
+// CLASSES / VIEW
+
+// SHOW SESSION
+.show-session
+  p.no-user, .session-description
+    margin: 1em 0em
+  .session-sections
+    +row
+    .index-of-sections
+      +span-columns(2 of 12)
+      // This is needed by the sticky menu
+      min-height: 1px
+      li
+        +inline-block
+        margin: 0.4em 0em
+        width: 90%
+        a
+          background-color: hsl(0, 0, 90)
+          color: hsl(0, 0, 30)
+          display: block
+          padding: 0.5em
+          width: 100%
+          &:hover
+            background-color: hsl(0, 0, 87)
+            color: inherit
+    .content-of-sections
+      +span-columns(10 of 12)
+  .section
+    border-left: 2px solid hsl(0, 0, 84)
+    margin-bottom: 2em
+    padding: 1em 1.3em
+    .title
+      font-size: 1.5em
+      margin-bottom: 0.6em
+    .content
+      margin: 1em 0em
+    .info
+      
+    .exercises
