@@ -1,3 +1,11 @@
 <%= render 'shared/alerts_to_js' %>
 
-console.log("<%= @result %>")
+var sect = $('#section_<%= @section.id %>').closest('.section')
+
+<% if @result %>
+  sect.find('.done').each(function(i, e) {
+    var el = $(e)
+    var next = +el.text() + 1
+    el.text(next)
+  })
+<% end %>

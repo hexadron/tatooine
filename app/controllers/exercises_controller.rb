@@ -43,11 +43,13 @@ class ExercisesController < ApplicationController
   end
   
   def solve
-    solution = params[:answer_data]
+    r = current_user.solve(@exercise, params[:answer_data])
     
-    @result = @exercise.solve_with(solution)
-    @mistakes = @exercise.mistakes
-    @invalidations = @exercise.invalidations
+    @section = @exercise.section
+    
+    @result = r[:result]
+    @mistakes = r[:mistakes]
+    @invalidations = r[:invalidations]
   end
   
   def destroy

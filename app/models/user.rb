@@ -72,10 +72,17 @@ class User < ActiveRecord::Base
   end
   
   def exercise_data_for(exercise)
-    ue = UserExercise.new
-    ue.exercise = exercise
-    ue.user = self
-    ue
+    maybe_usxs = UserExercise.where(exercise_id: exercise.id, user_id: self.id)
+    if maybe_usxs.empty?
+      ue = UserExercise.new
+      ue.exercise = exercise
+      ue.user = self
+      ue.result = false
+      ue.save
+      ue
+    else
+      maybe_usxs.first
+    end
   end
   
   def section_data_for(section)
@@ -90,6 +97,26 @@ class User < ActiveRecord::Base
     else
       maybe_uses.first
     end
+  end
+  
+  def solve(exercise, answer)
+    ex = self.exercise_data_for(exercise)
+    ex.result = exercise.solve_with(answer)
+    ex.save
+    
+    sect = section_data_for(exercise.section)
+    
+    if ex.result
+      sect.progress += 1
+      sect.save
+    end
+    
+    result_hash = Hash.new
+    result_hash[:result] = ex.result
+    result_hash[:mistakes] = exercise.mistakes
+    result_hash[:invalidations] = exercise.invalidations
+    
+    result_hash
   end
 
   def self.teachers
