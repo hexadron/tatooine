@@ -9,6 +9,8 @@ class Exercise < ActiveRecord::Base
   belongs_to :exercise_type
   belongs_to :section
   
+  has_many :user_exercises
+  
   # Inicializa el contexto al iniciar el objeto.
   after_initialize :create_empty_context
   

@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
   
   has_many :enrollments
   has_many :courses, :through => :enrollments
+  has_many :user_exercises
+  has_many :user_sections
 
   def name
     strip_email(self.first_name || self.email)
@@ -67,6 +69,27 @@ class User < ActiveRecord::Base
       end
     end
     _students
+  end
+  
+  def exercise_data_for(exercise)
+    ue = UserExercise.new
+    ue.exercise = exercise
+    ue.user = self
+    ue
+  end
+  
+  def section_data_for(section)
+    maybe_uses = UserSection.where(section_id: section.id, user_id: self.id)
+    if maybe_uses.empty?
+      us = UserSection.new
+      us.section = section
+      us.user = self
+      us.progress = 0
+      us.save
+      us
+    else
+      maybe_uses.first
+    end
   end
 
   def self.teachers

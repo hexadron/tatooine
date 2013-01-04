@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104021721) do
+ActiveRecord::Schema.define(:version => 20130104100002) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -157,6 +157,28 @@ ActiveRecord::Schema.define(:version => 20130104021721) do
   end
 
   add_index "sections", ["course_session_id"], :name => "index_session_parts_on_course_session_id"
+
+  create_table "user_exercises", :force => true do |t|
+    t.integer  "exercise_id"
+    t.integer  "user_id"
+    t.boolean  "result"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "user_exercises", ["exercise_id"], :name => "index_user_exercises_on_exercise_id"
+  add_index "user_exercises", ["user_id"], :name => "index_user_exercises_on_user_id"
+
+  create_table "user_sections", :force => true do |t|
+    t.integer  "section_id"
+    t.integer  "user_id"
+    t.integer  "progress"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "user_sections", ["section_id"], :name => "index_user_sections_on_section_id"
+  add_index "user_sections", ["user_id"], :name => "index_user_sections_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

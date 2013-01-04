@@ -20,8 +20,8 @@
             - for section in @sections
               li.section
                 .info
-                  h1.title id="section_#{section.id}"= section.title
-                  .content== section.content
+                  h1.title id="section_#{section.id}" #{section.title}
+                  .content== sanitize(section.content)
                 ul.exercises
                   - for exercise in section.exercises
                     - partial = exercise.answer_form
@@ -31,3 +31,8 @@
                         = semantic_fields_for :answer_data do |nested_form|
                           ul= render partial, exercise: exercise, f: nested_form
                         = form.submit "Resolver"
+                p.general-description
+                  - user_section = current_user.section_data_for(section)
+                  - total = section.exercises.count
+                  - done = user_section.progress
+                  span.progress <span class='done'>#{done}</span> ejercicios resueltos de <span class='total'>#{total}</span> disponibles.

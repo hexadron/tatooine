@@ -3,6 +3,13 @@ h2 Clases
 - if @classes.count == 0
   p No hay clases creadas aún.
 
-ul.sessions
-  - for session in @classes
-      li= link_to session.title, course_course_session_url(@course, session)
+- if @enrolled
+  ul.sessions
+    - for session in @classes
+        li= link_to session.title, course_course_session_url(@course, session)
+- else
+  p.general-description Para ingresar a los cursos, primero debes registrarte en el curso.
+  h2 Listado de Clases
+  ol.sessions
+    - for session in @classes
+        li= session.title

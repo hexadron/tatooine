@@ -116,6 +116,11 @@ class CoursesController < ApplicationController
   
   def load_course
     @course = @course || Course.find(params[:id])
+    @enrolled = if current_user
+      current_user.courses.include?(@course)
+    else
+      false
+    end
   end
   
   def protect_courses
