@@ -67,3 +67,6 @@ gem 'paperclipdropbox'
 gem 'redcarpet'
 gem 'sanitize'
 gem 'htmlentities'
+
+# CKEDITOR
+gem 'ckeditor', git: 'git@github.com:lafeber/ckeditor.git'

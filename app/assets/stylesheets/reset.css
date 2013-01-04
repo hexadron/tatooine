@@ -46,3 +46,15 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+.cke_reset_all, .cke_reset_all * {
+  box-sizing: content-box;
+}
+
+#cke_section_content {
+  margin-top: 0.8em;
+}
+
+.cke_dialog {
+  z-index: 999999999999999 !important;
+}

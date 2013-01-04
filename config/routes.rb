@@ -1,9 +1,11 @@
 Tatooine::Application.routes.draw do
-  
+
   get "feedbacks/create"
 
   ActiveAdmin.routes(self)
 
+  mount Ckeditor::Engine => '/ckeditor'
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   devise_for :users, controllers: {
