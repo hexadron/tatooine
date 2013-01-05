@@ -1,0 +1,12 @@
+- q = exercise.question_data
+- alternatives = q.alternatives.map { |k, v| v }
+- answer = alternatives[q.answer.to_i]
+
+p.alternatives.general-description
+  h3 Alternativas
+  ul
+    - for alt in alternatives
+      li= alt
+      
+  h3 Respuesta
+  p.general-description= answer

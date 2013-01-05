@@ -47,9 +47,20 @@ class ExercisesController < ApplicationController
     
     @section = @exercise.section
     
+    @ue = r[:ue]
     @result = r[:result]
     @mistakes = r[:mistakes]
     @invalidations = r[:invalidations]
+    
+    if not @result
+      errors = @mistakes + @invalidations
+      flash[:alert] = format_errors(errors)
+      if errors.empty?
+        flash[:alert] = "Respuesta incorrecta"
+      end
+    else
+      flash[:notice] = "Respuesta correcta"
+    end
   end
   
   def destroy

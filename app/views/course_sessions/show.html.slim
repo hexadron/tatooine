@@ -18,26 +18,4 @@
         .content-of-sections
           ul.sections
             - for section in @sections
-              - user_section = current_user.section_data_for(section)
-              - done = user_section.progress
-              - total = section.exercises.count
-              
-              li.section
-                h1.title id="section_#{section.id}" #{section.title}
-                ul.tabs.menu
-                  li= link_to_javascript "Contenido", data: { tab: "section_#{section.id}_info" }, class: 'current'
-                  li.exercise-count= link_to_javascript "Ejercicios [<span class='done'>#{done}</span> / <span class='total'>#{total}</span>]".html_safe, data: { tab: "section_#{section.id}_exercises" }
-                .info.tabcontent style='display: block;' id="section_#{section.id}_info"
-                  .content== sanitize(section.content)
-                .exercises.tabcontent id="section_#{section.id}_exercises"
-                  p.general-description
-                    span.progress <span class='done'>#{done}</span> ejercicios resueltos de <span class='total'>#{total}</span> disponibles.
-                  ul
-                    - for exercise in section.exercises
-                      - partial = exercise.answer_form
-                      li.exercise
-                        p= exercise.question
-                        = semantic_form_for exercise, url: solve_exercise_url(exercise), remote: true do |form|
-                          = semantic_fields_for :answer_data do |nested_form|
-                            ul= render partial, exercise: exercise, f: nested_form
-                          = form.submit "Resolver"
+              = render 'sections/public_section', section: section

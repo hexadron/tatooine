@@ -3,6 +3,7 @@
 class Section < ActiveRecord::Base
   belongs_to :course_session
   has_many :exercises
+  has_many :user_sections
   attr_accessible :content, :title
   
   validates_presence_of :title, :message => "no puede estar en blanco"

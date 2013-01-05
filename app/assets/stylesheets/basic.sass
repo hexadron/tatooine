@@ -74,6 +74,14 @@ input[type=submit], .button
   &:active
     color: hsl(0, 0, 6)
     background: hsl(0, 0, 94)
+  
+  &.disabled, &[disabled]
+    &, &:hover, &.active
+      +box-shadow(none)
+      background-color: $color-menu-hover
+      border-color: transparent
+      color: hsl(0, 0, 94)
+      cursor: default
 
 =awesome_list_item($width: 5em)
   a

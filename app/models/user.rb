@@ -101,20 +101,25 @@ class User < ActiveRecord::Base
   
   def solve(exercise, answer)
     ex = self.exercise_data_for(exercise)
+    ex.answer = answer
     ex.result = exercise.solve_with(answer)
     ex.save
     
     sect = section_data_for(exercise.section)
     
-    if ex.result
+    if ex.result      
       sect.progress += 1
-      sect.save
+    else
+      sect.progress -= 1 unless sect.progress.zero?
     end
+    
+    sect.save
     
     result_hash = Hash.new
     result_hash[:result] = ex.result
     result_hash[:mistakes] = exercise.mistakes
     result_hash[:invalidations] = exercise.invalidations
+    result_hash[:ue] = ex
     
     result_hash
   end

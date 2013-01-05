@@ -1,6 +1,5 @@
 - q = exercise.question_data
 ul.alternatives
-- q.alternatives.each do |i, alt|
-  li
-    | #{f.radio_button "answer", i} #{alt}
-  
+  - q.alternatives.each do |i, alt|
+    li
+      | #{f.radio_button "answer", i} #{alt}

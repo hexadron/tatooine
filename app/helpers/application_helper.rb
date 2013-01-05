@@ -31,8 +31,12 @@ module ApplicationHelper
     current_user.courses.include?(course)
   end
   
-  def format_errors(model)
-    errors = model.errors.full_messages
+  def format_errors(model_or_array)
+    if model_or_array.class == Array
+      errors = model_or_array
+    else
+      errors = model_or_array.errors.full_messages
+    end
     errors.map do |error|
       "<li><p>#{error}</p></li>"
     end.join.html_safe
