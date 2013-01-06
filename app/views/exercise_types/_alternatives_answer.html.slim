@@ -1,5 +1,46 @@
 - q = exercise.question_data
-ul.alternatives
-  - q.alternatives.each do |i, alt|
-    li
-      | #{f.radio_button "answer", i} #{alt}
+
+.alternatives_answer id="ex_answer_#{exercise.id}"
+  ul.alternatives
+    - q.alternatives.each do |i, alt|
+      li.alt
+        = alt
+        = f.radio_button 'answer', i
+
+- content_for :js do
+  javascript:
+    $(function() {
+      var root =  $("#ex_answer_#{exercise.id}")
+      root.find('.alt').on('click', function() {
+        var self = $(this)
+        self.find('input').attr('checked', true)
+        if (!self.hasClass('selected')) {
+          root.find('.selected').removeClass('selected')
+        }
+        self.addClass('selected')
+      })
+    })
+
+- content_for :more_styles do
+  sass:
+    .alternatives_answer
+      h3
+        font-weight: bold
+      ul, p
+        margin: 1em 0em
+      li
+        margin-right: 0.8em
+      .alt
+        *display: inline
+        display: inline-block
+        zoom: 1
+        padding: 0.5em
+        background-color: hsl(39, 87, 63)
+        color: hsl(0, 0, 98)
+        cursor: pointer
+        input
+          display: none
+        &:hover
+          background-color: hsl(39, 87, 55)
+        &.selected
+          background-color: hsl(39, 87, 48)

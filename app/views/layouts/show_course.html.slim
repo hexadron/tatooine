@@ -2,16 +2,17 @@
 
 - content_for :content do
   .show-course
-    h2.course-title= @course.name
+    h2.course-title= link_to @course.name, @course
 
     .course-detail
-      p.course-description= @course.description
+      - if @show_primary_data
+        p.course-description= @course.description
 
-      p.course-creator Creado por: #{ link_to @course.creator.name, @course.creator }
+        p.course-creator Creado por: #{ link_to @course.creator.name, @course.creator }
 
-      - unless @enrolled
-        = form_tag(enroll_course_path(@course), id: "enroll-course") do
-          = submit_tag "Registrarse", class: "button"
+        - unless @enrolled
+          = form_tag(enroll_course_path(@course), id: "enroll-course") do
+            = submit_tag "Registrarse", class: "button"
       
       ul.menu
         li= link_to "Clases", course_url(@course), class: @class_tab == 'classes' ? 'current' : ''

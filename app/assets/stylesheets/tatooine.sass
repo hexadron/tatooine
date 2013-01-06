@@ -177,6 +177,9 @@
 
 // CURSOS / MOSTRAR
 .show-course
+  .course-title a
+    color: inherit
+    position: relative
   .course-description, .course-creator
     margin-bottom: 1em
   #enroll-course
@@ -329,6 +332,24 @@
       margin-bottom: 0.6em
     .content
       margin: 1em 0em
-    .info
       
-    .exercises
+  .exercises
+    .progress
+      background-color: hsl(0, 0, 50)
+      color: hsl(0, 0, 98)
+      padding: 0.6em 0.7em
+      text-align: center
+    .one-exercise
+      +row
+      border-bottom: 1px solid hsl(0, 0, 60)
+    .exercise-desktop
+      +span-columns(8 of 10)
+      padding: 1em
+    .exercise-solver
+      +span-columns(2 of 10)
+      a
+        margin-top: 1em
+    .question
+      margin-bottom: 1em
+    .solved
+      

@@ -1,6 +1,13 @@
 - q = exercise.question_data
 - answer = q.answer
 
-p.simple_text.general-description
-  h3 Respuesta
-  p.general-description= answer
+.true_or_false_solved
+  p
+    h3 Respuesta
+    p= answer.to_i == 1 ? "Verdadero" : "Falso"
+
+sass:
+  .true_or_false_solved
+    h3
+      font-weight: bold
+      margin-bottom: 0.7em

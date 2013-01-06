@@ -19,5 +19,7 @@ if (total == done) {
 
 <% if @result %>
   var ex = $("#exercise_<%= @exercise.id %>")
-  ex.html("<%= escape_javascript(render('exercises/solved', exercise: @exercise, ue: @ue)) %>")
+  ex.find('.exercise_view').html("<%= escape_javascript(render('exercises/solved', exercise: @exercise, ue: @ue)) %>")
+  
+  ex.find('.exercise-solver').html("<%= escape_javascript(link_to_javascript('Resuelto', class: 'button disabled')) %>")
 <% end %>
