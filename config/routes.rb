@@ -28,6 +28,7 @@ Tatooine::Application.routes.draw do
     member do
       post 'enroll'
       get 'faq'
+      get 'ranking'
     end
     collection do
       get 'search'

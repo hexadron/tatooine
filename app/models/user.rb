@@ -99,29 +99,46 @@ class User < ActiveRecord::Base
     end
   end
   
-  def solve(exercise, answer)
-    ex = self.exercise_data_for(exercise)
+  def make_exercise_data_with(exercise, answer)
+    ex = exercise_data_for(exercise)
     ex.answer = answer
     ex.result = exercise.solve_with(answer)
     ex.save
+    ex
+  end
+  
+  def update_section_progress(section, result)
+    sect = section_data_for(section)
     
-    sect = section_data_for(exercise.section)
-    
-    if ex.result      
+    if result
       sect.progress += 1
     else
       sect.progress -= 1 unless sect.progress.zero?
     end
-    
     sect.save
+    sect.progress
+  end
+  
+  def update_ranking(course, progress)
+    if progress != 0
+      enrollment = Enrollment.where(course_id: course.id, user_id: self.id).first
+      enrollment.score = 0 if enrollment.score.nil?
+      enrollment.score += progress
+      enrollment.save
+    end
+  end
+  
+  def solve(exercise, answer)
+    ue = make_exercise_data_with(exercise, answer)
+    section = exercise.section
     
-    result_hash = Hash.new
-    result_hash[:result] = ex.result
-    result_hash[:mistakes] = exercise.mistakes
-    result_hash[:invalidations] = exercise.invalidations
-    result_hash[:ue] = ex
+    progress = update_section_progress(section, ue.result)
     
-    result_hash
+    if ue.result
+      update_ranking(section.course_session.course, progress)
+    end
+    
+    { result: ue.result, mistakes: exercise.mistakes, invalidations: exercise.invalidations, ue: ue }
   end
 
   def self.teachers

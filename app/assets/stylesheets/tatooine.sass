@@ -304,18 +304,45 @@
   .session .title
     font-size: 1.4em
     margin-bottom: 0.5em
-    
+  .total-stats
+    margin-top: 1em
+    p
+      font-size: 1.2em
+  .sect-data
+    margin-bottom: 0.5em
+    .sect-progress
+      padding-left: 1em
+  .expanded
+    padding: 2em 2.3em
+    .sect-text
+      +inline-block
+      width: 9em
+  .total-percent
+    border-top: 1px solid hsl(0, 0, 80)
+    padding-top: 1em
+  .view-ranking
+    +inline-block
+    margin-top: 1em
+
 .expanded
-  background-color: hsl(0, 0, 30)
+  background-color: hsl(0, 0, 95)
   display: none
   padding: 2em
   *
-    color: hsl(0, 0, 98)
+    color: hsl(0, 0, 18)
   h2
     font-size: 1.2em
     margin: 0
 
-// CLASSES / VIEW
+// RANKING
+.ranking
+  thead
+    background-color: $color-pg-2
+    color: hsl(0, 0, 99)
+  tbody
+    background-color: hsl(0, 0, 92)
+  td, th
+    padding: 0.7em 1em
 
 // SHOW SESSION
 .show-session
@@ -370,4 +397,3 @@
         margin-top: 1em
     .question
       margin-bottom: 1em
-    .solved

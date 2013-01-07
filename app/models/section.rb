@@ -13,6 +13,9 @@ class Section < ActiveRecord::Base
     sect_data = user.section_data_for(self)
     progress = sect_data.progress
     
+    puts progress
+    puts total
+      
     percent = safe_percent(progress, total).round
     
     { total: total, done: progress, percent: percent }
@@ -24,7 +27,7 @@ class Section < ActiveRecord::Base
     if total == 0
       100
     else
-      (fraction / total) * 100
+      (fraction.to_f / total) * 100
     end
   end
   

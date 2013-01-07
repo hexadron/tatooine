@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
   
   def course_stats
-    @course = Course.find(params[:course_id])
+    load_course
     render layout: 'show_course'
   end
   
@@ -49,6 +49,10 @@ class UsersController < ApplicationController
   end
   
   private
+  
+  def load_course
+    @course ||= Course.find(params[:course_id])
+  end
   
   def load_user
     @user ||= User.find(params[:id])

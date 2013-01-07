@@ -37,9 +37,11 @@ module ApplicationHelper
     else
       errors = model_or_array.errors.full_messages
     end
-    errors.map do |error|
+    lis = errors.map do |error|
       "<li><p>#{error}</p></li>"
-    end.join.html_safe
+    end.join
+    
+    "<ul>#{lis}</ul>".html_safe
   end
   
   def avatar_image_data(model, size=:medium)

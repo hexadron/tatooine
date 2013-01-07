@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
   
   before_filter :authenticate_user!, except: [:show, :faq]
   before_filter :protect_courses, only: [:edit, :update, :delete]
-  before_filter :load_course, only: [:delete, :update, :edit, :show, :enroll, :faq]
+  before_filter :load_course, only: [:delete, :update, :edit, :show, :enroll, :faq, :ranking]
   before_filter :load_courses, only: [:index]
   before_filter :reject_unpublished_courses, only: [:show, :faq]
 
@@ -99,6 +99,11 @@ class CoursesController < ApplicationController
         render layout: 'show_course'
       end
     end
+  end
+  
+  def ranking
+    @ranking = @course.ranking
+    render layout: 'show_course'
   end
   
   private

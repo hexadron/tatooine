@@ -10,12 +10,22 @@
       margin-left: 32px
       margin-right: 32px
 
+- @total_progress = 0
+- @total_parts = 0
+
 .user-stats
   .top
-    h2 Por Clase
+    h2 Progreso por Clase
   ul.sessions
     - for session in course.course_sessions
       li.session.expansion
         .top
           .title.expander= link_to_javascript session.title
         .expanded= render 'session_stats', course: course, user: user, session: session
+  .total-stats
+    .top
+      p <span class='sect-text'>Avance Total:</span> <span class='sect-progress'>#{(@total_progress / @total_parts).round}%</span>
+  .top
+    h2 Posición en el Ranking
+    .position #{course.ranking_for(user)} de #{course.enrollments.count}
+    .view-ranking= link_to "Ver Ranking Completo", ranking_course_url(course)
