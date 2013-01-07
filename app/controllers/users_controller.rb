@@ -3,7 +3,7 @@
 class UsersController < ApplicationController
 
   before_filter :authenticate_user!, except: [:show]
-  before_filter :load_user, only: [:edit, :update, :show]
+  before_filter :load_user, only: [:edit, :update, :show, :course_stats]
   before_filter :check_user, only: [:edit, :update]
   
   def show
@@ -13,6 +13,11 @@ class UsersController < ApplicationController
   
   def edit
     
+  end
+  
+  def course_stats
+    @course = Course.find(params[:course_id])
+    render layout: 'show_course'
   end
   
   def update

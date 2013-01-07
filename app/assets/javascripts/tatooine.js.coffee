@@ -72,6 +72,13 @@ $ ->
       params = { sections: $(this).sortable('toArray') }
       $.post(url, params)
   
+  # TABS A_LA_ITUNES
+  $('.expander').click ->
+    self = $(this)
+    box = self.closest('.expansion').find('.expanded')
+    box.realHeight()
+    box.slideToggle()
+  
   # FULL-FIXED INDEX OF SECTIONS
   ios = $('.index-of-sections')
   ios.height(ios.height())

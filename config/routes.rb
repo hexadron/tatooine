@@ -47,6 +47,11 @@ Tatooine::Application.routes.draw do
   
   resources :teachers
   resources :students
-  resources :users
+  
+  resources :users do
+    member do
+      get 'stats/:course_id' => 'users#course_stats', as: 'stats'
+    end
+  end
   
 end

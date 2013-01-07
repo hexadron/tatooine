@@ -1,0 +1,21 @@
+- content_for :more_styles do
+  sass:
+    .page .inside
+      padding-left: 0
+      padding-right: 0
+    .course-title, .course-description, .course-creator
+      padding-left: 32px
+      padding-right: 32px
+    .course-detail > .menu
+      margin-left: 32px
+      margin-right: 32px
+
+.user-stats
+  .top
+    h2 Por Clase
+  ul.sessions
+    - for session in course.course_sessions
+      li.session.expansion
+        .top
+          .title.expander= link_to_javascript session.title
+        .expanded= render 'session_stats', course: course, user: user, session: session
