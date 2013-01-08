@@ -4,6 +4,7 @@ class CourseSessionsController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
   before_filter :load_course, except: [:resort]
   before_filter :load_session, only: [:show, :edit, :update, :destroy]
+  before_filter :protect_courses, only: [:index, :edit, :update, :destroy, :new, :create, :resort, :show]
   
   layout 'edit_course'
     

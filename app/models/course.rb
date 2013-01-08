@@ -31,6 +31,7 @@ class Course < ActiveRecord::Base
     enrollment.user = user
     enrollment.course = self
     enrollment.save
+    enrollment
   end
   
   def available?

@@ -1,11 +1,13 @@
 # encoding: utf-8
 class CoursesController < ApplicationController
+  include CoursesProtector
   
   before_filter :authenticate_user!, except: [:show, :faq]
-  before_filter :protect_courses, only: [:edit, :update, :delete]
-  before_filter :load_course, only: [:delete, :update, :edit, :show, :enroll, :faq, :ranking]
+  before_filter :load_course, except: [:index, :new, :create]
   before_filter :load_courses, only: [:index]
-  before_filter :reject_unpublished_courses, only: [:show, :faq]
+  before_filter :reject_unpublished_courses, only: [:show, :faq, :stats, :ranking]
+  
+  before_filter :protect_courses, only: [:edit, :update, :destroy, :stats]
 
   def index
     @levels = Level.select([:name]).map(&:name)
@@ -88,17 +90,23 @@ class CoursesController < ApplicationController
   end
   
   def enroll
-    @course.add_student(current_user)
-    flash[:notice] = "Has sido registrado en este curso"
+    enrollment = @course.add_student(current_user)
+    if enrollment.errors.any?
+      flash[:alert] = format_errors(enrollment)
+    else
+      flash[:notice] = "Has sido registrado en este curso"
+    end
     redirect_to(@course)
   end
   
   def faq
-    respond_with(@course) do |format|
-      format.html do
-        render layout: 'show_course'
-      end
-    end
+    render layout: 'show_course'
+  end
+  
+  def stats
+    @ranking = @course.ranking
+    @sessions = @course.course_sessions
+    render layout: 'show_course'
   end
   
   def ranking
@@ -125,13 +133,6 @@ class CoursesController < ApplicationController
       current_user.courses.include?(@course)
     else
       false
-    end
-  end
-  
-  def protect_courses
-    load_course
-    if @course.creator != current_user
-      redirect_to '/404.html'
     end
   end
   

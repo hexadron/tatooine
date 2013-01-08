@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   before_filter :authenticate_user!, except: [:show]
   before_filter :load_user, only: [:edit, :update, :show, :course_stats]
-  before_filter :check_user, only: [:edit, :update]
+  before_filter :check_user, only: [:edit, :update, :course_stats]
   
   def show
     @courses_you_take = @user.courses

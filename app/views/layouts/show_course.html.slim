@@ -20,6 +20,8 @@
         li= link_to "Comentarios", course_feedbacks_url(@course), class: @class_tab == 'feedbacks' ? 'current' : ''
         - if @enrolled
           li= link_to "Estadísticas", stats_user_url(current_user, @course), class: @class_tab == 'stats' ? 'current' : ''
+        - if current_user and @course.creator_id == current_user.id
+          li= link_to "Estadísticas", stats_course_url(@course), class: @class_tab == 'stats' ? 'current' : ''
       
       = yield :more_for_courses
 

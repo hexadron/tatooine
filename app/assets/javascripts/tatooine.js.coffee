@@ -1,3 +1,9 @@
+$.fn.redraw = ->
+  old_overflow = @css('overflow')
+  @hide 0, ->
+    $(this).show()
+    $(this).css('overflow', old_overflow)
+
 $ ->
   Note.flash()
   
@@ -75,9 +81,27 @@ $ ->
   # TABS A_LA_ITUNES
   $('.expander').click ->
     self = $(this)
-    box = self.closest('.expansion').find('.expanded')
+    
+    if box_id = self.data('expanded')
+      box = $("##{box_id}")
+    else
+      box = self.closest('.expansion').find('.expanded')
+      
     box.realHeight()
-    box.slideToggle()
+    box.slideToggle ->
+      $("body").redraw()
+      window.SELF = self
+      if toggleText = self.data('textToggle')
+        current = self.text()
+        texts = toggleText.split("|").map($.trim)
+        
+        console.log current, texts[0], texts[1]
+        
+        if current == texts[0]
+          self.text(texts[1])
+        else
+          self.text(texts[0])
+        
   
   # FULL-FIXED INDEX OF SECTIONS
   ios = $('.index-of-sections')

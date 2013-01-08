@@ -3,16 +3,4 @@
 
 - content_for :more_for_courses do
   h2 Ranking
-  table.ranking
-    thead
-      tr
-        th Posición
-        th Usuario
-        th Ejercicios Resueltos
-    tbody
-      - @ranking.each do |rank|
-        - user = rank[:user]
-        tr
-          td.position= rank[:position]
-          td.name= link_to user.name, user
-          td.score= rank[:score]
+  = render 'shared/ranking', ranking: @ranking, extended: false

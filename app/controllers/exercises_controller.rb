@@ -6,6 +6,7 @@ class ExercisesController < ApplicationController
   
   before_filter :authenticate_user!
   before_filter :load_exercise, only: [:customize, :update, :destroy, :solve]
+  before_filter :protect_courses, only: [:create, :customize, :update, :destroy]
   
   def create
     load_section

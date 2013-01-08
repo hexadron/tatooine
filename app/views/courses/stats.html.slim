@@ -1,0 +1,17 @@
+- @class_tab = 'stats'
+- @show_primary_data = true
+
+- content_for :more_for_courses do
+  .course_stats
+    h2 Estadísticas por Alumno
+    .rank
+      = render layout: 'shared/ranking', locals: { ranking: @ranking, extended: true } do |user|
+        ul.sessions
+          - for session in @sessions
+            li.session-rank
+              h2= session.title
+              - @total_progress = 0
+              - @total_parts = 0
+              = render 'users/session_stats', course: @course, user: user, session: session
+        .total-stats
+          p <span class='sect-text'>Avance Total:</span> <span class='sect-progress'>#{(@total_progress / @total_parts).round}%</span>

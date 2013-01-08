@@ -21,7 +21,7 @@
       li.session.expansion
         .top
           .title.expander= link_to_javascript session.title
-        .expanded= render 'session_stats', course: course, user: user, session: session
+        .expanded= render 'users/session_stats', course: course, user: user, session: session
   .total-stats
     .top
       p <span class='sect-text'>Avance Total:</span> <span class='sect-progress'>#{(@total_progress / @total_parts).round}%</span>
