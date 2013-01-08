@@ -31,10 +31,29 @@ class Course < ActiveRecord::Base
     enrollment.user = user
     enrollment.course = self
     enrollment.save
+    enrollment
   end
   
   def available?
     available_at <= Date.today
+  end
+  
+  def ranking
+    enrollments.order('score desc').each_with_index.map do |enrollment, idx|
+      { user: enrollment.user, score: enrollment.score, position: idx + 1 }
+    end
+  end
+  
+  def ranking_for(user)
+    position = enrollments.order('score desc').each_with_index.select do |e, i|
+      e.user_id == user.id
+    end.flatten[1]
+    
+    if position.present?
+      position + 1
+    else
+      nil
+    end
   end
   
   class << self

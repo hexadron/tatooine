@@ -1,7 +1,8 @@
 = semantic_form_for([@course, @session]) do |f|
-  = f.input :title, label: "Título"
-  = f.input :content, label: "Descripción"
-  - if @session.new_record?
-    = f.submit "Crear Clase"
-  - else
-    = f.submit "Actualizar Clase"
+  ul
+    = f.input :title, label: "Título"
+    = f.input :content, label: "Descripción"
+    - if @session.new_record?
+      = f.submit "Crear Clase"
+    - else
+      = f.submit "Actualizar Clase"

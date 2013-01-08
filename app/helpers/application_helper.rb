@@ -31,11 +31,17 @@ module ApplicationHelper
     current_user.courses.include?(course)
   end
   
-  def format_errors(model)
-    errors = model.errors.full_messages
-    errors.map do |error|
+  def format_errors(model_or_array)
+    if model_or_array.class == Array
+      errors = model_or_array
+    else
+      errors = model_or_array.errors.full_messages
+    end
+    lis = errors.map do |error|
       "<li><p>#{error}</p></li>"
-    end.join.html_safe
+    end.join
+    
+    "<ul>#{lis}</ul>".html_safe
   end
   
   def avatar_image_data(model, size=:medium)

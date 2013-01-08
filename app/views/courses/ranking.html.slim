@@ -1,0 +1,6 @@
+- @class_tab = 'stats'
+- @show_primary_data = true
+
+- content_for :more_for_courses do
+  h2 Ranking
+  = render 'shared/ranking', ranking: @ranking, extended: false

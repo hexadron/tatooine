@@ -12,9 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ckeditor/ckeditor
+//= require ckeditor/config
 //= require jquery.isotope
 //= require epiceditor
 //= require jquery-ui
 //= require epiceditor_formtastic
+//= require waypoints
 //= require notifs
 //= require tatooine

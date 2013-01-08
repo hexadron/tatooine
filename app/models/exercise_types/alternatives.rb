@@ -14,5 +14,13 @@ module ExerciseTypes
           @data[:alternatives][student_answer] == @data[:answer]
         end
     end
+    
+    def validate(solution)
+      @invalidations = []
+      if solution.nil?
+        @invalidations << "No hay ninguna alternativa seleccionada."
+      end
+      @invalidations.count == 0
+    end
   end
 end

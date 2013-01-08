@@ -1,0 +1,40 @@
+- user_section = current_user.section_data_for(section)
+- done = user_section.progress
+- total = section.exercises.count
+
+li.section
+
+  h1.title id="section_#{section.id}" #{section.title} #{'<span class="completed">(completado)</span>'.html_safe if done == total}
+  
+  / TABS MENU
+  ul.tabs.menu
+    li= link_to_javascript "Contenido", data: { tab: "section_#{section.id}_info" }, class: 'current'
+    li.exercise-count= link_to_javascript "Ejercicios [<span class='done'>#{done}</span> / <span class='total'>#{total}</span>]".html_safe, data: { tab: "section_#{section.id}_exercises" }
+    
+  / TABS CONTENT
+  .info.tabcontent id="section_#{section.id}_info" style='display: block;'
+    .content== sanitize(section.content)
+    
+  .exercises.tabcontent id="section_#{section.id}_exercises"
+    p.progress <span class='done'>#{done}</span> ejercicio(s) resueltos de <span class='total'>#{total}</span> disponible(s).
+    ul
+      - for exercise in section.exercises
+        - ue = current_user.exercise_data_for(exercise)
+        - solved = ue.result
+        - answer_partial = exercise.answer_form
+        
+        li.one-exercise id="exercise_#{exercise.id}"
+          = semantic_form_for exercise, url: solve_exercise_url(exercise), remote: true, html: { class: 'formtastic' } do |form|
+            .exercise-desktop
+              p.question= exercise.question
+              .exercise_view
+                - if solved
+                  = render 'exercises/solved', exercise: exercise, ue: ue
+                - else
+                  = semantic_fields_for :answer_data do |nested_form|
+                    ul= render answer_partial, exercise: exercise, f: nested_form
+            .exercise-solver
+              - if !solved
+                = form.submit "Resolver"
+              - else
+                = link_to_javascript "Resuelto", class: 'button disabled'

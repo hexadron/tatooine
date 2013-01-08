@@ -11,19 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121230192336) do
-
-  create_table "achievements", :force => true do |t|
-    t.integer  "course_id"
-    t.integer  "evaluation_id"
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  add_index "achievements", ["course_id"], :name => "index_achievements_on_course_id"
-  add_index "achievements", ["evaluation_id"], :name => "index_achievements_on_evaluation_id"
+ActiveRecord::Schema.define(:version => 20130107082513) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -58,17 +46,21 @@ ActiveRecord::Schema.define(:version => 20121230192336) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
-  create_table "badges", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.integer  "evaluation_id"
-    t.integer  "course_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+  create_table "ckeditor_assets", :force => true do |t|
+    t.string   "data_file_name",                  :null => false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    :limit => 30
+    t.string   "type",              :limit => 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
-  add_index "badges", ["course_id"], :name => "index_badges_on_course_id"
-  add_index "badges", ["evaluation_id"], :name => "index_badges_on_evaluation_id"
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "course_sessions", :force => true do |t|
     t.string   "title"
@@ -115,20 +107,11 @@ ActiveRecord::Schema.define(:version => 20121230192336) do
     t.integer  "course_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "score"
   end
 
   add_index "enrollments", ["course_id"], :name => "index_enrollments_on_course_id"
   add_index "enrollments", ["user_id"], :name => "index_enrollments_on_user_id"
-
-  create_table "evaluations", :force => true do |t|
-    t.integer  "session_part_id"
-    t.integer  "course_session_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-  end
-
-  add_index "evaluations", ["course_session_id"], :name => "index_evaluations_on_course_session_id"
-  add_index "evaluations", ["session_part_id"], :name => "index_evaluations_on_session_part_id"
 
   create_table "exercise_types", :force => true do |t|
     t.string   "name"
@@ -175,6 +158,29 @@ ActiveRecord::Schema.define(:version => 20121230192336) do
   end
 
   add_index "sections", ["course_session_id"], :name => "index_session_parts_on_course_session_id"
+
+  create_table "user_exercises", :force => true do |t|
+    t.integer  "exercise_id"
+    t.integer  "user_id"
+    t.boolean  "result"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "answer"
+  end
+
+  add_index "user_exercises", ["exercise_id"], :name => "index_user_exercises_on_exercise_id"
+  add_index "user_exercises", ["user_id"], :name => "index_user_exercises_on_user_id"
+
+  create_table "user_sections", :force => true do |t|
+    t.integer  "section_id"
+    t.integer  "user_id"
+    t.integer  "progress"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "user_sections", ["section_id"], :name => "index_user_sections_on_section_id"
+  add_index "user_sections", ["user_id"], :name => "index_user_sections_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

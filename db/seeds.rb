@@ -124,7 +124,7 @@ ExerciseType.create({
 #   implementor: ExerciseTypes::MultipleTrueOrFalse
 # })
 
-# ExerciseType.create({
-#   name: 'alternatives',
-#   implementor: ExerciseTypes::Alternatives
-# })
+ExerciseType.create({
+  name: 'alternatives',
+  implementor: ExerciseTypes::Alternatives
+})

@@ -5,9 +5,10 @@ ul.tabs.menu
 
 #section-content.tabcontent
   = semantic_form_for [@course, @session, @section], remote: true do |f|
-    = f.input :title, label: "Título"
-    = f.input :content, label: "Contenido"
-    = f.submit "Actualizar Contenido"
+    ul
+      = f.input :title, label: "Título"
+      = f.input :content, as: :ckeditor, label: "Contenido"
+      = f.submit "Actualizar Contenido"
 
 #section-exercises.tabcontent
   = button_to "Nuevo Ejercicio", section_exercises_url(@section.id), _method: "post", remote: true

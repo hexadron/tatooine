@@ -3,8 +3,8 @@
 class UsersController < ApplicationController
 
   before_filter :authenticate_user!, except: [:show]
-  before_filter :load_user, only: [:edit, :update, :show]
-  before_filter :check_user, only: [:edit, :update]
+  before_filter :load_user, only: [:edit, :update, :show, :course_stats]
+  before_filter :check_user, only: [:edit, :update, :course_stats]
   
   def show
     @courses_you_take = @user.courses
@@ -13,6 +13,11 @@ class UsersController < ApplicationController
   
   def edit
     
+  end
+  
+  def course_stats
+    load_course
+    render layout: 'show_course'
   end
   
   def update
@@ -44,6 +49,10 @@ class UsersController < ApplicationController
   end
   
   private
+  
+  def load_course
+    @course ||= Course.find(params[:course_id])
+  end
   
   def load_user
     @user ||= User.find(params[:id])

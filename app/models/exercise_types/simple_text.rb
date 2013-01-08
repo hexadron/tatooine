@@ -8,7 +8,13 @@ module ExerciseTypes
     end
     
     def solve(solution)
-      @data[:answer] == solution[:answer]
+      correct = @data[:answer]
+      candidate = solution[:answer]
+      if correct and candidate
+        @data[:answer].downcase == solution[:answer].downcase
+      else
+        false
+      end
     end
     
     def validate(solution)

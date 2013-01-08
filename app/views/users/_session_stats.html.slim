@@ -1,0 +1,16 @@
+- total = 0
+- sections = session.sections
+
+- for section in sections
+  .sect-data
+    - progress = section.progress_for(user)
+    - total += progress[:percent]
+    | <span class='sect-text'>#{section.title}</span> <span class='sect-progress'>#{progress[:percent]}%</span>
+    
+
+.total-percent.sect-data
+  - total_percent = (total / sections.count).round
+  | <span class='sect-text'>Total</span> <span class='sect-progress'>#{total_percent}%</span>
+
+- @total_progress += total if @total_progress
+- @total_parts += sections.count if @total_parts

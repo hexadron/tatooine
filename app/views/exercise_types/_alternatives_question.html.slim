@@ -1,0 +1,15 @@
+h2 Ingrese las Alternativas
+ul.alternatives
+  - q = exercise.question_data
+  - if alternatives = q.alternatives
+    - alternatives.each do |i, alt|
+      li
+        | <span class='numeration'>#{i.to_i + 1}.</span>
+        | #{f.text_field "alternatives[#{i}]", value: alt}
+        | <span class="is_answer"><span>¿Alternativa Correcta?</span>#{f.radio_button "answer", i, checked: q.answer == i }</span>
+  - else
+    - 5.times do |i|
+      li
+        | <span class='numeration'>#{i.to_i + 1}.</span>
+        | #{f.text_field "alternatives[#{i}]"}
+        | <span class="is_answer"><span>¿Alternativa Correcta?</span>#{f.radio_button "answer", i, checked: i == 0 }</span>

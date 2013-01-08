@@ -8,6 +8,8 @@ class SectionsController < ApplicationController
   before_filter :load_session_and_course
   before_filter :load_section, only: [:show, :edit, :update, :destroy]
   
+  before_filter :protect_courses
+  
   layout 'edit_session'
   
   def show

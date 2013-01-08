@@ -1,0 +1,43 @@
+- q = exercise.question_data
+- alternatives = q.alternatives.map { |k, v| v }
+- answer = alternatives[q.answer.to_i]
+
+.alternatives_solved
+  p.alternatives
+    ul
+      - for alt in alternatives
+        - if alt == answer
+          li.alt.correct= alt
+        - else
+          li.alt= alt
+
+css:
+  .alternatives_solved {
+    
+  }
+  
+  .alternatives_solved h3 {
+    font-weight: bold;
+  }
+  
+  .alternatives_solved ul, .alternatives_solved p {
+    margin: 1em 0em;
+  }
+  
+  .alternatives_solved li {
+    margin-right: 0.8em;
+  }
+  
+  .alternatives_solved .alt {
+    *display: inline;
+    display: inline-block;
+    zoom: 1;
+    padding: 0.5em;
+    background-color: hsl(39, 87%, 63%);
+    color: hsl(0, 0%, 98%);
+    cursor: default;
+  }
+  
+  .alternatives_solved .alt.correct {
+    background-color: hsl(170, 55%, 52%);
+  }

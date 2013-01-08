@@ -1,9 +1,11 @@
 Tatooine::Application.routes.draw do
-  
+
   get "feedbacks/create"
 
   ActiveAdmin.routes(self)
 
+  mount Ckeditor::Engine => '/ckeditor'
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   devise_for :users, controllers: {
@@ -15,7 +17,7 @@ Tatooine::Application.routes.draw do
   get 'reset' => 'home#reset'
   root to: 'home#index', as: :root
   
-  resources :courses do    
+  resources :courses do
     resources :feedbacks
     resources :course_sessions do
       resources :sections
@@ -23,13 +25,18 @@ Tatooine::Application.routes.draw do
         post 'resort'
       end
     end
+    
     member do
       post 'enroll'
       get 'faq'
+      get 'ranking'
+      get 'stats'
     end
+    
     collection do
       get 'search'
     end
+    
   end
   
   resources :sections do
@@ -45,6 +52,11 @@ Tatooine::Application.routes.draw do
   
   resources :teachers
   resources :students
-  resources :users
+  
+  resources :users do
+    member do
+      get 'stats/:course_id' => 'users#course_stats', as: 'stats'
+    end
+  end
   
 end

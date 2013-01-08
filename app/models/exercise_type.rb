@@ -34,18 +34,24 @@ class ExerciseType < ActiveRecord::Base
   end
   
   def question_partial
-    if implementor
-      File.join("exercise_types", "#{underscored_simple_class_name}_question")
-    end
+    partial_sufixed('question')
   end
   
   def answer_partial
-    if implementor
-      File.join("exercise_types", "#{underscored_simple_class_name}_answer")
-    end
+    partial_sufixed('answer')
+  end
+  
+  def solved_partial
+    partial_sufixed('solved')
   end
   
   private
+  
+  def partial_sufixed(sufix)
+    if implementor
+      File.join("exercise_types", "#{underscored_simple_class_name}_#{sufix}")
+    end
+  end
   
   def underscored_simple_class_name
     implementor.name.gsub(/^.*::/,'').underscore

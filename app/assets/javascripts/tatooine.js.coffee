@@ -1,3 +1,9 @@
+$.fn.redraw = ->
+  old_overflow = @css('overflow')
+  @hide 0, ->
+    $(this).show()
+    $(this).css('overflow', old_overflow)
+
 $ ->
   Note.flash()
   
@@ -71,3 +77,55 @@ $ ->
       url = $(this).data('url')
       params = { sections: $(this).sortable('toArray') }
       $.post(url, params)
+  
+  # TABS A_LA_ITUNES
+  $('.expander').click ->
+    self = $(this)
+    
+    if box_id = self.data('expanded')
+      box = $("##{box_id}")
+    else
+      box = self.closest('.expansion').find('.expanded')
+      
+    box.realHeight()
+    box.slideToggle ->
+      $("body").redraw()
+      window.SELF = self
+      if toggleText = self.data('textToggle')
+        current = self.text()
+        texts = toggleText.split("|").map($.trim)
+        
+        console.log current, texts[0], texts[1]
+        
+        if current == texts[0]
+          self.text(texts[1])
+        else
+          self.text(texts[0])
+        
+  
+  # FULL-FIXED INDEX OF SECTIONS
+  ios = $('.index-of-sections')
+  ios.height(ios.height())
+  ul = ios.find('ul')
+  
+  trottle = 55
+  
+  ul.waypoint((evt, direction) ->
+    self = $(this)
+    self.css 'width', self.css('width')
+    if direction is 'down'
+      self.css
+        position: 'fixed'
+        top: trottle
+        left: self.offset().left
+    else
+      self.css
+        position: 'relative'
+        top: 0
+        left: 0
+  , offset: trottle).on 'click', 'a', (evt) ->
+    evt.preventDefault()
+    elem = $($(this).attr('href'))
+    $('html, body').animate({
+      scrollTop: elem.offset().top - 150
+    }, 700)

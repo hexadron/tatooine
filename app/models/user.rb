@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
   
   has_many :enrollments
   has_many :courses, :through => :enrollments
+  has_many :user_exercises
+  has_many :user_sections
 
   def name
     strip_email(self.first_name || self.email)
@@ -67,6 +69,76 @@ class User < ActiveRecord::Base
       end
     end
     _students
+  end
+  
+  def exercise_data_for(exercise)
+    maybe_usxs = UserExercise.where(exercise_id: exercise.id, user_id: self.id)
+    if maybe_usxs.empty?
+      ue = UserExercise.new
+      ue.exercise = exercise
+      ue.user = self
+      ue.result = false
+      ue.save
+      ue
+    else
+      maybe_usxs.first
+    end
+  end
+  
+  def section_data_for(section)
+    maybe_uses = UserSection.where(section_id: section.id, user_id: self.id)
+    if maybe_uses.empty?
+      us = UserSection.new
+      us.section = section
+      us.user = self
+      us.progress = 0
+      us.save
+      us
+    else
+      maybe_uses.first
+    end
+  end
+  
+  def make_exercise_data_with(exercise, answer)
+    ex = exercise_data_for(exercise)
+    ex.answer = answer
+    ex.result = exercise.solve_with(answer)
+    ex.save
+    ex
+  end
+  
+  def update_section_progress(section, result)
+    sect = section_data_for(section)
+    
+    if result
+      sect.progress += 1
+    else
+      sect.progress -= 1 unless sect.progress.zero?
+    end
+    sect.save
+    sect.progress
+  end
+  
+  def update_ranking(course, progress)
+    if progress != 0
+      enrollment = Enrollment.where(course_id: course.id, user_id: self.id).first
+      enrollment.score = 0 if enrollment.score.nil?
+      enrollment.score += progress
+      enrollment.save
+    end
+  end
+  
+  def solve(exercise, answer)
+    ue = make_exercise_data_with(exercise, answer)
+    section = exercise.section
+    
+    progress = update_section_progress(section, ue.result)
+    
+    if ue.result
+      update_ranking(section.course_session.course, progress)
+    end
+    
+    { result: ue.result, mistakes: exercise.mistakes, invalidations: exercise.invalidations, ue: ue }
   end
 
   def self.teachers

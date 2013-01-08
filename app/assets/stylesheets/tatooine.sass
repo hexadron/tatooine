@@ -177,6 +177,9 @@
 
 // CURSOS / MOSTRAR
 .show-course
+  .course-title a
+    color: inherit
+    position: relative
   .course-description, .course-creator
     margin-bottom: 1em
   #enroll-course
@@ -251,11 +254,6 @@
       input[type=submit]
         margin: 0
 
-// SHOW SESSION
-.show-session
-  p.no-user
-    margin: 1em 0em
-
 // EDIT EXERCISE
 #edit_exercise_form
   padding-bottom: 10em
@@ -267,6 +265,16 @@
     height: 100px
   label
     color: hsl(0, 0, 40)
+  .alternatives
+    li input
+      +inline-block
+    .numeration
+      padding-right: 0.5em
+    .is_answer
+      padding: 0em 0.5em
+      span
+        padding-right: 0.7em
+        font-style: italic
 
 // PROFILE
 .profile
@@ -287,3 +295,115 @@
       +clearfix
     .avatar
       float: right
+
+// STATS
+.user-stats
+  .top
+    padding-left: 2em
+    padding-right: 2em
+  .session .title
+    font-size: 1.4em
+    margin-bottom: 0.5em
+  .total-stats
+    margin-top: 1em
+    p
+      font-size: 1.2em
+  .sect-data
+    margin-bottom: 0.5em
+    .sect-progress
+      padding-left: 1em
+  .expanded
+    padding: 2em 2.3em
+    .sect-text
+      +inline-block
+      width: 9em
+  .total-percent
+    border-top: 1px solid hsl(0, 0, 80)
+    padding-top: 1em
+  .view-ranking
+    +inline-block
+    margin-top: 1em
+
+.expanded
+  background-color: hsl(0, 0, 95)
+  display: none
+  padding: 2em
+  *
+    color: hsl(0, 0, 18)
+  h2
+    font-size: 1.2em
+    margin: 0
+
+// RANKING
+.ranking
+  thead
+    background-color: $color-pg-2
+    color: hsl(0, 0, 99)
+  tbody
+    background-color: hsl(0, 0, 92)
+  td, th
+    padding: 0.7em 1em
+  .no-pad
+    padding: 0
+  .session-rank
+    h2
+      font-weight: bold
+      margin-bottom: 1em
+  .total-stats
+    font-weight: bold
+    margin-top: 2em
+    text-align: right
+
+// SHOW SESSION
+.show-session
+  p.no-user, .session-description
+    margin: 1em 0em
+  .session-sections
+    +row
+    .index-of-sections
+      +span-columns(2 of 12)
+      // This is needed by the sticky menu
+      min-height: 1px
+      li
+        +inline-block
+        margin: 0.4em 0em
+        width: 90%
+        a
+          background-color: hsl(0, 0, 90)
+          color: hsl(0, 0, 30)
+          display: block
+          padding: 0.5em
+          width: 100%
+          &:hover
+            background-color: hsl(0, 0, 87)
+            color: inherit
+    .content-of-sections
+      +span-columns(10 of 12)
+  .section
+    border-left: 2px solid hsl(0, 0, 84)
+    margin-bottom: 2em
+    padding: 1em 1.3em
+    .title
+      font-size: 1.5em
+      margin-bottom: 0.6em
+    .content
+      margin: 1em 0em
+      
+  .exercises
+    .progress
+      background-color: hsl(0, 0, 50)
+      color: hsl(0, 0, 98)
+      padding: 0.6em 0.7em
+      text-align: center
+    .one-exercise
+      +row
+      border-bottom: 1px solid hsl(0, 0, 60)
+    .exercise-desktop
+      +span-columns(8 of 10)
+      padding: 1em
+    .exercise-solver
+      +span-columns(2 of 10)
+      a
+        margin-top: 1em
+    .question
+      margin-bottom: 1em

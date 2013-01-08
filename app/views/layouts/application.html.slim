@@ -5,6 +5,7 @@ html
     title tatooine
     = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tags
+    = yield :more_styles
   body class="#{@body_classes}"
   
     .header-container

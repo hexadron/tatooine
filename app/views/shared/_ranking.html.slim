@@ -1,0 +1,22 @@
+table.ranking.user-stats
+  thead
+    tr
+      th Posición
+      th Usuario
+      th Ejercicios Resueltos
+      - if extended
+        th
+  tbody.expansion
+    - for rank in ranking
+      - user = rank[:user]
+      tr
+        td.position= rank[:position]
+        td.name= link_to user.name, user
+        td.score= rank[:score]
+        - if extended
+          td.more style="width: 7em"= link_to_javascript "Ver más", "data-text-toggle" => "Ver más|Ver menos", "data-expanded" => "expanded_#{user.id}", class: 'expander'
+      - if extended
+        tr.no-pad
+          td.no-pad colspan="5"
+            .expanded id="expanded_#{user.id}"= yield user
+          

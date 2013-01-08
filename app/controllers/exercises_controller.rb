@@ -6,6 +6,7 @@ class ExercisesController < ApplicationController
   
   before_filter :authenticate_user!
   before_filter :load_exercise, only: [:customize, :update, :destroy, :solve]
+  before_filter :protect_courses, only: [:create, :customize, :update, :destroy]
   
   def create
     load_section
@@ -43,11 +44,24 @@ class ExercisesController < ApplicationController
   end
   
   def solve
-    solution = params[:answer_data]
+    r = current_user.solve(@exercise, params[:answer_data])
     
-    @result = @exercise.solve_with(solution)
-    @mistakes = @exercise.mistakes
-    @invalidations = @exercise.invalidations
+    @section = @exercise.section
+    
+    @ue = r[:ue]
+    @result = r[:result]
+    @mistakes = r[:mistakes]
+    @invalidations = r[:invalidations]
+    
+    if not @result
+      errors = @mistakes + @invalidations
+      flash[:alert] = format_errors(errors)
+      if errors.empty?
+        flash[:alert] = "Respuesta incorrecta"
+      end
+    else
+      flash[:notice] = "Respuesta correcta"
+    end
   end
   
   def destroy
@@ -58,7 +72,7 @@ class ExercisesController < ApplicationController
   private
   
   def load_section
-    @section = Section.find(params[:section_id])
+    @section ||= Section.find(params[:section_id])
   end
   
   def load_exercise
@@ -70,10 +84,15 @@ class ExercisesController < ApplicationController
   end
   
   def load_course
-    exercise = Exercise.find(params[:id])
-    section = exercise.section
-    session = section.course_session
-    @course = session.course
+    exercises = Exercise.where(id: params[:id])
+    if exercises.empty?
+      load_section
+      session = @section.course_session
+    else
+      section = exercises.first.section
+      session = section.course_session
+    end
+    @course ||= session.course
   end
   
   def load_question_data

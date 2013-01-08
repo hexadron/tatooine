@@ -23,6 +23,7 @@ module Tatooine
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -67,6 +68,8 @@ module Tatooine
 
     config.assets.initialize_on_precompile = false
     config.assets.precompile += %w(active_admin.css active_admin/print.css active_admin.js sections.js themes/epic-dark.css themes/epic-light.css themes/epiceditor.css themes/github.css themes/preview-dark.css)
+  
+    config.assets.precompile += Ckeditor.assets
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
   end

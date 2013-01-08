@@ -42,14 +42,12 @@ Note =
   
   closeForm: (form, callback) ->
     form = $(form)
-    top = form.data('top')
+    top = -form.outerHeight()
     form.animate {top: top}, 600, ->
       callback?()
   
   reallyBring: (form, fn) ->
     top = $('.header.menu').height()
-    old_top = form.css('top')
-    form.data('top', old_top)
     form.animate(top: top, 600, fn)
   
   notice: (text) ->

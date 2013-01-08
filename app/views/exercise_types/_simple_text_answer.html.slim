@@ -1,1 +1,14 @@
-= f.input :answer, as: :text, label: "Respuesta", required: false
+.simple_text_answer
+  = f.input :answer, as: :text, label: "Respuesta", required: false
+
+sass:
+  .simple_text_answer
+    label
+      *display: inline
+      display: inline-block
+      zoom: 1
+      font-weight: bold
+      margin-bottom: 0.7em
+    textarea
+      padding-top: 0.6em
+      height: 5em

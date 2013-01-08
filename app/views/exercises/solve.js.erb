@@ -1,3 +1,25 @@
 <%= render 'shared/alerts_to_js' %>
 
-console.log("<%= @result %>")
+var sect_title = $('#section_<%= @section.id %>')
+var sect = sect_title.closest('.section')
+
+sect.find('.done').each(function(i, e) {
+  var variation = <%= @result ? 1 : 0 %>
+  var el = $(e)
+  var next = +el.text() + variation
+  el.text(next > 0 ? next : 0)
+})
+
+var total = +sect.find('.total').first().text()
+var done = +sect.find('.done').first().text()
+
+if (total == done) {
+  sect_title.append("<span class='completed'>(completado)</span>")
+}
+
+<% if @result %>
+  var ex = $("#exercise_<%= @exercise.id %>")
+  ex.find('.exercise_view').html("<%= escape_javascript(render('exercises/solved', exercise: @exercise, ue: @ue)) %>")
+  
+  ex.find('.exercise-solver').html("<%= escape_javascript(link_to_javascript('Resuelto', class: 'button disabled')) %>")
+<% end %>

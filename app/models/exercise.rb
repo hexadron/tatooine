@@ -9,11 +9,16 @@ class Exercise < ActiveRecord::Base
   belongs_to :exercise_type
   belongs_to :section
   
+  has_many :user_exercises
+  
   # Inicializa el contexto al iniciar el objeto.
   after_initialize :create_empty_context
   
   # Filtro... ver método sync_definitions
   before_save :sync_definitions
+  
+  # Callback
+  before_destroy :normalize_user_data
   
   # Formulario de pregunta. Sólo un string con el nombre del partial
   # a usar, a partir del exercise_type.
@@ -27,6 +32,13 @@ class Exercise < ActiveRecord::Base
   def answer_form(type='html')
     if type.to_s == 'html'
       exercise_type.answer_partial
+    end
+  end
+  
+  # Vista del ejercicio resuelto
+  def solved_view(type='html')
+    if type.to_s == 'html'
+      exercise_type.solved_partial
     end
   end
   
@@ -104,6 +116,7 @@ class Exercise < ActiveRecord::Base
   
   # Representación del contexto en un struct.
   def question_data
+    load_context
     hash_to_struct context
   end
   
@@ -113,6 +126,19 @@ class Exercise < ActiveRecord::Base
   end
   
   private
+  
+  def normalize_user_data
+    self.user_exercises.each do |ue|
+      if ue.result
+        uses = UserSection.where(section_id: self.section_id, user_id: ue.user_id)
+        unless uses.empty?
+          us = uses.first
+          us.progress = us.progress - 1
+          us.save
+        end
+      end
+    end
+  end
   
   def hash_to_struct(hash)
     o = OpenStruct.new

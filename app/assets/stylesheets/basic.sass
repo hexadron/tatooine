@@ -30,7 +30,7 @@ html
 a
   text-decoration: none
 
-li
+ul li
   list-style: none
 
 body
@@ -74,6 +74,14 @@ input[type=submit], .button
   &:active
     color: hsl(0, 0, 6)
     background: hsl(0, 0, 94)
+  
+  &.disabled, &[disabled]
+    &, &:hover, &.active
+      +box-shadow(none)
+      background-color: $color-menu-hover
+      border-color: transparent
+      color: hsl(0, 0, 94)
+      cursor: default
 
 =awesome_list_item($width: 5em)
   a
@@ -158,6 +166,10 @@ form
   #error_explanation
     li
       margin-bottom: 0.5em
+
+.general-description
+  margin-top: 1em
+  margin-bottom: 1em
 
 #form-of-destruction
   p
