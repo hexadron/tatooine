@@ -7,11 +7,7 @@ class Course < ActiveRecord::Base
   belongs_to :level
   belongs_to :creator, class_name: "User", foreign_key: "creator_id"
   
-  has_attached_file :background_image,
-    :styles => { :medium => "300x300>", :thumb => "100x100>", :tile => '225>x127>' },
-    :storage => :Dropboxstorage,
-    :default_url => "/images/:style/missing.png",
-    :path => "/tatooine/:attachment/:id/:style/:filename"
+  has_attached_file :background_image
   
   has_many :enrollments
   has_many :feedbacks

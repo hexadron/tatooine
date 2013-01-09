@@ -59,9 +59,9 @@ gem 'commands'
 gem 'yajl-ruby'
 
 # Image Upload and Processing
+gem 'aws-sdk'
 gem 'miro'
 gem 'paperclip'
-gem 'paperclipdropbox'
 
 # Markdown
 gem 'redcarpet'
