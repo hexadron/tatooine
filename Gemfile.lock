@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:lafeber/ckeditor.git
+  remote: git://github.com/lafeber/ckeditor.git
   revision: 79d25835c3aa62c647e1d71d8c8ebefb2f4a393b
   specs:
     ckeditor (3.7.3)
