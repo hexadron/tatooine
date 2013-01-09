@@ -26,6 +26,8 @@ Tatooine::Application.routes.draw do
       end
     end
     
+    resources :badges
+    
     member do
       post 'enroll'
       get 'faq'

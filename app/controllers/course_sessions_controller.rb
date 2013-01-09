@@ -1,10 +1,12 @@
+# encoding: utf-8
+
 class CourseSessionsController < ApplicationController
   include CoursesProtector
   
   before_filter :authenticate_user!, except: [:show]
   before_filter :load_course, except: [:resort]
   before_filter :load_session, only: [:show, :edit, :update, :destroy]
-  before_filter :protect_courses, only: [:index, :edit, :update, :destroy, :new, :create, :resort, :show]
+  before_filter :protect_courses, only: [:index, :edit, :update, :destroy, :new, :create, :resort]
   
   layout 'edit_course'
     
@@ -26,7 +28,14 @@ class CourseSessionsController < ApplicationController
   end
   
   def update
-    
+    @session.update_attributes(params[:course_session])
+    if @session.errors.empty?
+      flash[:notice] = "¡Curso actualizado exitosamente!"
+      redirect_to edit_course_course_session_url(@course, @session)
+    else
+      flash[:alert] = format_errors(@session)
+      redirect_to edit_course_course_session_url(@course, @session)
+    end
   end
   
   def new

@@ -49,6 +49,7 @@ class ExercisesController < ApplicationController
     @section = @exercise.section
     
     @ue = r[:ue]
+    @us = r[:us]
     @result = r[:result]
     @mistakes = r[:mistakes]
     @invalidations = r[:invalidations]
@@ -60,7 +61,18 @@ class ExercisesController < ApplicationController
         flash[:alert] = "Respuesta incorrecta"
       end
     else
-      flash[:notice] = "Respuesta correcta"
+      news = ["Respuesta correcta"]
+      badge_result = check_badges
+      
+      if badge_result[:result]
+        news << "Además, has ganado la siguiente medalla: '#{badge_result[:badge].name}'"
+      end
+      
+      if news.count > 1
+        flash[:notice] = format_errors(news)
+      else
+        flash[:notice] = news.first
+      end
     end
   end
   
@@ -70,6 +82,10 @@ class ExercisesController < ApplicationController
   end
   
   private
+  
+  def check_badges
+    @us.check_for_badges
+  end
   
   def load_section
     @section ||= Section.find(params[:section_id])

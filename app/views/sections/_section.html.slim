@@ -1,7 +1,8 @@
 ul.tabs.menu
   li= link_to_javascript "Contenido", data: { tab: 'section-content' }
   li= link_to_javascript "Ejercicios", data: { tab: 'section-exercises' }
-  li= link_to_javascript "Logros", data: { tab: 'section-achievements' }
+  li= link_to_javascript "Medallas", data: { tab: 'section-badges' }
+  li= link_to_javascript "Opciones", data: { tab: 'section-options' }
 
 #section-content.tabcontent
   = semantic_form_for [@course, @session, @section], remote: true do |f|
@@ -16,5 +17,10 @@ ul.tabs.menu
     - for exercise in @exercises
       = render 'exercises/exercise_list_member', exercise: exercise, section: @section
 
-#section-achievements.tabcontent
-  h1 Próximamente
+#section-badges.tabcontent
+  h2 Sección Completada
+  = render 'exercises/section_badges', section: @section, course: @course, badge: @section_badge
+
+#section-options.tabcontent
+  h2 Eliminar Sección
+  = button_to "eliminar", course_course_session_section_url(@course, @session, @section), method: 'delete', class: 'delete actions', confirm: "¿Deseas eliminar esta sección?"

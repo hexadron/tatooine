@@ -1,6 +1,7 @@
 # encoding: utf-8
 
-class Section < ActiveRecord::Base
+class Section < ActiveRecord::Base  
+  
   belongs_to :course_session
   has_many :exercises
   has_many :user_sections
@@ -12,10 +13,6 @@ class Section < ActiveRecord::Base
     total = exercises.count
     sect_data = user.section_data_for(self)
     progress = sect_data.progress
-    
-    puts progress
-    puts total
-      
     percent = safe_percent(progress, total).round
     
     { total: total, done: progress, percent: percent }

@@ -15,6 +15,7 @@ class SectionsController < ApplicationController
   def show
     load_exercises
     load_types_for_select
+    load_badge
     respond_with(@course, @session, @section)
   end
   
@@ -52,26 +53,37 @@ class SectionsController < ApplicationController
       @success = false
     end
     load_exercises
+    load_badge
     render :show
   end
   
+  def destroy
+    @section.destroy
+    flash[:notice] = "Sección eliminada exitosamente"
+    redirect_to course_course_session_sections_url
+  end
+  
   private
+  
+  def load_badge
+    @section_badge = Badge.for(@course, "sections::complete", section_id: @section.id)
+  end
   
   def load_exercises
     @exercises = @section.exercises
   end
   
   def load_course
-    @course ||= Course.find(params[:course_id])
+    @course ||= Course.find(params[:course_id]) if params[:course_id]
   end
   
   def load_session_and_course
     load_course
-    @session ||= CourseSession.find(params[:course_session_id])
+    @session ||= CourseSession.find(params[:course_session_id]) if params[:course_session_id]
   end
   
   def load_section
     load_session_and_course
-    @section ||= Section.find(params[:id])
+    @section ||= Section.find(params[:id]) if params[:id]
   end
 end

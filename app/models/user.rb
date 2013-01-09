@@ -19,6 +19,15 @@ class User < ActiveRecord::Base
   
   has_many :enrollments
   has_many :courses, :through => :enrollments
+  
+  has_many :user_badges
+  has_many :badges, :through => :user_badges
+  
+  has_many  :awarded_badges, :through => :user_badges, 
+          :class_name => "Badge", 
+          :source => :badge, 
+          :conditions => ['user_badges.awarded = ?',true]
+  
   has_many :user_exercises
   has_many :user_sections
 
@@ -112,7 +121,7 @@ class User < ActiveRecord::Base
       sect.progress -= 1 unless sect.progress.zero?
     end
     sect.save
-    sect.progress
+    { progress: sect.progress, us: sect }
   end
   
   def update_ranking(course, progress)
@@ -131,10 +140,10 @@ class User < ActiveRecord::Base
     progress = update_section_progress(section, ue.result)
     
     if ue.result
-      update_ranking(section.course_session.course, progress)
+      update_ranking(section.course_session.course, progress[:progress])
     end
     
-    { result: ue.result, mistakes: exercise.mistakes, invalidations: exercise.invalidations, ue: ue }
+    { result: ue.result, mistakes: exercise.mistakes, invalidations: exercise.invalidations, ue: ue, us: progress[:us] }
   end
 
   def self.teachers
