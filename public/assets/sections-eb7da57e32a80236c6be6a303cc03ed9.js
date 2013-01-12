@@ -1,0 +1,1 @@
+(function(){$(function(){return $("#bring_section_form").click(function(){return Note.bringForm("#new_section_form",function(){return $("#section_title").focus()})})})}).call(this);
