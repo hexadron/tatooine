@@ -48,8 +48,8 @@ $ ->
       if image = @files[0]
         reader.readAsDataURL(image)
   
-  $('#toggle-search').click ->
-    $(this).find('.arrow').toggleClass('down').toggleClass('up')
+  $('#toggle-search .arrow').click ->
+    $(this).toggleClass('down').toggleClass('up')
     $('.search-zone').toggle()
   
   $('.datepicker').datepicker()
