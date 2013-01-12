@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def show
     @courses_you_take = @user.courses
     @courses_you_teach = @user.creations
+    @badges = @user.badges
   end
   
   def edit

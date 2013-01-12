@@ -6,6 +6,10 @@
     - size_of_linked_image = @user.avatar.exists? ? :original : :thumb
     
     = link_to image_tag(@user.avatar.url(:medium), class: 'avatar'), @user.avatar.url(size_of_linked_image), target: "_blank"
+  
+  - if @badges.count > 0
+    h2 Medallas
+    = show_badges(@badges)
     
   h2 Cursos que dicta
 

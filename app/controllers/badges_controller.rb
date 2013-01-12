@@ -11,9 +11,13 @@ class BadgesController < ApplicationController
     end
   end
   
+  def show
+    
+  end
+  
 
   private
   def load_badge
-    @badge = Badges.find(params[:id]) if params[:id]
+    @badge = Badge.find(params[:id]) if params[:id]
   end
 end
