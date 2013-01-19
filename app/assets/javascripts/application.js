@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require ckeditor/ckeditor
-//= require ckeditor/config
+//= require ckeditor/init
 //= require jquery.isotope
 //= require epiceditor
 //= require jquery-ui

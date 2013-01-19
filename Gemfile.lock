@@ -1,8 +1,8 @@
 GIT
-  remote: git://github.com/lafeber/ckeditor.git
-  revision: 79d25835c3aa62c647e1d71d8c8ebefb2f4a393b
+  remote: git://github.com/galetahub/ckeditor.git
+  revision: d336964407ef00bb51aa41734c2944bd821462bd
   specs:
-    ckeditor (3.7.3)
+    ckeditor (4.0.0.rc1)
       mime-types
       orm_adapter
 

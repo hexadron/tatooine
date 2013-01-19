@@ -69,4 +69,4 @@ gem 'sanitize'
 gem 'htmlentities'
 
 # CKEDITOR
-gem 'ckeditor', git: 'git://github.com/lafeber/ckeditor.git'
+gem 'ckeditor', git: 'git://github.com/galetahub/ckeditor.git'
