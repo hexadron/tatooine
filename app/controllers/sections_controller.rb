@@ -16,7 +16,7 @@ class SectionsController < ApplicationController
     load_exercises
     load_types_for_select
     load_badge
-    respond_with(@course, @session, @section)
+    respond_with(@course, @session, @section, @attachment)
   end
   
   def index
@@ -62,6 +62,9 @@ class SectionsController < ApplicationController
     flash[:notice] = "Sección eliminada exitosamente"
     redirect_to course_course_session_sections_url
   end
+
+
+
   
   private
   

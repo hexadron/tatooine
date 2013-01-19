@@ -1,0 +1,9 @@
+= semantic_form_for [course, attachment], remote: true do |f|
+  ul
+    = f.input :event, as: :hidden, input_html: { value: "sections::complete::section_id:#{section.id}" }
+    = f.input :course_id, as: :hidden, input_html: { value: course.id }
+    li
+      p La medalla aparecerá cuando la sección sea completada.
+    = f.input :name, as: :string, label: "Nombre", input_html: { value: "Sección Completada" }
+    = f.input :file, as: :file, label: "Adjunto"
+    = f.submit "Guardar Medalla"

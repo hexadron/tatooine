@@ -1,6 +1,7 @@
 ul.tabs.menu
   li= link_to_javascript "Contenido", data: { tab: 'section-content' }
   li= link_to_javascript "Ejercicios", data: { tab: 'section-exercises' }
+  li= link_to_javascript "Adjuntos", data: { tab: 'section-attachments' }
   li= link_to_javascript "Medallas", data: { tab: 'section-badges' }
   li= link_to_javascript "Opciones", data: { tab: 'section-options' }
 
@@ -11,6 +12,12 @@ ul.tabs.menu
       = f.input :content, as: :ckeditor, label: "Contenido"
       = f.submit "Actualizar Contenido"
 
+#section-attachments.tabcontent
+  = button_to "Nuevo Adjunto", section_exercises_url(@section.id), _method: "post", remote: true
+  ul.exercises_list
+    - for exercise in @exercises
+      = render 'exercises/exercise_list_member', exercise: exercise, section: @section
+
 #section-exercises.tabcontent
   = button_to "Nuevo Ejercicio", section_exercises_url(@section.id), _method: "post", remote: true
   ul.exercises_list
@@ -19,7 +26,7 @@ ul.tabs.menu
 
 #section-badges.tabcontent
   h2 Sección Completada
-  = render 'exercises/section_badges', section: @section, course: @course, badge: @section_badge
+  = render 'exercises/section_attachments', section: @section, course: @course, badge: @section_badge
 
 #section-options.tabcontent
   h2 Eliminar Sección
