@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(:version => 20130109070144) do
   add_index "exercises", ["section_id"], :name => "index_exercises_on_section_id"
 
   create_table "feedbacks", :force => true do |t|
-    t.text     "text",       :limit => 255
+    t.text     "text"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "course_id"
