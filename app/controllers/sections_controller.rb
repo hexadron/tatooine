@@ -14,6 +14,7 @@ class SectionsController < ApplicationController
   
   def show
     load_exercises
+    load_attachments
     load_types_for_select
     load_badge
     respond_with(@course, @session, @section, @attachment)
@@ -70,6 +71,10 @@ class SectionsController < ApplicationController
   
   def load_badge
     @section_badge = Badge.for(@course, "sections::complete", section_id: @section.id)
+  end
+  
+  def load_attachments
+    @attachments = @section.attachments
   end
   
   def load_exercises

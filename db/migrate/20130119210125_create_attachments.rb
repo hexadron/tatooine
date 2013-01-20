@@ -3,7 +3,7 @@ class CreateAttachments < ActiveRecord::Migration
     
     create_table :attachments do |t|
 
-      t.references :sections
+      t.references :section
 
       t.timestamps
     end

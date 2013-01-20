@@ -1,0 +1,3 @@
+<%#= render 'shared/alerts_to_js' %>
+
+$("<%= escape_javascript(render 'attachments/attachment_list_member', attachment: @attachment, section: @section) %>").css('display', 'none').appendTo('.attachments_list').fadeIn()

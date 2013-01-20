@@ -43,6 +43,7 @@ Tatooine::Application.routes.draw do
   
   resources :sections do
     resources :exercises
+    resources :attachments
   end
   
   resources :exercises do

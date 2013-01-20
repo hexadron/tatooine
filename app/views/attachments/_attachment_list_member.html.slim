@@ -1,0 +1,12 @@
+li.attachment id="attachment-#{attachment.id}"
+  = semantic_form_for [section, attachment], remote: true do |f|
+    = f.input :file, as: :file
+    = f.submit "Guardar"
+  = button_to "Eliminar", { controller: :attachments, action: :destroy, id: attachment.id, section_id: section.id }, {method: :delete, remote: true, confirm: "¿Deseas eliminar este adjunto? No quedarán rastros de él."}
+  div.extra
+    - if attachment.displayable?
+      - link = link_to_download(attachment.file_file_name, attachment.file.to_s)
+      - size = attachment.file_file_size / 1.kilobyte
+      p #{link} | #{size} kbs.
+    - else
+      p No hay archivo disponible.

@@ -18,6 +18,10 @@ module ApplicationHelper
     link_to(content_tag(:span, text), link, final_html_opts)
   end
   
+  def link_to_download(text, link)
+    link_to(text, link, target: "_blank")
+  end
+  
   def course_tile_to(course)
     tile_to course.name, course_url(course), background: [course, :background_image]
   end

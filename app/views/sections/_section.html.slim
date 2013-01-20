@@ -13,10 +13,10 @@ ul.tabs.menu
       = f.submit "Actualizar Contenido"
 
 #section-attachments.tabcontent
-  = button_to "Nuevo Adjunto", section_exercises_url(@section.id), _method: "post", remote: true
-  ul.exercises_list
-    - for exercise in @exercises
-      = render 'exercises/exercise_list_member', exercise: exercise, section: @section
+  = button_to "Nuevo Adjunto", section_attachments_url(@section.id), _method: "post", remote: true
+  ul.attachments_list
+    - for attachment in @attachments
+      = render 'attachments/attachment_list_member', attachment: attachment, section: @section
 
 #section-exercises.tabcontent
   = button_to "Nuevo Ejercicio", section_exercises_url(@section.id), _method: "post", remote: true
@@ -26,7 +26,7 @@ ul.tabs.menu
 
 #section-badges.tabcontent
   h2 Sección Completada
-  = render 'exercises/section_attachments', section: @section, course: @course, badge: @section_badge
+  = render 'exercises/section_badges', section: @section, course: @course, badge: @section_badge
 
 #section-options.tabcontent
   h2 Eliminar Sección
