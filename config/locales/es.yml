@@ -180,7 +180,7 @@ es:
     messages:
       accepted: must be accepted
       blank: no puede estar en blanco
-      confirmation: doesn't match confirmation
+      confirmation: no concuerda con confirmación
       empty: can't be empty
       equal_to: must be equal to %{count}
       even: must be even

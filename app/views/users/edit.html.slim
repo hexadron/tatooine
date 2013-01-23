@@ -17,7 +17,7 @@
     = semantic_form_for(@user) do |f|
       = f.inputs do
         li.error= flash[:errors]
-        = f.input :old_password, label: "Contraseña Anterior"
+        = f.input :old_password, label: "Contraseña Actual"
         = f.input :password, label: "Nueva Contraseña"
         = f.input :password_confirmation, label: "Confirmar Nueva Contraseña"
         = f.submit "Actualizar contraseña"

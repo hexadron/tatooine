@@ -11,5 +11,5 @@
         img.course-background src="#{@course.background_image.url(:thumb)}"
       - else
         img.course-background
-    = f.input :can_be_published, label: "¿Publicar?"
+    -# = f.input :can_be_published, label: "¿Publicar?"
     = f.submit "Guardar Curso"
