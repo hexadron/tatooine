@@ -4,6 +4,15 @@
     = f.input :description, label: "Descripción"
     = f.input :available_at, as: :date_picker, label: "Disponible en:"
     = f.input :level, label: "Nivel", :include_blank => false
+    .help-trigger
+      = link_to_javascript "¿Cómo colocar preguntas?"
+      p.help-text
+        | Para colocar una pregunta, escribir:<br><br>
+        |
+        |   ## ¿Soy una pregunta?<br>
+        |   Sí, lo eres :)<br><br>
+        |
+        | Eso es todo.
     = f.input :faq, as: :markdown, label: "Preguntas Frecuentes"
     = f.input :background_image, as: :file, label: "Imagen", input_html: { data: { preview: '.course-background' } }
     li.course-background-container

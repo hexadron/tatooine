@@ -7,7 +7,7 @@ class StudentsController < ApplicationController
 
   def show
     @student = User.find params[:id]
-    @courses = @student.courses
+    @courses = Course.availables.taken_by(@student)
   end
 
 end
