@@ -1,7 +1,10 @@
 h2 Tus profesores
-ul.courses
-  - for teacher in @my_teachers
-    li= tile_to teacher.name, teacher_path(teacher), background: [teacher, :avatar]
+- unless @my_teachers.empty?
+	ul.courses
+	  - for teacher in @my_teachers
+	    li= tile_to teacher.name, teacher_path(teacher), background: [teacher, :avatar]
+- else
+	p No te has inscrito a algún curso todavía.
 
 h2 Todos los profesores
 ul.courses
