@@ -13,14 +13,22 @@ class CoursesController < ApplicationController
     @levels = Level.select([:name]).map(&:name)
     
     if @search
-      @courses = @courses.to_a # fetch the query
-      @your_level_courses = Course.with_level(current_user.average_level, {array: @courses})
+      original_source = @courses
+      
+      @available_courses = original_source.availables.to_a
+      @courses = original_source.to_a # fetch the query
+      
+      @your_level_courses = Course.with_level(current_user.average_level, {array: @available_courses})
       @courses_you_created = Course.created_by(current_user, {array: @courses})
-      @courses_you_take = Course.taken_by(current_user, {array: @courses})
+      @courses_you_take = Course.taken_by(current_user, {array: @available_courses})
+      
+      @courses = original_source.availables
     else
-      @your_level_courses = @courses.with_level(current_user.average_level)
+      @your_level_courses = @courses.availables.with_level(current_user.average_level)
       @courses_you_created = @courses.created_by(current_user)
-      @courses_you_take = @courses.taken_by(current_user)
+      @courses_you_take = @courses.availables.taken_by(current_user)
+      
+      @courses = @courses.availables
     end
   end
   
@@ -121,9 +129,9 @@ class CoursesController < ApplicationController
     @search = !!params[:q]
     
     @courses = if params[:q]
-      @q.result(distinct: true).joins("left join enrollments on enrollments.course_id = courses.id").joins(:level).select("courses.*, enrollments.user_id as enrollment_user_id, levels.name as level_name").availables
+      @q.result(distinct: true).joins("left join enrollments on enrollments.course_id = courses.id").joins(:level).select("courses.*, enrollments.user_id as enrollment_user_id, levels.name as level_name")
     else
-      Course.where("1 = 1").availables
+      Course.where("1 = 1")
     end
   end
   

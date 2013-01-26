@@ -8,7 +8,7 @@ class TeachersController < ApplicationController
 
   def show
     @teacher = User.find params[:id]
-    @courses = @teacher.creations
+    @courses = Course.availables.created_by(@teacher)
   end
 
 end
