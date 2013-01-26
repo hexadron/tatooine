@@ -13,7 +13,7 @@ li.section
     
   / TABS CONTENT
   .info.tabcontent id="section_#{section.id}_info" style='display: block;'
-    .content== sanitize(section.content)
+    .content= (section.content)
     
   .exercises.tabcontent id="section_#{section.id}_exercises"
     p.progress <span class='done'>#{done}</span> ejercicio(s) resueltos de <span class='total'>#{total}</span> disponible(s).
