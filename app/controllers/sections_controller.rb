@@ -53,6 +53,7 @@ class SectionsController < ApplicationController
       flash[:alert] = format_errors(@section)
       @success = false
     end
+    load_attachments
     load_exercises
     load_badge
     render :show
